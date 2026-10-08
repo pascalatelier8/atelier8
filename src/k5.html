@@ -224,7 +224,9 @@
   function sizeWall(){
     var st=d.getElementById('vstage'), g=d.getElementById('vgrid'); if(!st||!g)return;
     var voir=d.getElementById('voir'); if(voir.classList.contains('flat')){g.style.removeProperty('--gw');return;}
-    var r=st.getBoundingClientRect(), gap=14, rows=4, cols=5, CAP=44, h=(r.height-16), cardH=(h-gap*(rows-1)-CAP*rows)/rows, w=Math.min(r.width*.98,(cardH*16/9)*cols+gap*(cols-1));
+    var r=st.getBoundingClientRect(), gap=14, rows=4, cols=6, h=(r.height-16);
+    function fit(CAP){var cardH=(h-gap*(rows-1)-CAP*rows)/rows;return Math.min(r.width*.98,(cardH*16/9)*cols+gap*(cols-1));}
+    var w=fit(44), tight=(w-gap*(cols-1))/cols<190; if(tight)w=fit(24); g.classList.toggle('tight',tight);
     g.style.setProperty('--gw',Math.floor(w)+'px'); g.style.setProperty('--g',gap+'px');
   }
   addEventListener('resize',sizeWall);
