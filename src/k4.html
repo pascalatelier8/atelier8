@@ -1,0 +1,66 @@
+<section class="cta dark" id="cta">
+  <div class="cleft">
+    <span class="label">05 <span lang="fr">Brief</span><span lang="en" hidden>Brief</span></span>
+    <h2 class="ctitle"><span lang="fr">UN FILM <em>en tête ?</em></span><span lang="en" hidden>A FILM <em>in mind?</em></span></h2>
+    <p class="clead"><span lang="fr">Trois questions, deux minutes. Pascal lit chaque brief et répond lui-même.</span><span lang="en" hidden>Three questions, two minutes. Pascal reads every brief and answers himself.</span></p>
+    <ol class="cpath">
+      <li><b>01</b><span><span lang="fr">Votre brief</span><span lang="en" hidden>Your brief</span></span><em><span lang="fr">aujourd’hui</span><span lang="en" hidden>today</span></em></li>
+      <li><b>02</b><span><span lang="fr">Première lecture et devis</span><span lang="en" hidden>First read and quote</span></span><em><span lang="fr">sous 2 jours ouvrés</span><span lang="en" hidden>within 2 working days</span></em></li>
+      <li><b>03</b><span><span lang="fr">Script et storyboard</span><span lang="en" hidden>Script and storyboard</span></span><em><span lang="fr">à la signature</span><span lang="en" hidden>at signature</span></em></li>
+    </ol>
+    <div class="cmail"><span class="mk"><span lang="fr">Ou directement</span><span lang="en" hidden>Or directly</span></span><a class="mail" href="mailto:pascal@atelier8.io">pascal@atelier8.io</a><button class="copy" type="button" id="copyMail" data-mail="pascal@atelier8.io"><span lang="fr">Copier</span><span lang="en" hidden>Copy</span></button></div>
+  </div>
+  <form class="fcard" id="briefForm" novalidate>
+    <ol class="fsteps" id="fStepper"><li class="on"><b>01</b><span lang="fr">Vous</span><span lang="en" hidden>You</span></li><li><b>02</b><span lang="fr">Le projet</span><span lang="en" hidden>The project</span></li><li><b>03</b><span lang="fr">Le format</span><span lang="en" hidden>The format</span></li></ol>
+    <div class="fstep" data-s="0">
+      <div class="field"><label for="f-name"><span lang="fr">Prénom & nom</span><span lang="en" hidden>First & last name</span></label><input id="f-name" name="name" type="text" placeholder="Camille Dupont" required autocomplete="name"></div>
+      <div class="field"><label for="f-mail"><span lang="fr">E-mail professionnel</span><span lang="en" hidden>Work e-mail</span></label><input id="f-mail" name="email" type="email" placeholder="camille@exemple.com" required autocomplete="email"></div>
+      <div class="fnav"><span class="fhint">01 / 03</span><button class="pill solid gold" type="button" data-next><span lang="fr">Continuer</span><span lang="en" hidden>Continue</span> <i>→</i></button></div>
+    </div>
+    <div class="fstep" data-s="1" hidden>
+      <div class="field"><label for="f-site"><span lang="fr">Adresse de votre site</span><span lang="en" hidden>Your website address</span></label><input id="f-site" name="site" type="url" placeholder="https://votre-societe.com" required inputmode="url"><small class="err" hidden><span lang="fr">Cette adresse semble incomplète. Elle commence par https://.</span><span lang="en" hidden>This address looks incomplete. It starts with https://.</span></small></div>
+      <div class="field"><label for="f-ctx"><span lang="fr">Votre société, vos produits</span><span lang="en" hidden>Your company and products</span></label><textarea id="f-ctx" name="context" rows="3" required placeholder=""></textarea><small><span lang="fr">Quelques lignes suffisent. Pour un accord de confidentialité avant l’envoi, écrivez-le ici.</span><span lang="en" hidden>A few lines are enough. For an NDA before you send anything, mention it here.</span></small></div>
+      <div class="fnav"><button class="back" type="button" data-back><span lang="fr">← Retour</span><span lang="en" hidden>← Back</span></button><span class="fhint">02 / 03</span><button class="pill solid gold" type="button" data-next><span lang="fr">Continuer</span><span lang="en" hidden>Continue</span> <i>→</i></button></div>
+    </div>
+    <div class="fstep" data-s="2" hidden>
+      <div class="row2">
+        <div class="field"><label for="f-fmt"><span lang="fr">Format envisagé</span><span lang="en" hidden>Format in mind</span></label><select id="f-fmt" name="format"><option value=""></option><option value="signal">Signal · 15–30 s</option><option value="portrait">Portrait · 45–90 s</option><option value="campagne">Campagne / Campaign</option><option value="nsp">Je ne sais pas encore / Not sure yet</option></select></div>
+        <div class="field"><label for="f-when"><span lang="fr">Pour quand ?</span><span lang="en" hidden>By when?</span></label><select id="f-when" name="when"><option value=""></option><option value="1">&lt; 1 mois / month</option><option value="2">1–2 mois / months</option><option value="3">Plus tard / Later</option></select></div>
+      </div>
+      <div class="field"><label for="f-refs"><span lang="fr">Références</span><span lang="en" hidden>References</span></label><input id="f-refs" name="refs" type="text" placeholder="Liens, Drive, WeTransfer…"><small><span lang="fr">Les vôtres, ou des films qui vous inspirent.</span><span lang="en" hidden>Yours, or films you admire.</span></small></div>
+      <label class="consent"><input id="f-ok" type="checkbox" name="consent" required><span><span lang="fr">J’accepte d’être recontacté au sujet de ma demande. Politique de confidentialité à rédiger.</span><span lang="en" hidden>I agree to be contacted about my request. Privacy policy to be written.</span></span></label>
+      <div class="fnav"><button class="back" type="button" data-back><span lang="fr">← Retour</span><span lang="en" hidden>← Back</span></button><span class="fhint">03 / 03</span><button class="pill solid gold" type="submit"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></button></div>
+    </div>
+    <div class="fdone" data-s="3" hidden><h3><span lang="fr">Brief reçu.</span><span lang="en" hidden>Brief received.</span></h3><p><span lang="fr">Réponse sous deux jours ouvrés, avec un devis. Maquette : rien n’a été transmis.</span><span lang="en" hidden>Reply within two working days, with a quote. Mock-up: nothing was sent.</span></p></div>
+    <div class="fprog"><i id="fprog" style="--s:1"></i></div>
+    <span class="fhint fnote"><span lang="fr">Vos informations servent uniquement à répondre à votre demande. Maquette : rien n’est transmis.</span><span lang="en" hidden>Your details are only used to answer your request. Mock-up: nothing is sent.</span></span>
+  </form>
+</section>
+
+<footer>
+  <div class="fhead2">
+    <div class="flock"><svg class="fm" viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8" x="-86" y="-80" width="172" height="160"/></svg><i class="brule"></i><svg class="wm" viewBox="0 0 1344.8 150.2" aria-hidden="true"><use href="#wm"/></svg></div>
+    <p class="fclaim"><span lang="fr">UN FILM QUI <em>marque.</em></span><span lang="en" hidden>A FILM THAT <em>leaves a mark.</em></span></p>
+    <a class="pill solid" href="#brief" data-go="brief"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></a>
+  </div>
+  <div class="fcities">
+    <div class="city"><span class="ck"><span lang="fr">Atelier</span><span lang="en" hidden>Studio</span> · 48°51′ N</span><span class="cn">Paris</span><b class="ct" id="clkParis">--:--</b></div>
+    <span class="cdot" aria-hidden="true"></span>
+    <div class="city r"><span class="ck"><span lang="fr">Atelier</span><span lang="en" hidden>Studio</span> · 22°17′ N</span><span class="cn">Hong Kong</span><b class="ct" id="clkHK">--:--</b></div>
+  </div>
+  <div class="fcols2">
+    <div><span class="mk">Menu</span><a href="#films" data-go="films"><span lang="fr">Films</span><span lang="en" hidden>Films</span></a><a href="#formats" data-go="formats"><span lang="fr">Formats</span><span lang="en" hidden>Formats</span></a><a href="#atelier" data-go="atelier"><span lang="fr">L’atelier</span><span lang="en" hidden>The studio</span></a><a href="#faq" data-go="faq">FAQ</a><a href="#brief" data-go="brief">Brief</a></div>
+    <div><span class="mk">Contact</span><a href="mailto:pascal@atelier8.io">pascal@atelier8.io</a><span><span lang="fr">Réponse sous deux jours ouvrés</span><span lang="en" hidden>Reply within two working days</span></span></div>
+    <div><span class="mk"><span lang="fr">Réseaux</span><span lang="en" hidden>Social</span></span><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+    <div class="fabout"><span class="mk"><span lang="fr">L’atelier</span><span lang="en" hidden>The studio</span></span><p><span lang="fr">Atelier de motion design indépendant. Script, image et son, écrits pour une seule marque.</span><span lang="en" hidden>Independent motion design studio. Script, picture and sound, written for one brand only.</span></p></div>
+  </div>
+  <div class="wordmark2" aria-hidden="true" style="--m:url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22138.6%20133.8%201344.8%20150.2%22%3E%3Cpath%20d%3D%22M231.8%20229.2%20252%20280%20H259.4%20L200%20135.8%20L140.6%20280%20H147.8%20L168.4%20229.2%20ZM200%20151%20229.4%20223.2%20H170.6%20ZM333.2%20146.2%20H370.6%20V280%20H377.2%20V146.2%20H414.6%20V140%20H333.2%20ZM503.4%20140%20V280%20H575%20V273.8%20H510%20V205.8%20H571%20V199.6%20H510%20V146.2%20H575%20V140%20ZM675.8%20140%20V280%20H742.2%20V273.8%20H682.2%20V140%20ZM830.4%20140%20V280%20H836.8%20V140%20ZM938.8%20140%20V280%20H1010.4%20V273.8%20H945.4%20V205.8%20H1006.4%20V199.6%20H945.4%20V146.2%20H1010.4%20V140%20ZM1111.2%20140%20V280%20H1117.8%20V219.2%20H1137%20L1179.2%20280%20H1187.2%20L1144%20219%20Q1154.4%20218.2%201162.8%20214.6%20Q1173.4%20210.2%201179.7%20201.3%20Q1186%20192.4%201186%20179.6%20Q1186%20166.6%201179.7%20157.8%20Q1173.4%20149%201162.8%20144.5%20Q1152.2%20140%201138.6%20140%20ZM1117.8%20213.4%20V146%20H1138.6%20Q1150.6%20146%201159.8%20149.7%20Q1169%20153.4%201174.2%20160.9%20Q1179.4%20168.4%201179.4%20179.6%20Q1179.4%20190.8%201174.2%20198.3%20Q1169%20205.8%201159.8%20209.6%20Q1150.6%20213.4%201138.6%20213.4%20ZM1405.6%20172.4%20Q1405.6%20180%201408.5%20186.4%20Q1411.4%20192.8%201416.4%20197.4%20Q1421.4%20202%201427.8%20204.6%20Q1429.4%20205.2%201431.2%20205.8%20Q1428.8%20206.4%201426.4%20207.2%20Q1419%20210%201413.4%20215%20Q1407.8%20220%201404.5%20227%20Q1401.2%20234%201401.2%20242.8%20Q1401.2%20251%201403.9%20258.1%20Q1406.6%20265.2%201411.8%20270.6%20Q1417%20276%201424.4%20279%20Q1431.8%20282%201441.2%20282%20Q1450.6%20282%201458%20279%20Q1465.4%20276%201470.6%20270.6%20Q1475.8%20265.2%201478.6%20258.1%20Q1481.4%20251%201481.4%20242.8%20Q1481.4%20234%201478.1%20227%20Q1474.8%20220%201469.2%20215%20Q1463.6%20210%201456.4%20207.2%20Q1454%20206.4%201451.4%20205.8%20Q1453.2%20205.2%201454.8%20204.6%20Q1461.2%20202%201466.2%20197.4%20Q1471.2%20192.8%201474.1%20186.4%20Q1477%20180%201477%20172.4%20Q1477%20163%201472.4%20155.2%20Q1467.8%20147.4%201459.7%20142.7%20Q1451.6%20138%201441.2%20138%20Q1431%20138%201422.9%20142.7%20Q1414.8%20147.4%201410.2%20155.2%20Q1405.6%20163%201405.6%20172.4%20ZM1407.4%20242.2%20Q1407.4%20232.4%201412.3%20224.9%20Q1417.2%20217.4%201425%20213.1%20Q1432.8%20208.8%201441.2%20208.8%20Q1449.6%20208.8%201457.4%20213.1%20Q1465.2%20217.4%201470.2%20224.9%20Q1475.2%20232.4%201475.2%20242.2%20Q1475.2%20252.2%201470.9%20259.9%20Q1466.6%20267.6%201459.1%20271.9%20Q1451.6%20276.2%201441.2%20276.2%20Q1431.2%20276.2%201423.5%20271.9%20Q1415.8%20267.6%201411.6%20259.9%20Q1407.4%20252.2%201407.4%20242.2%20ZM1411.6%20173%20Q1411.6%20165%201415.5%20158.4%20Q1419.4%20151.8%201426.1%20147.8%20Q1432.8%20143.8%201441.2%20143.8%20Q1450%20143.8%201456.6%20147.8%20Q1463.2%20151.8%201467%20158.4%20Q1470.8%20165%201470.8%20173%20Q1470.8%20181.6%201466.3%20188.4%20Q1461.8%20195.2%201454.9%20199.1%20Q1448%20203%201441.2%20203%20Q1434.6%20203%201427.7%20199.1%20Q1420.8%20195.2%201416.2%20188.4%20Q1411.6%20181.6%201411.6%20173%20Z%22%20fill%3D%22%23000%22/%3E%3C/svg%3E&quot;)"><i></i></div>
+  <div class="legal2"><span>© 2026 Atelier 8</span><span class="c"><span lang="fr">Mentions légales</span><span lang="en" hidden>Legal notice</span> · <span lang="fr">Confidentialité</span><span lang="en" hidden>Privacy</span> · <span lang="fr">Facturation France ou Hong Kong, selon le projet</span><span lang="en" hidden>Billed from France or Hong Kong, per project</span></span><button class="totop" type="button" id="toTop" aria-label="Haut de page"><i>↑</i></button></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Film">
+  <button class="x" type="button" id="lbClose"><span lang="fr">Fermer</span><span lang="en" hidden>Close</span> · Esc</button>
+  <video id="lbVideo" controls playsinline preload="auto"></video>
+  <div class="cap" id="lbCap"></div>
+  <div class="lb-ver" id="lbVer" role="group" aria-label="Version" hidden><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">EN</button></div>
+</div>
