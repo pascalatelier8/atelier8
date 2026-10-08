@@ -6,6 +6,9 @@
   var d=document, root=d.documentElement, body=d.body;
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function compact(){return matchMedia('(max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px)').matches;}
+  /* rotation d'écran : si la mise en page change (tablette, téléphone en paysage), on recharge proprement */
+  (function(){var c0=compact(),t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){if(compact()!==c0)location.reload();},350);});})();
   var hasGsap=!!(window.gsap&&window.ScrollTrigger);
   if(hasGsap) gsap.registerPlugin(ScrollTrigger);
   var MARK=@@MARK@@;
@@ -175,6 +178,7 @@
   /* menu mobile */
   var menu=d.getElementById('menu'), burger=d.querySelector('.burger');
   function closeMenu(){menu.classList.remove('open');body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');if(lenis&&!lb.classList.contains('open'))lenis.start();}
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open'))closeMenu();});
   burger.addEventListener('click',function(){var o=!menu.classList.contains('open');menu.classList.toggle('open',o);body.classList.toggle('menu-open',o);burger.setAttribute('aria-expanded',String(o));if(lenis){o?lenis.stop():lenis.start();}});
   addEventListener('keydown',function(e){if(e.key==='Escape'){closeLb();closeMenu();}});
 
@@ -232,13 +236,13 @@
     var method=d.getElementById('method'), mg=method.querySelector('.mgrid'), steps=Array.prototype.slice.call(d.querySelectorAll('#steps .step')), mRoll=d.getElementById('mRoll'), mBar=d.getElementById('mBar'), mName=d.getElementById('mName'), mcur=-1;
     method.classList.add('mstage');
     function setStep(i){if(i===mcur)return;mcur=i;steps.forEach(function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('past',k<i);});mRoll.style.transform='translateY('+(-i*20)+'%)';mBar.style.setProperty('--p',i);var st=steps[i];mName.textContent=st.dataset[lang==='en'?'en':'fr']||'';}
-    ScrollTrigger.create({trigger:mg,start:'top top+='+(parseInt(getComputedStyle(d.documentElement).getPropertyValue('--nav'))||(innerWidth<=900?60:72)),end:function(){return '+='+Math.round(innerHeight*.75*4);},pin:true,pinSpacing:true,onUpdate:function(s){setStep(Math.min(4,Math.floor(s.progress*5)));}});
+    ScrollTrigger.create({trigger:mg,start:'top top+='+(parseInt(getComputedStyle(d.documentElement).getPropertyValue('--nav'))||(compact()?60:72)),end:function(){return '+='+Math.round(innerHeight*.75*4);},pin:true,pinSpacing:true,onUpdate:function(s){setStep(Math.min(4,Math.floor(s.progress*5)));}});
     setStep(0);
   }
   function initHome(){
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
-    if(!hasGsap||reduced||innerWidth<=900){voir.classList.remove('ring3d','ribbon');voir.classList.add('flat');sizeWall();initMethod();return;}
+    if(!hasGsap||reduced||compact()){voir.classList.remove('ring3d','ribbon');voir.classList.add('flat');sizeWall();initMethod();return;}
     voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon'); sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),

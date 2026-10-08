@@ -47,14 +47,14 @@
 <div class="view on" data-view="accueil" data-fr="Accueil" data-en="Home">
   <section class="hero dark" id="hero">
     <div class="hero-sticky">
-      <picture><source media="(orientation: portrait) and (max-width: 900px)" srcset="media/hero-poster-m.webp"><img class="hero-video" id="heroPoster" src="media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
+      <picture><source media="(orientation: portrait) and (max-width: 599px)" srcset="media/hero-poster-m.webp"><source media="(orientation: portrait) and (max-width: 1180px)" srcset="media/hero-poster-t.webp"><img class="hero-video" id="heroPoster" src="media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
       <video class="hero-video hv" id="heroVideo" muted playsinline preload="none" aria-hidden="true"></video>
       <video class="hero-video hv" id="heroVideoHd" muted playsinline preload="none" aria-hidden="true"></video>
       <script>/* hero : version légère d'abord, HD ensuite, chargées en mémoire pour un scrub sans attente réseau */
       (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
         if(mq('(prefers-reduced-motion: reduce)'))return;
-        var m=mq('(orientation: portrait) and (max-width: 900px)'),c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
-        var lo=m?'media/hero-lo-m.mp4':'media/hero-lo.mp4', hd=m?'media/hero-hd-m.mp4':'media/hero-hd.mp4';
+        var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
+        var F={'':['media/hero-lo.mp4','media/hero-hd.mp4'],'-t':['media/hero-lo-t.mp4','media/hero-hd-t.mp4'],'-m':['media/hero-lo-m.mp4','media/hero-hd-m.mp4']}, lo=F[v][0], hd=F[v][1];
         function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
           return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
         var H=window.__hero={};
@@ -110,10 +110,6 @@
     <div class="humain hm-home">
     <div class="hm-head"><span class="label"><span lang="fr">Le rôle humain</span><span lang="en" hidden>The human role</span></span><h2 class="big rv"><span lang="fr">Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en" hidden>The agents execute.<em>I frame, check and decide.</em></span></h2></div>
     <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr">Cadrer avant de produire</span><span lang="en" hidden>Frame before producing</span></h3><p><span lang="fr">Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en" hidden>A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr">Orchestrer, pas prompter</span><span lang="en" hidden>Orchestrate, not prompt</span></h3><p><span lang="fr">Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en" hidden>Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr">Vérifier, puis livrer</span><span lang="en" hidden>Check, then deliver</span></h3><p><span lang="fr">Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en" hidden>I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
-    </div>
-    <div class="studio-body">
-      <div class="sleft"><span class="paren"><span lang="fr">(L’atelier)</span><span lang="en" hidden>(The studio)</span></span><i class="srule"></i><p class="aside rv"><span lang="fr">Quinze ans de design produit pour de grandes marques, entre Paris et Hong Kong. C’est ce regard que vous engagez, du brief à la livraison.</span><span lang="en" hidden>Fifteen years of product design for major brands, between Paris and Hong Kong. That eye is what you hire, from brief to delivery.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
-      <p class="reveal"><span lang="fr">Une page explique. Un film fait voir. Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en" hidden>A page explains. A film shows. A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p>
     </div>
   </section>
 
