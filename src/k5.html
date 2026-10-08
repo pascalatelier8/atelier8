@@ -223,7 +223,7 @@
   var wallVids=Array.prototype.slice.call(d.querySelectorAll('#voir video'));
   wallVids.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.parentNode.classList.add('playing');});});
   /* grille à plat (mobile, tablette, écrans tactiles) : seules les vidéos vraiment à l'écran jouent, 3 au plus sur tactile, 6 sinon */
-  var flatWall=!hasGsap||reduced||compact()||!fine, cardIO=null, playQ=[], MAXP=fine?6:3;
+  var flatWall=true, cardIO=null, playQ=[], MAXP=fine?6:3;
   function flatPlay(){
     if(cardIO||!('IntersectionObserver' in window))return;
     cardIO=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target.querySelector('video');if(!v)return;
@@ -275,7 +275,8 @@
   function initHome(){
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
-    if(!hasGsap||reduced||compact()||!fine){voir.classList.remove('ring3d','ribbon');voir.classList.add('flat');flatWall=true;sizeWall();initMethod();return;}
+    /* grille de films à plat partout : grandes vignettes, défilement natif (le ruban 3D est retiré) */
+    if(true){voir.classList.remove('ring3d','ribbon');voir.classList.add('flat');flatWall=true;sizeWall();initMethod();return;}
     voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon'); sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),

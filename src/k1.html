@@ -368,7 +368,7 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .voir.flat .wtitle{grid-column:1/-1;position:static;transform:none;white-space:normal;text-align:left;font-size:clamp(44px,8vw,120px);margin:0 0 18px}
 .voir.flat .wall{position:static}
 .voir.flat .vgrid{width:100%;transform:none!important}
-.voir.flat .vgrid{grid-template-columns:repeat(4,minmax(0,1fr));transform-style:flat;will-change:auto}
+.voir.flat .vgrid{grid-template-columns:repeat(3,minmax(0,1fr));--g:clamp(18px,2vw,32px);row-gap:clamp(28px,3vw,44px);transform-style:flat;will-change:auto}
 .voir.flat .card{transform:none!important;opacity:1!important}
 .voir.flat .card .cap{position:static;opacity:1;transform:none;background:none;color:var(--fg);padding:8px 0 0}
 .voir.flat .card .cap .s{color:var(--fg-3)}
@@ -1038,5 +1038,13 @@ body.in-hero .cursor{opacity:0!important}
 .cmanage{font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer;padding:0;background:none;border:0}
 @media print{.consent-b{display:none!important}}
 @media (min-width:901px){.consent-b{left:auto;right:var(--gutter);bottom:88px}}
+/* grille de films desktop : légendes à l'échelle des grandes vignettes */
+@media (min-width:1001px){
+  .voir.flat .card .cap{padding-top:12px;gap:6px 12px}
+  .voir.flat .card .cap .t{font-size:clamp(14px,1.05vw,18px);letter-spacing:.03em}
+  .voir.flat .card .cap .n{font-size:11px}
+  .voir.flat .card .cap .s,.voir.flat .card .cap .csec{font-size:10.5px}
+  .voir.flat .card .vid{border-radius:6px;overflow:hidden}
+}
 </style>
 <script>document.documentElement.classList.add("js")</script>
