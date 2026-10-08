@@ -1008,5 +1008,12 @@ body.in-hero .cursor{opacity:0!important}
 .manif .reveal .w:nth-child(n+4){font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
 .vid .tag.concept{max-width:calc(100% - 20px);white-space:normal;line-height:1.5}
 .vgrid.tight .vid .tag{font-size:7px;letter-spacing:.12em;padding:2px 5px;left:6px;top:6px}
+/* méthode en mode collant (mobile, tablette) */
+.method.msticky-mode{overflow:clip}
+.method.msticky-mode .mtrack{position:relative;z-index:1}
+.method.msticky-mode .mgrid{position:sticky;top:var(--nav)}
+@media (max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px){
+  .method.mstage .mgrid .fsig{right:-34vw;top:auto;bottom:-4vw;transform:none;width:96vw;height:96vw;opacity:.5}
+}
 </style>
 <script>document.documentElement.classList.add("js")</script>
