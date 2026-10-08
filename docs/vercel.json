@@ -1,12 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": false,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "headers": [
-    { "source": "/", "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" } ] },
-    { "source": "/index.html", "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" } ] },
+    { "source": "/(.*)", "headers": [
+      { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800" },
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" } ] },
     { "source": "/media/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=604800, s-maxage=31536000, stale-while-revalidate=2592000" } ] },
     { "source": "/libs/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=604800, s-maxage=31536000, stale-while-revalidate=2592000" } ] },
-    { "source": "/(.*)", "headers": [ { "key": "X-Content-Type-Options", "value": "nosniff" }, { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" } ] }
+    { "source": "/llms.txt", "headers": [ { "key": "Content-Type", "value": "text/plain; charset=utf-8" } ] },
+    { "source": "/robots.txt", "headers": [ { "key": "Content-Type", "value": "text/plain; charset=utf-8" } ] }
   ]
 }

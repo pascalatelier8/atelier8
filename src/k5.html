@@ -30,8 +30,11 @@
   var LANGS=['fr','en'], lang='fr';
   function applyLang(scope){(scope||body).querySelectorAll('[lang]').forEach(function(el){var v=el.getAttribute('lang');if(LANGS.indexOf(v)>-1)el.hidden=(v!==lang);});}
   function setLang(l){lang=(LANGS.indexOf(l)>-1)?l:'fr';applyLang();root.lang=lang;d.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang));});try{localStorage.setItem('a8-lang',lang);}catch(e){}if(typeof syncVer==='function')try{syncVer();}catch(e){}}
-  try{lang=localStorage.getItem('a8-lang')||'fr';}catch(e){}
-  d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);if(hasGsap)ScrollTrigger.refresh();});});
+  /* URL propres (/films/, /en/faq/…) en ligne ; ancres #vue en local (fichier .html) */
+  var SEO=@@SEO@@, PATHMODE=/^https?:$/.test(location.protocol)&&!/\.html$/.test(location.pathname);
+  function pathView(){var p=location.pathname.replace(/^\/en(?=\/|$)/,'').replace(/^\/+|\/+$/g,'');return p||'accueil';}
+  if(PATHMODE){lang=/^\/en(\/|$)/.test(location.pathname)?'en':'fr';}else{try{lang=localStorage.getItem('a8-lang')||'fr';}catch(e){}}
+  d.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);if(typeof pushHash==='function'&&typeof cur!=='undefined')pushHash(cur,true);if(hasGsap)ScrollTrigger.refresh();});});
   setLang(lang);
 
   /* ---------- le 八 en deux dimensions (chargeur, rideau) ---------- */
@@ -152,7 +155,9 @@
     if(v!=='accueil')wallPlay(false);
     killScroll(); scrollTo(0,{immediate:true}); document.getElementById('nav').classList.remove('hide'); initView(v);
   }
-  function pushHash(v,replace){var h='#'+v;if(location.hash===h)return;try{replace?history.replaceState(null,'',h):history.pushState(null,'',h);}catch(e){location.hash=h;}}
+  function pathFor(v){return (lang==='en'?'/en':'')+(v==='accueil'?'/':'/'+v+'/');}
+  function setMeta(v){var t=SEO[lang]&&SEO[lang][v];if(t)d.title=t;}
+  function pushHash(v,replace){setMeta(v);if(PATHMODE){var u=pathFor(v);if(location.pathname===u&&!location.hash)return;try{replace?history.replaceState(null,'',u):history.pushState(null,'',u);}catch(e){}return;}var h='#'+v;if(location.hash===h)return;try{replace?history.replaceState(null,'',h):history.pushState(null,'',h);}catch(e){location.hash=h;}}
   function go(v,opts){
     opts=opts||{}; if(!viewEls[v]||busy)return;
     if(v===cur){scrollTo(0);return;}
@@ -174,7 +179,7 @@
   var lastMove=0; function mv(){lastMove=Date.now();}
   addEventListener('wheel',mv,{passive:true}); addEventListener('touchmove',mv,{passive:true}); addEventListener('scroll',mv,{passive:true});
   d.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();if(Date.now()-lastMove<350&&!a.closest('.nav,.menu,.navmark'))return;go(a.dataset.go);});
-  addEventListener('popstate',function(){var v=location.hash.slice(1);if(viewEls[v]&&v!==cur)go(v,{silent:true});});
+  addEventListener('popstate',function(){var v=PATHMODE&&!location.hash?pathView():location.hash.slice(1);if(viewEls[v]&&v!==cur){go(v,{silent:true});setMeta(v);}});
 
   /* menu mobile */
   var menu=d.getElementById('menu'), burger=d.querySelector('.burger');
@@ -372,7 +377,16 @@
     if(e.target.closest('[data-next]')){e.preventDefault();if(validStep(fs))showStep(fs+1);}
     if(e.target.closest('[data-back]')){e.preventDefault();showStep(Math.max(0,fs-1));}
   });
-  form.addEventListener('submit',function(e){e.preventDefault();if(validStep(2))showStep(3);});
+  form.addEventListener('submit',function(e){e.preventDefault();if(!validStep(2))return;
+    function val(id){var f=d.getElementById(id);if(!f)return '';if(f.tagName==='SELECT'){var o=f.options[f.selectedIndex];return o&&f.value?o.textContent.trim():'';}return f.value.trim();}
+    var en=lang==='en', L=en?['Name','E-mail','Website','Company and products','Format','By when','References']:['Nom','E-mail','Site','Société et produits','Format','Pour quand','Références'];
+    var V=[val('f-name'),val('f-mail'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
+    var lines=[en?'Hello Pascal,':'Bonjour Pascal,','',en?'Here is my brief:':'Voici mon brief :',''];
+    V.forEach(function(v,k){if(v)lines.push(L[k]+' : '+v);});
+    lines.push('',en?'Sent from atelier8.io':'Envoyé depuis atelier8.io');
+    var subj=(en?'Brief Atelier 8 — ':'Brief Atelier 8 — ')+(V[0]||'')+(V[2]?' ('+V[2].replace(/^https?:\/\//,'').replace(/\/$/,'')+')':'');
+    location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
+    showStep(3);});
   showStep(0);
   var cm=d.getElementById('copyMail');
   cm.addEventListener('click',function(){
@@ -401,7 +415,7 @@
   }
 
   /* ---------- démarrage ---------- */
-  var start=location.hash.slice(1); if(!viewEls[start])start='accueil';
+  var start=location.hash.slice(1); if(!viewEls[start])start=PATHMODE?pathView():'accueil'; if(!viewEls[start])start='accueil';
   Object.keys(viewEls).forEach(function(k){viewEls[k].classList.toggle('on',k===start);}); cur=start; markNav();
   initHero3D();
   (function(){var nav=d.getElementById('nav'), last=null;
