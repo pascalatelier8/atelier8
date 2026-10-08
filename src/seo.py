@@ -231,6 +231,8 @@ def page(full, lang, v, F, Q):
     loc, alt_loc = ('en_GB', 'fr_FR') if lang == 'en' else ('fr_FR', 'en_GB')
     s = s.replace('<meta property="og:locale" content="fr_FR">',
                   f'<meta property="og:locale" content="{loc}">\n<meta property="og:locale:alternate" content="{alt_loc}">', 1)
+    if lang == 'en':
+        s = re.sub(r'<meta property="og:image:alt" content="[^"]*">', '<meta property="og:image:alt" content="A rock in the smoke, engraved with a glowing 八 sign, next to the title “A film that leaves a mark.” by Atelier 8">', s, count=1)
     if v != 'accueil':  # la vidéo du hero ne bloque pas le chargement des autres pages
         s = re.sub(r'<link rel="preload" as="fetch" href="/media/hero-lo[^"]*\.mp4"[^>]*>\n', '', s)
     ld = json.dumps(graph(lang, v, F, Q), ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
