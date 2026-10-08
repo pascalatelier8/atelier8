@@ -3,28 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Atelier 8 · Un film qui marque</title>
-<meta name="description" content="Studio de motion design à Paris et Hong Kong. Films de marque de 15 à 90 secondes, écrits, animés et mis en son pour votre marque, livrés dans tous les formats réseaux.">
-<link rel="canonical" href="https://atelier8.io/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Atelier 8">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:url" content="https://atelier8.io/">
-<meta property="og:title" content="Atelier 8 · Un film qui marque">
-<meta property="og:description" content="Films de marque de 15 à 90 secondes, écrits, animés et mis en son pour votre marque. Studio de motion design, Paris · Hong Kong.">
-<meta property="og:image" content="https://atelier8.io/media/og-atelier8.jpg">
-<meta property="og:image:secure_url" content="https://atelier8.io/media/og-atelier8.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="2400">
-<meta property="og:image:height" content="1260">
-<meta property="og:image:alt" content="Un rocher dans la fumée, gravé du signe 八 incandescent, à côté du titre « Un film qui marque. » d'Atelier 8">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Atelier 8 · Un film qui marque">
-<meta name="twitter:description" content="Films de marque de 15 à 90 secondes, écrits, animés et mis en son pour votre marque.">
-<meta name="twitter:image" content="https://atelier8.io/media/og-atelier8.jpg">
-<meta name="theme-color" content="#090908">
-<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
-<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<title>Atelier 8</title>
 <link rel="preload" as="fetch" href="media/hero-lo.mp4" crossorigin media="(orientation: landscape), (min-width: 901px)">
 <link rel="preload" as="fetch" href="media/hero-lo-m.mp4" crossorigin media="(orientation: portrait) and (max-width: 900px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -805,6 +784,7 @@ footer::before{content:"";position:absolute;left:var(--gutter);right:var(--gutte
   .voir.flat .vgrid{grid-template-columns:1fr 1fr;--g:14px}
   .fact{grid-template-columns:28px minmax(0,1fr)}
   .fact .fd{grid-column:2}
+  .fact .m{font-size:clamp(26px,8.2vw,34px)}
   .card .vid .tag{font-size:8px;padding:3px 6px}
   .voir-foot{grid-template-columns:1fr;gap:14px}
   .method-head .top{flex-direction:column}
@@ -950,6 +930,8 @@ body.in-hero .cursor{opacity:0!important}
 .humain .hm-n{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--gold)}
 .humain .hm-col h3{font-weight:300;font-size:clamp(24px,2.3vw,34px);line-height:1.08;letter-spacing:-.02em}
 .humain .hm-col p{color:var(--fg-2);font-size:clamp(15px,1.15vw,17px);line-height:1.6;max-width:28em}
+.hm-home{padding-top:clamp(64px,10vh,120px)}
+.hm-home .hm-head .big{font-size:clamp(34px,4.6vw,72px)}
 @media (max-width:900px){.humain .hm-grid{grid-template-columns:1fr;gap:8px}.humain .hm-col{padding-top:22px;border-top:1px solid var(--line)}.humain .hm-grid{border-top:0}}
 /* tuile « votre film ici » en fin de grille */
 .vcta{min-width:0;display:grid;opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease),transform .9s var(--ease);pointer-events:none}
@@ -1078,13 +1060,17 @@ body.in-hero .cursor{opacity:0!important}
 
   <section class="studio dark">
     <ul class="facts" id="facts">
-      <li class="fact"><span class="fi">01</span><span class="fw"><span class="m"><em><span lang="fr">Un</span><span lang="en" hidden>One</span></em> <span lang="fr">interlocuteur</span><span lang="en" hidden>point of contact</span></span></span><span class="fd"><span lang="fr">du brief à la livraison, sans intermédiaire</span><span lang="en" hidden>from brief to delivery, no go-between</span></span></li>
-      <li class="fact"><span class="fi">02</span><span class="fw"><span class="m"><em><span lang="fr">Cinq</span><span lang="en" hidden>Five</span></em> <span lang="fr">agents IA</span><span lang="en" hidden>AI agents</span></span></span><span class="fd"><span lang="fr">ils exécutent ; je cadre, je vérifie, je décide de ce qui sort</span><span lang="en" hidden>they execute; I frame, check and decide what ships</span></span></li>
+      <li class="fact"><span class="fi">01</span><span class="fw"><span class="m"><em><span lang="fr">Un</span><span lang="en" hidden>One</span></em> <span lang="fr">regard humain</span><span lang="en" hidden>human eye</span></span></span><span class="fd"><span lang="fr">le mien, sur chaque plan, du brief à la livraison</span><span lang="en" hidden>mine, on every shot, from brief to delivery</span></span></li>
+      <li class="fact"><span class="fi">02</span><span class="fw"><span class="m"><em><span lang="fr">Cinq</span><span lang="en" hidden>Five</span></em> <span lang="fr">agents IA</span><span lang="en" hidden>AI agents</span></span></span><span class="fd"><span lang="fr">un par métier : script, image, voix, musique, montage</span><span lang="en" hidden>one per craft: script, picture, voice, music, edit</span></span></li>
       <li class="fact"><span class="fi">03</span><span class="fw"><span class="m"><em><span lang="fr">Trois</span><span lang="en" hidden>Three</span></em> <span lang="fr">validations</span><span lang="en" hidden>approvals</span></span></span><span class="fd"><span lang="fr">script et storyboard, première version, livraison</span><span lang="en" hidden>script and storyboard, first cut, delivery</span></span></li>
       <li class="fact"><span class="fi">04</span><span class="fw"><span class="m"><em><span lang="fr">Deux</span><span lang="en" hidden>Two</span></em> <span lang="fr">villes</span><span lang="en" hidden>cities</span></span></span><span class="fd"><span lang="fr">Paris et Hong Kong, en français et en anglais</span><span lang="en" hidden>Paris and Hong Kong, in French and English</span></span></li>
     </ul>
+    <div class="humain hm-home">
+    <div class="hm-head"><span class="label"><span lang="fr">Le rôle humain</span><span lang="en" hidden>The human role</span></span><h2 class="big rv"><span lang="fr">Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en" hidden>The agents execute.<em>I frame, check and decide.</em></span></h2></div>
+    <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr">Cadrer avant de produire</span><span lang="en" hidden>Frame before producing</span></h3><p><span lang="fr">Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en" hidden>A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr">Orchestrer, pas prompter</span><span lang="en" hidden>Orchestrate, not prompt</span></h3><p><span lang="fr">Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en" hidden>Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr">Vérifier, puis livrer</span><span lang="en" hidden>Check, then deliver</span></h3><p><span lang="fr">Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en" hidden>I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
+    </div>
     <div class="studio-body">
-      <div class="sleft"><span class="paren"><span lang="fr">(L’atelier)</span><span lang="en" hidden>(The studio)</span></span><i class="srule"></i><p class="aside rv"><span lang="fr">Un seul interlocuteur, du brief à la livraison. Les agents IA exécutent ; moi, je cadre, je relis chaque plan et je décide de ce qui sort.</span><span lang="en" hidden>One point of contact, from brief to delivery. AI agents do the execution; I frame the work, review every shot and decide what ships.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
+      <div class="sleft"><span class="paren"><span lang="fr">(L’atelier)</span><span lang="en" hidden>(The studio)</span></span><i class="srule"></i><p class="aside rv"><span lang="fr">Quinze ans de design produit pour de grandes marques, entre Paris et Hong Kong. C’est ce regard que vous engagez, du brief à la livraison.</span><span lang="en" hidden>Fifteen years of product design for major brands, between Paris and Hong Kong. That eye is what you hire, from brief to delivery.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
       <p class="reveal"><span lang="fr">Une page explique. Un film fait voir. Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en" hidden>A page explains. A film shows. A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p>
     </div>
   </section>
@@ -1349,10 +1335,6 @@ body.in-hero .cursor{opacity:0!important}
       <div><i>Le script validé</i><i>The approved script</i><i>Le découpage plan par plan</i><i>The shot-by-shot breakdown</i><i>Valider le storyboard</i><i>Sign off the storyboard</i></div>
       <div><i>Le storyboard validé</i><i>The approved storyboard</i><i>Animation et rythme proposés</i><i>Proposed animation and pace</i><i>Diriger l’artistique</i><i>Direct the art</i></div>
     </div>
-  </section>
-  <section class="humain light sec">
-    <div class="hm-head"><span class="label"><span lang="fr">Le rôle humain</span><span lang="en" hidden>The human role</span></span><h2 class="big"><span lang="fr">Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en" hidden>The agents execute.<em>I frame, check and decide.</em></span></h2></div>
-    <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr">Cadrer avant de produire</span><span lang="en" hidden>Frame before producing</span></h3><p><span lang="fr">Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en" hidden>A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr">Orchestrer, pas prompter</span><span lang="en" hidden>Orchestrate, not prompt</span></h3><p><span lang="fr">Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en" hidden>Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr">Vérifier, puis livrer</span><span lang="en" hidden>Check, then deliver</span></h3><p><span lang="fr">Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en" hidden>I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
   </section>
 </div>
 
