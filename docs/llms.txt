@@ -26,6 +26,10 @@ Atelier 8 is an independent motion design studio between Paris and Hong Kong, fo
 
 Les films de marques tierces sont des concepts ou des démos : aucun n’a été commandé ni validé par les marques citées.
 
+- NOMOS Glashütte — Treize secondes (30 s, concept, démo non officielle) : https://atelier8.io/media/films/nomos.mp4
+- Aesop — Treize présents (30 s, concept, démo non officielle) : https://atelier8.io/media/films/aesop.mp4
+- On — Le Premier Pas (30 s, concept, démo non officielle) : https://atelier8.io/media/films/on.mp4
+- Sonos — Une chanson (30 s, concept, démo non officielle) : https://atelier8.io/media/films/sonos.mp4
 - Boom Supersonic — XB-1 passe Mach 1 (30 s, concept, démo non officielle) : https://atelier8.io/media/films/boom.mp4
 - Hem — Trois poteaux (30 s, concept, démo non officielle) : https://atelier8.io/media/films/hem.mp4
 - Teenage Engineering — De l’idée au morceau (75 s, concept, démo non officielle) : https://atelier8.io/media/films/teenage-engineering.mp4
@@ -103,7 +107,7 @@ Moins de 30 secondes pour une annonce, une publicité ou un post : on retient un
 ## Pages
 
 - [Accueil](https://atelier8.io/) · [English](https://atelier8.io/en/)
-- [Films](https://atelier8.io/films/) : 23 films, nature de chaque film précisée
+- [Films](https://atelier8.io/films/) : 27 films, nature de chaque film précisée
 - [Formats et prix](https://atelier8.io/formats/)
 - [L’atelier](https://atelier8.io/atelier/) : Pascal EK Loui et les cinq agents IA
 - [FAQ](https://atelier8.io/faq/)

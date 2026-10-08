@@ -14,7 +14,7 @@ OG = SITE + '/media/og-atelier8.jpg'
 LOGO = SITE + '/media/apple-touch-icon.png'
 
 # Dates de mise en ligne des films (premier commit du fichier dans le dépôt)
-UPLOAD = {'boom': '2026-10-08T13:33:20+00:00', 'hem': '2026-10-08T13:33:20+00:00',
+UPLOAD = {'nomos': '2026-10-09T09:00:00+00:00', 'aesop': '2026-10-09T09:00:00+00:00', 'on': '2026-10-09T09:00:00+00:00', 'sonos': '2026-10-09T09:00:00+00:00', 'boom': '2026-10-08T13:33:20+00:00', 'hem': '2026-10-08T13:33:20+00:00',
           'teenage-engineering': '2026-10-08T13:33:20+00:00', 'polestar-v3': '2026-10-08T14:33:36+00:00'}
 UPLOAD_DEFAULT = '2026-10-08T10:48:51+00:00'
 
@@ -22,8 +22,8 @@ T = {
  'fr': {
   'accueil': ('Atelier 8 · Studio de motion design à Paris et Hong Kong',
               'Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.'),
-  'films':   ('Films en motion design : 23 réalisations · Atelier 8',
-              'Vingt-trois films en motion design : concepts pour des marques SaaS, tech et luxe, démos pour agences et showreel. 15 à 75 secondes, script, image et son.'),
+  'films':   ('Films en motion design : 27 réalisations · Atelier 8',
+              'Vingt-sept films en motion design : concepts pour des marques SaaS, tech et luxe, démos pour agences et showreel. 15 à 75 secondes, script, image et son.'),
   'formats': ('Prix d’un film en motion design, dès 2 500 € · Atelier 8',
               'Trois formats à prix écrits : Signal 15–30 s dès 2 500 € HT, Portrait 45–90 s dès 4 500 € HT, Campagne dès 7 500 € HT. Délais, révisions, droits inclus.'),
   'atelier': ('L’atelier : Pascal EK Loui et cinq agents IA · Atelier 8',
@@ -36,8 +36,8 @@ T = {
  'en': {
   'accueil': ('Atelier 8 · Motion design studio in Paris and Hong Kong',
               'Independent motion design studio between Paris and Hong Kong. Brand films of 15 to 90 s: script, voice, music and edit. From €2,500, delivered in 5 to 30 days.'),
-  'films':   ('Motion design films: 23 projects · Atelier 8',
-              'Twenty-three motion design films: concepts for SaaS, tech and luxury brands, agency demos and a showreel. 15 to 75 seconds, script, picture and sound.'),
+  'films':   ('Motion design films: 27 projects · Atelier 8',
+              'Twenty-seven motion design films: concepts for SaaS, tech and luxury brands, agency demos and a showreel. 15 to 75 seconds, script, picture and sound.'),
   'formats': ('Motion design film pricing from €2,500 · Atelier 8',
               'Three formats with written prices: Signal 15–30 s from €2,500, Portrait 45–90 s from €4,500, Campaign from €7,500, excl. VAT. Timing, revisions, rights included.'),
   'atelier': ('The studio: Pascal EK Loui and five AI agents · Atelier 8',
@@ -333,7 +333,7 @@ def llms(F, Q):
         L.append(q['fr'][1]); L.append('')
     L += ['## Pages', '',
           f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")})',
-          f'- [Films]({url("fr", "films")}) : 23 films, nature de chaque film précisée',
+          f'- [Films]({url("fr", "films")}) : 27 films, nature de chaque film précisée',
           f'- [Formats et prix]({url("fr", "formats")})',
           f'- [L’atelier]({url("fr", "atelier")}) : Pascal EK Loui et les cinq agents IA',
           f'- [FAQ]({url("fr", "faq")})',
