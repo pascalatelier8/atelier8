@@ -125,7 +125,7 @@
   var lbVer=d.getElementById('lbVer'),lbAlt=null;
   function lbSet(v){if(!lbAlt)return;lbAlt.v=v;lbVer.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
   if(lbVer)lbVer.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||!lbAlt||b.dataset.v===lbAlt.v)return;var t=lbv.currentTime||0;lbSet(b.dataset.v);lbv.src=lbAlt[b.dataset.v];lbv.addEventListener('loadedmetadata',function f(){lbv.removeEventListener('loadedmetadata',f);try{lbv.currentTime=Math.min(t,(lbv.duration||t)-.1);}catch(_){}lbv.play().catch(function(){});});});
-  function openLb(src,title,demo,alt){lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
+  function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
   function syncVer(){if(!srMan)srSet(lang);}
@@ -392,6 +392,7 @@
     if(e.target.closest('[data-back]')){e.preventDefault();showStep(Math.max(0,fs-1));}
   });
   form.addEventListener('submit',function(e){e.preventDefault();if(!validStep(2))return;
+    if(window.a8track)a8track('generate_lead',{method:'brief',form_format:(d.getElementById('f-fmt')||{}).value||'nsp'});
     function val(id){var f=d.getElementById(id);if(!f)return '';if(f.tagName==='SELECT'){var o=f.options[f.selectedIndex];return o&&f.value?o.textContent.trim():'';}return f.value.trim();}
     var en=lang==='en', L=en?['Name','E-mail','Website','Company and products','Format','By when','References']:['Nom','E-mail','Site','Société et produits','Format','Pour quand','Références'];
     var V=[val('f-name'),val('f-mail'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
@@ -402,6 +403,28 @@
     location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
     showStep(3);});
   showStep(0);
+  /* ---------- consentement et mesure d'audience : Google Analytics ne se charge qu'après « Accepter » ---------- */
+  (function(){
+    var GA='G-DJGKTQ3VHV', KEY='a8-consent', TTL=182*864e5, box=d.getElementById('consent'); if(!box)return;
+    var live=/(^|\.)atelier8\.io$/.test(location.hostname), loaded=false, on=false;
+    window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+    function read(){try{var c=JSON.parse(localStorage.getItem(KEY)||'null');if(c&&(Date.now()-c.t)<TTL)return c.v;}catch(e){}return null;}
+    function save(v){try{localStorage.setItem(KEY,JSON.stringify({v:v,t:Date.now()}));}catch(e){}}
+    function wipe(){document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^_ga/.test(n))['','.atelier8.io','atelier8.io'].forEach(function(dm){document.cookie=n+'=; Max-Age=0; path=/'+(dm?'; domain='+dm:'');});});}
+    function start(){on=true;window['ga-disable-'+GA]=false;gtag('consent','update',{analytics_storage:'granted'});
+      if(loaded)return; loaded=true;
+      gtag('js',new Date()); gtag('config',GA,{allow_google_signals:false,allow_ad_personalization_signals:false,cookie_expires:33696000,cookie_flags:'SameSite=Lax;Secure'});
+      if(!live)return; var sc=d.createElement('script'); sc.async=true; sc.src='https://www.googletagmanager.com/gtag/js?id='+GA; d.head.appendChild(sc);}
+    function stop(){on=false;window['ga-disable-'+GA]=true;if(loaded)gtag('consent','update',{analytics_storage:'denied'});wipe();}
+    function show(){box.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add('on');});});}
+    function hide(){box.classList.remove('on');setTimeout(function(){box.hidden=true;},450);}
+    box.addEventListener('click',function(e){var b=e.target.closest('[data-consent]');if(!b)return;var v=b.dataset.consent;save(v);hide();if(v==='granted')start();else stop();});
+    var m=d.getElementById('cookieManage'); if(m)m.addEventListener('click',show);
+    d.addEventListener('click',function(e){var a=e.target.closest('a[href^="mailto:"]');if(a&&on)gtag('event','contact_email',{link_url:a.getAttribute('href')});});
+    window.a8track=function(n,p){if(on)gtag('event',n,p||{});};
+    var c=read(); if(c==='granted')start(); else if(c===null)setTimeout(show,2400);
+  })();
   var cm=d.getElementById('copyMail');
   cm.addEventListener('click',function(){
     var mail=cm.dataset.mail, old=cm.innerHTML;
