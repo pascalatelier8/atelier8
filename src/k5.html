@@ -1,7 +1,7 @@
 <script>
 @@LENIS@@
 </script>
-<script>
+<script>document.addEventListener('DOMContentLoaded',function(){
 (function(){
   var d=document, root=d.documentElement, body=d.body;
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -145,7 +145,7 @@
     Object.keys(viewEls).forEach(function(k){viewEls[k].classList.toggle('on',k===v);});
     cur=v; markNav();
     if(three)three.setRunning(v==='accueil');
-    wallPlay(v==='accueil');
+    if(v!=='accueil')wallPlay(false);
     killScroll(); scrollTo(0,{immediate:true}); document.getElementById('nav').classList.remove('hide'); initView(v);
   }
   function pushHash(v,replace){var h='#'+v;if(location.hash===h)return;try{replace?history.replaceState(null,'',h):history.pushState(null,'',h);}catch(e){location.hash=h;}}
@@ -214,6 +214,8 @@
   wallVids.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.parentNode.classList.add('playing');});});
   function wallPlay(on){wallVids.forEach(function(v){if(on&&!reduced){if(v.dataset.hid==='1')return;if(v.preload!=='auto')v.preload='auto';if(v.paused)v.play().catch(function(){});}else if(!on&&!v.paused)v.pause();});}
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){wallPlay(e.isIntersecting&&cur==='accueil');});},{rootMargin:'40% 0px'}).observe(d.getElementById('voir'));}
+  /* vignettes de la galerie : chargées avant d'arriver dessus, jamais avant le hero */
+  if('IntersectionObserver' in window){var tio=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){d.querySelectorAll('#voir img[loading=lazy]').forEach(function(i){i.loading='eager';});tio.disconnect();}},{rootMargin:'200% 0px'});tio.observe(d.getElementById('voir'));}
   addEventListener('pointerdown',function(){var r=d.getElementById('voir').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)wallPlay(true);},{passive:true});
   function sizeWall(){
     var st=d.getElementById('vstage'), g=d.getElementById('vgrid'); if(!st||!g)return;
@@ -393,12 +395,19 @@
   (function(){
     var hero=d.getElementById('hero'), v=d.getElementById('heroVideo'), b1=d.getElementById('beat1'), tc=d.getElementById('heroTc'), BX=[['beat2',.20,.36],['beat3',.38,.54],['beat4',.56,.72],['beat5',.75,2]].map(function(a){return [d.getElementById(a[0]),a[1],a[2]];});
     if(!hero||!v)return;
-    var dur=0, seeking=false, sp=0, shown=-1, primed=false;
-    if(innerWidth<innerHeight&&innerWidth<=900){v.poster='media/hero-poster-m2.jpg';v.src='media/hero-scrub-m2.mp4';v.load();}
-    v.addEventListener('loadedmetadata',function(){dur=v.duration||0;}); if(v.readyState>=1)dur=v.duration||0;
-    v.addEventListener('seeked',function(){seeking=false;});
-    function prime(){if(primed)return;primed=true;var p=v.play();if(p&&p.then)p.then(function(){v.pause();}).catch(function(){primed=false;});}
-    addEventListener('touchstart',prime,{once:true,passive:true}); addEventListener('pointerdown',prime,{once:true,passive:true}); setTimeout(prime,3200);
+    var dur=0, seeking=false, sp=0, shown=-1, vHd=d.getElementById('heroVideoHd'), H=window.__hero||{};
+    function target(){return Math.min(sp/.92,1)*dur;}
+    function bindV(x){x.addEventListener('seeked',function(){if(x===v)seeking=false;});x.addEventListener('emptied',function(){if(x===v)seeking=false;});}
+    /* charge une source (URL blob en mémoire), amorce la lecture (iOS) puis rend la main */
+    function load(x,p,cb){if(!x||!p)return;p.then(function(u){var ok=false;function go(){if(ok)return;ok=true;x.pause();cb();}
+      x.preload='auto';x.muted=true;x.addEventListener('loadeddata',function(){setTimeout(go,30);},{once:true});x.src=u;
+      var q=x.play();if(q&&q.then)q.then(function(){x.pause();}).catch(function(){});});}
+    bindV(v); if(vHd)bindV(vHd);
+    load(v,H.lo,function(){dur=v.duration||0;v.currentTime=target();v.addEventListener('seeked',function(){v.classList.add('ready');},{once:true});});
+    load(vHd,H.hd,function(){var t0=dur?target():0;
+      vHd.addEventListener('seeked',function(){var old=v;vHd.classList.add('ready');v=vHd;dur=vHd.duration||dur;seeking=false;
+        setTimeout(function(){old.classList.remove('ready');setTimeout(function(){old.removeAttribute('src');old.load();},600);},400);},{once:true});
+      vHd.currentTime=t0;});
     var vF=d.getElementById('vFocus'), vAf=d.getElementById('vAf'), vK=-1, vT=0, afF=false;
     (function(){var hs=hero.querySelector('.hero-sticky'); if(!vF||!hs||!fine)return;
       var tx=0,ty=0,px=null,py=null,lt=0,run=false;
@@ -425,9 +434,9 @@
     addEventListener('scroll',measureSp,{passive:true}); addEventListener('resize',measureSp);
     var shownT=-1;
     (function tick(){
-      if(dur&&!seeking&&!reduced){var t=Math.min(sp/.92,1)*dur; if(Math.abs(t-v.currentTime)>0.02){seeking=true;v.currentTime=t;}}
+      if(dur&&!seeking&&!reduced&&v.readyState>=1){var t=target(); if(Math.abs(t-v.currentTime)>0.02){seeking=true;v.currentTime=t;}}
       beats(sp);
-      if(dur&&tc){var t2=Math.min(sp/.92,1)*dur, s=Math.floor(t2), f=Math.floor((t2-s)*30); if(f!==shownT){shownT=f;tc.textContent='00:'+pad(s)+':'+pad(f);}}
+      if(tc){var t2=Math.min(sp/.92,1)*(dur||12.03), s=Math.floor(t2), f=Math.floor((t2-s)*30); if(f!==shownT){shownT=f;tc.textContent='00:'+pad(s)+':'+pad(f);}}
       requestAnimationFrame(tick);
     })();
     measureSp(); beats(0); b1.classList.add('on'); setTimeout(function(){b1.dataset.t='1';beats(sp);},1600);
@@ -451,10 +460,10 @@
   function runLoader(){
     if(reduced){setMark(lMark,1);lLock.classList.add('on','w');setTimeout(endLoader,400);return;}
     if(lenis)lenis.stop();
-    lLock.classList.add('on'); playMark(lMark,1800);
-    setTimeout(function(){lLock.classList.add('w');},1200);
-    setTimeout(function(){endLoader();if(lenis)lenis.start();},2600);
+    lLock.classList.add('on'); playMark(lMark,1400);
+    setTimeout(function(){lLock.classList.add('w');},950);
+    setTimeout(function(){endLoader();if(lenis)lenis.start();},2000);
   }
   if(d.fonts&&d.fonts.ready){var fired=false;function once(){if(!fired){fired=true;runLoader();}}d.fonts.ready.then(function(){setTimeout(once,100);});setTimeout(once,1400);}else{setTimeout(runLoader,300);}
 })();
-</script>
+});</script>
