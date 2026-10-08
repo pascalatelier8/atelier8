@@ -380,8 +380,8 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .voir.flat .vgrid{width:100%;transform:none!important}
 .voir.flat .vgrid{grid-template-columns:repeat(3,minmax(0,1fr));--g:clamp(18px,2vw,32px);row-gap:clamp(28px,3vw,44px);transform-style:flat;will-change:auto}
 .voir.flat .card{transform:none!important;opacity:1!important}
-.voir.flat .card .cap{position:static;opacity:1;transform:none;background:none;color:var(--fg);padding:8px 0 0}
-.voir.flat .card .cap .s{color:var(--fg-3)}
+.voir.flat .card .cap,.voir.big .card .cap{position:static;opacity:1;transform:none;background:none;color:var(--fg);padding:8px 0 0}
+.voir.flat .card .cap .s,.voir.big .card .cap .s{color:var(--fg-3)}
 .voir-foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,5fr) auto;gap:clamp(20px,3vw,48px);align-items:center;border-top:1px solid var(--line);padding-top:16px}
 .voir-foot .voir-meta{font-size:13.5px;color:var(--fg-2);max-width:40em;line-height:1.5;margin:0}
 .vprog{height:1px;background:var(--line);position:relative}
@@ -915,8 +915,8 @@ footer::before{content:"";position:absolute;left:var(--gutter);right:var(--gutte
   .method.mstage .mgrid .fsig{right:-40vw;top:62%;width:120vw;height:120vw}
 }
 @media (max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px){.method.mstage .step .num b{display:none}}
-.voir.flat .card .vid video{opacity:0;transition:opacity .6s var(--ease)}
-.voir.flat .card .vid.playing video{opacity:1}
+.voir.flat .card .vid video,.voir.big .card .vid video{opacity:0;transition:opacity .6s var(--ease)}
+.voir.flat .card .vid.playing video,.voir.big .card .vid.playing video{opacity:1}
 /* usages des formats */
 .finc.fuse{margin-bottom:6px;color:var(--fg)}
 .fuse li::before,.frow2 ul.fuse2 li::before{content:"→";background:none;width:auto;height:auto;top:0;color:var(--gold);font-size:.85em;line-height:inherit}
@@ -957,9 +957,9 @@ body.in-hero .cursor{opacity:0!important}
 .card .glab i::before{content:"";position:absolute;left:0;top:50%;width:10px;height:1px;background:var(--gold)}
 .voir.grid .card .glab{opacity:1;transform:none;transition-delay:calc(.2s + var(--i,0) * 40ms)}
 .voir:not(.flat) .card .cap{bottom:44px}
-.voir.flat .card .glab{display:none}
+.voir.flat .card .glab,.voir.big .card .glab{display:none}
 .card .cap .csec{display:none}
-.voir.flat .card .cap .csec{display:block;grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.voir.flat .card .cap .csec,.voir.big .card .cap .csec{display:block;grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
 /* atelier : le rôle humain */
 .humain .hm-head{display:grid;gap:16px;max-width:980px}
 .humain .hm-head .big em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--fg-2)}
@@ -982,7 +982,7 @@ body.in-hero .cursor{opacity:0!important}
 .vcta .vc-box:hover{background:radial-gradient(120% 120% at 50% 0%,rgba(201,155,69,.22),rgba(201,155,69,.04) 70%);border-color:var(--gold)}
 .vcta .vc-box:hover .vc-s i{transform:translateX(5px)}
 .voir.grid .vcta .glab{opacity:1;transform:none}
-.voir.flat .vcta .glab{display:none}
+.voir.flat .vcta .glab,.voir.big .vcta .glab{display:none}
 .vcta .glab{display:grid;align-content:start;gap:3px;height:44px;padding:9px 2px 0;opacity:0;transform:translateY(6px);transition:opacity .7s var(--ease),transform .8s var(--ease);transition-delay:calc(.2s + 23 * 40ms)}
 .vcta .glab b{font-weight:500;line-height:1.15;font-size:clamp(12px,.92vw,14px);letter-spacing:.01em;color:var(--fg);white-space:nowrap}
 .vcta .glab i{display:block;font-style:normal;line-height:1.3;font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);white-space:nowrap;position:relative;padding-left:18px}
@@ -1050,12 +1050,22 @@ body.in-hero .cursor{opacity:0!important}
 @media (min-width:901px){.consent-b{left:auto;right:var(--gutter);bottom:88px}}
 /* grille de films desktop : légendes à l'échelle des grandes vignettes */
 @media (min-width:1001px){
-  .voir.flat .card .cap{padding-top:12px;gap:6px 12px}
-  .voir.flat .card .cap .t{font-size:clamp(14px,1.05vw,18px);letter-spacing:.03em}
-  .voir.flat .card .cap .n{font-size:11px}
-  .voir.flat .card .cap .s,.voir.flat .card .cap .csec{font-size:10.5px}
-  .voir.flat .card .vid{border-radius:6px;overflow:hidden}
+  .voir:is(.flat,.big) .card .cap{padding-top:12px;gap:6px 12px}
+  .voir:is(.flat,.big) .card .cap .t{font-size:clamp(14px,1.05vw,18px);letter-spacing:.03em}
+  .voir:is(.flat,.big) .card .cap .n{font-size:11px}
+  .voir:is(.flat,.big) .card .cap .s,.voir:is(.flat,.big) .card .cap .csec{font-size:10.5px}
+  .voir:is(.flat,.big) .card .vid{border-radius:6px;overflow:hidden}
 }
+/* desktop : le ruban circulaire se pose dans une grande grille (3 colonnes) qui continue au scroll */
+.voir.ribbon.big .voir-pin{height:auto;min-height:100vh}
+.voir.ribbon.big .vstage{min-height:calc(100vh - var(--nav) - 60px);perspective:none}
+.voir.ribbon.big .rscene{perspective:var(--P,900px);perspective-origin:50% 50%}
+.voir.ribbon.big .rscene{inset:auto;left:0;right:0;top:0;height:calc(100vh - var(--nav) - 60px)}
+.voir.ribbon.big .wall{position:relative;inset:auto;display:block;padding-top:8px;z-index:2}
+.voir.ribbon.big .vgrid{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));--g:clamp(18px,2vw,32px);row-gap:clamp(28px,3vw,44px);transform:none!important;transform-style:flat;will-change:auto}
+.voir.ribbon.big .wtitle{display:block;grid-column:1/-1;position:static;transform:none;white-space:normal;text-align:left;font-size:clamp(44px,8vw,120px);margin:0 0 18px;opacity:0;transition:opacity .9s var(--ease)}
+.voir.ribbon.big.grid .wtitle{opacity:1}
+.voir.ribbon.big .vgrid>.card{grid-column:auto;grid-row:auto}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","ProfessionalService"],"@id":"https://atelier8.io/#org","name":"Atelier 8","url":"https://atelier8.io/","logo":{"@type":"ImageObject","url":"https://atelier8.io/media/apple-touch-icon.png","width":180,"height":180},"image":"https://atelier8.io/media/og-atelier8.jpg","email":"pascal@atelier8.io","description":"Independent motion design studio between Paris and Hong Kong. Brand films of 15 to 90 s: script, voice, music and edit. From €2,500, delivered in 5 to 30 days.","slogan":"A film that leaves a mark.","founder":{"@id":"https://atelier8.io/#pascal"},"foundingDate":"2026","address":[{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},{"@type":"PostalAddress","addressLocality":"Hong Kong","addressCountry":"HK"}],"areaServed":[{"@type":"Country","name":"France"},{"@type":"Place","name":"Hong Kong"},{"@type":"Place","name":"Europe"},{"@type":"Place","name":"Asia"}],"knowsLanguage":["fr","en"],"priceRange":"€2,500 – €7,500 excl. VAT","knowsAbout":["Motion design","Brand film","Explainer video","Product video","SaaS video","Animation","Sound design","Storyboard","Video scriptwriting","AI-assisted video production"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"pascal@atelier8.io","availableLanguage":["French","English"],"areaServed":["FR","HK","EU"]},"hasOfferCatalog":{"@id":"https://atelier8.io/#catalogue"}},{"@type":"Person","@id":"https://atelier8.io/#pascal","name":"Pascal EK Loui","url":"https://atelier8.io/en/atelier/","jobTitle":"Founder and creative director, Atelier 8","worksFor":{"@id":"https://atelier8.io/#org"},"knowsLanguage":["fr","en"],"description":"Product designer for fifteen years for large brands and start-ups, between Paris and Hong Kong. Founder of Atelier 8, he writes, directs and signs off every motion design film.","knowsAbout":["Motion design","Product design","UX design","Art direction"],"homeLocation":[{"@type":"Place","name":"Paris"},{"@type":"Place","name":"Hong Kong"}]},{"@type":"WebSite","@id":"https://atelier8.io/#website","url":"https://atelier8.io/","name":"Atelier 8","inLanguage":["fr","en"],"publisher":{"@id":"https://atelier8.io/#org"}},{"@type":"OfferCatalog","@id":"https://atelier8.io/#catalogue","name":"Motion design film formats","itemListElement":[{"@type":"Offer","name":"Signal","url":"https://atelier8.io/en/formats/","description":"A 15 to 30 second film: one idea, written and storyboarded for your brand, music and subtitles included, delivered in 16:9, 9:16, 1:1 and 4:5.","price":2500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":2500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"From, excluding VAT"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":10,"unitCode":"DAY","description":"working days"},"itemOffered":{"@type":"Service","name":"Motion design film Signal","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Portrait","url":"https://atelier8.io/en/formats/","description":"A 45 to 90 second brand film that explains your company: French or English voice-over, music, sound design, subtitles, every social format.","price":4500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":4500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"From, excluding VAT"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":10,"maxValue":20,"unitCode":"DAY","description":"working days"},"itemOffered":{"@type":"Service","name":"Motion design film Portrait","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Campaign","url":"https://atelier8.io/en/formats/","description":"Five films: one Portrait, one Signal and three short cut-downs for social, in French and English.","price":7500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":7500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"From, excluding VAT"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":25,"maxValue":30,"unitCode":"DAY","description":"working days"},"itemOffered":{"@type":"Service","name":"Motion design film Campaign","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}}]},{"@type":"FAQPage","@id":"https://atelier8.io/en/faq/#page","url":"https://atelier8.io/en/faq/","name":"Motion design film FAQ: pricing, timing, rights · Atelier 8","description":"Sixteen short answers: what a motion design film costs, timing, revisions, payment, usage rights, how AI is used, and how long a company video should be.","inLanguage":"en","isPartOf":{"@id":"https://atelier8.io/#website"},"about":{"@id":"https://atelier8.io/#org"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://atelier8.io/media/og-atelier8.jpg"},"dateModified":"2026-10-08","breadcrumb":{"@id":"https://atelier8.io/en/faq/#breadcrumb"},"mainEntity":[{"@type":"Question","name":"What do I need to provide?","acceptedAnswer":{"@type":"Answer","text":"Your website address, a few reference photos and videos, some context. No script to write."}},{"@type":"Question","name":"Who writes the script and storyboard?","acceptedAnswer":{"@type":"Answer","text":"Atelier 8, from your site and your words. You read and approve before any production starts."}},{"@type":"Question","name":"Are my photos and videos used?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you wish and if you hold the rights. Nothing is published without your approval."}},{"@type":"Question","name":"Can we sign an NDA?","acceptedAnswer":{"@type":"Answer","text":"Yes, before you send the brief, on simple request."}},{"@type":"Question","name":"How much does a motion design film cost?","acceptedAnswer":{"@type":"Answer","text":"Signal from €2,500, Portrait from €4,500, Campaign from €7,500, excluding VAT. If your film fits a format, that’s the price you pay. A specific request? A quote within two working days. Prices excluding VAT, no hidden extras."}},{"@type":"Question","name":"What do revisions include?","acceptedAnswer":{"@type":"Answer","text":"Two rounds for Signal and Portrait, three for Campaign, set in advance. An extra round costs €180 excluding VAT."}},{"@type":"Question","name":"How does payment work?","acceptedAnswer":{"@type":"Answer","text":"50% on order, the balance on delivery, before the final files are handed over. Quotes are valid for 30 days. VAT and invoicing details depend on the billing entity, France or Hong Kong."}},{"@type":"Question","name":"Are usage rights included?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once the film is paid for, it’s yours: commercial use on all your channels, with no limit of time or territory, and no licence to pay again."}},{"@type":"Question","name":"How long does production take?","acceptedAnswer":{"@type":"Answer","text":"5 to 10 working days for Signal, 10 to 20 for Portrait, 25 to 30 for Campaign, from storyboard approval."}},{"@type":"Question","name":"Do you work in English, for Hong Kong?","acceptedAnswer":{"@type":"Answer","text":"Yes, in French and English. Paris and Hong Kong are six to seven hours apart, which leaves one shared working day."}},{"@type":"Question","name":"Do you use artificial intelligence?","acceptedAnswer":{"@type":"Answer","text":"Yes, and I say so. Five AI agents do the execution: research, first drafts, shot breakdowns, animation proposals. I frame their work, review every output and decide what gets delivered to you. Art direction, the final edit and every approval stay human."}},{"@type":"Question","name":"What do your AI agents do?","acceptedAnswer":{"@type":"Answer","text":"Each holds one role with a written specification: what it receives, what it returns, what it does not do. The spec sheets are on the studio page. On-screen voices and faces are human or synthetic, stated in the quote."}},{"@type":"Question","name":"Do you use templates?","acceptedAnswer":{"@type":"Answer","text":"Every film is written, directed and edited for its client. Atelier 8 has its own working tools; no film is a template filled with a new logo."}},{"@type":"Question","name":"What is a motion design film?","acceptedAnswer":{"@type":"Answer","text":"A short film where text, shapes, interfaces and images are animated to get an idea across in seconds. It’s the format behind launch videos, explainer films and social ads. At Atelier 8, a film runs 15 to 90 seconds and is written for one brand only."}},{"@type":"Question","name":"Studio, agency or freelancer: what’s the difference?","acceptedAnswer":{"@type":"Answer","text":"An agency often brings in several people, and its prices show it. A freelancer usually covers one role, often animation, and leaves the script and sound to you. Atelier 8 sits in between: one person answers for the whole film, from script to sound, with published prices and delivery in one to six weeks."}},{"@type":"Question","name":"How long should a company video be?","acceptedAnswer":{"@type":"Answer","text":"Under 30 seconds for an announcement, an ad or a post: people keep one idea. 45 to 90 seconds to present your company or product, on your site, in a meeting or at a trade show. Beyond that, attention drops fast: several short films beat one long one."}}]},{"@type":"BreadcrumbList","@id":"https://atelier8.io/en/faq/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Atelier 8","item":"https://atelier8.io/en/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://atelier8.io/en/faq/"}]}]}</script>
 </head>
@@ -1795,7 +1805,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   var wallVids=Array.prototype.slice.call(d.querySelectorAll('#voir video'));
   wallVids.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.parentNode.classList.add('playing');});});
   /* grille à plat (mobile, tablette, écrans tactiles) : seules les vidéos vraiment à l'écran jouent, 3 au plus sur tactile, 6 sinon */
-  var flatWall=true, cardIO=null, playQ=[], MAXP=fine?6:3;
+  var flatWall=!hasGsap||reduced||compact()||!fine, bigWall=!flatWall, cardIO=null, playQ=[], MAXP=fine?6:3;
   function flatPlay(){
     if(cardIO||!('IntersectionObserver' in window))return;
     cardIO=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target.querySelector('video');if(!v)return;
@@ -1808,6 +1818,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     wallVids.forEach(function(v){cardIO.observe(v.parentNode);});
   }
   function wallPlay(on){if(flatWall){if(!on){playQ.forEach(function(v){v.pause();});playQ=[];if(cardIO){cardIO.disconnect();cardIO=null;}}else flatPlay();return;}
+    if(bigWall){if(!on)wallVids.forEach(function(v){if(!v.paused)v.pause();});return;}
     wallVids.forEach(function(v){if(on&&!reduced){if(v.dataset.hid==='1')return;if(v.preload!=='auto')v.preload='auto';if(v.paused)v.play().catch(function(){});}else if(!on&&!v.paused)v.pause();});}
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){wallPlay(e.isIntersecting&&cur==='accueil');});},{rootMargin:'40% 0px'}).observe(d.getElementById('voir'));}
   /* vignettes de la galerie : chargées avant d'arriver dessus, jamais avant le hero */
@@ -1815,7 +1826,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   addEventListener('pointerdown',function(){var r=d.getElementById('voir').getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)wallPlay(true);},{passive:true});
   function sizeWall(){
     var st=d.getElementById('vstage'), g=d.getElementById('vgrid'); if(!st||!g)return;
-    var voir=d.getElementById('voir'); if(voir.classList.contains('flat')){g.style.removeProperty('--gw');return;}
+    var voir=d.getElementById('voir'); if(voir.classList.contains('flat')||voir.classList.contains('big')){g.style.removeProperty('--gw');g.classList.remove('tight');return;}
     var r=st.getBoundingClientRect(), gap=14, rows=4, cols=6, h=(r.height-16);
     function fit(CAP){var cardH=(h-gap*(rows-1)-CAP*rows)/rows;return Math.min(r.width*.98,(cardH*16/9)*cols+gap*(cols-1));}
     var w=fit(44), tight=(w-gap*(cols-1))/cols<190; if(tight)w=fit(24); g.classList.toggle('tight',tight);
@@ -1847,9 +1858,9 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   function initHome(){
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
-    /* grille de films à plat partout : grandes vignettes, défilement natif (le ruban 3D est retiré) */
-    if(true){voir.classList.remove('ring3d','ribbon');voir.classList.add('flat');flatWall=true;sizeWall();initMethod();return;}
-    voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon'); sizeWall();
+    /* tactile, petits écrans : grille directe. Desktop : ruban circulaire, qui se pose en grande grille (3 colonnes) qu'on continue de faire défiler */
+    if(!hasGsap||reduced||compact()||!fine){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
+    voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon','big'); bigWall=true; flatWall=false; sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),
         world=d.getElementById('rworld'), rt1=d.getElementById('rt1'), rt2=d.getElementById('rt2'),
@@ -1861,7 +1872,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
       for(var k=0;k<K;k++){var cv=d.createElement('canvas'); cv.width=80; cv.height=180; if(k===0)cv.className='l'; if(k===K-1)cv.className='r'; ring.appendChild(cv); row.push(cv);} sl.push(row);
     });
     function measureRib(){
-      var r=stage.getBoundingClientRect(); W=r.width; H=r.height;
+      var r=d.getElementById('rscene').getBoundingClientRect(); W=r.width; H=r.height;
       cw=Math.min(W*.3,H*.7*16/9); ch=cw*9/16; R=cw/ALPHA; P=R*.9; sw=2*R*Math.sin(ALPHA/(2*K))*1.06;
       voir.style.setProperty('--P',P+'px'); voir.style.setProperty('--ch',ch+'px'); voir.style.setProperty('--sw',sw+'px');
       sizeWall();
@@ -1894,7 +1905,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
       for(var i=0;i<N;i++){
         var qi=eio(clamp((t-.5-((i*7)%N)*.009)/.2)); if(qi<1)allDone=false;
         var g=gt[i]||{x:0,y:0,w:cw,h:ch}, sx=(g.w/K+1.6)/sw, sy=(g.h+.6)/ch, cf=Math.cos((i*360/N+rot)*Math.PI/180); if(cf>bc){bc=cf;best=i;}
-        if(qi>=1){if(!landed[i]){landed[i]=1;cards[i].style.transition='none';cards[i].style.opacity=1;for(var k2=0;k2<K;k2++)sl[i][k2].style.visibility='hidden';cvis[i]=-1;var lv=srcs[i].v;if(lv){lv.dataset.hid='';if(lv.paused&&!reduced)lv.play().catch(function(){});}}continue;}
+        if(qi>=1){if(!landed[i]){landed[i]=1;cards[i].style.transition='none';cards[i].style.opacity=1;for(var k2=0;k2<K;k2++)sl[i][k2].style.visibility='hidden';cvis[i]=-1;var lv=srcs[i].v;if(lv){lv.dataset.hid='';if(!bigWall&&lv.paused&&!reduced)lv.play().catch(function(){});}}continue;}
         else if(landed[i]){landed[i]=0;cards[i].style.opacity=0;cvis[i]=-1;}
         var vi=qi>0?1:sm(clamp((cf+.08)/.3)); if(t<.015)vi=0; setVis(i,vi);
         if(vi<=0)continue;
@@ -1910,7 +1921,8 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
       }
       world.style.visibility=(t>.015&&!allDone)?'visible':'hidden';
       if(best!==front&&t<.5){front=best;idx.textContent=pad(best+1);}
-      var g2=allDone; if(g2!==inGrid){inGrid=g2;voir.classList.toggle('grid',inGrid);vcount.querySelector('.a').hidden=inGrid;vcount.querySelector('.b').hidden=!inGrid;cards.forEach(function(c,j){c.style.opacity=(inGrid||landed[j])?1:0;});}
+      var g2=allDone; if(g2!==inGrid){inGrid=g2;voir.classList.toggle('grid',inGrid);vcount.querySelector('.a').hidden=inGrid;vcount.querySelector('.b').hidden=!inGrid;cards.forEach(function(c,j){c.style.opacity=(inGrid||landed[j])?1:0;});
+        if(bigWall){if(inGrid){wallVids.forEach(function(v){if(!v.paused)v.pause();});flatWall=true;flatPlay();}else{flatWall=false;if(cardIO){cardIO.disconnect();cardIO=null;}playQ=[];}}}
     }
     var vis=false; if('IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;},{rootMargin:'10% 0px'}).observe(voir);}else vis=true;
     (function loop(){if(cur==='accueil'&&vis&&voir.classList.contains('ribbon')&&(!inGrid||Math.abs(tgt-cur3)>.00005))frame();requestAnimationFrame(loop);})();

@@ -370,8 +370,8 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .voir.flat .vgrid{width:100%;transform:none!important}
 .voir.flat .vgrid{grid-template-columns:repeat(3,minmax(0,1fr));--g:clamp(18px,2vw,32px);row-gap:clamp(28px,3vw,44px);transform-style:flat;will-change:auto}
 .voir.flat .card{transform:none!important;opacity:1!important}
-.voir.flat .card .cap{position:static;opacity:1;transform:none;background:none;color:var(--fg);padding:8px 0 0}
-.voir.flat .card .cap .s{color:var(--fg-3)}
+.voir.flat .card .cap,.voir.big .card .cap{position:static;opacity:1;transform:none;background:none;color:var(--fg);padding:8px 0 0}
+.voir.flat .card .cap .s,.voir.big .card .cap .s{color:var(--fg-3)}
 .voir-foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,5fr) auto;gap:clamp(20px,3vw,48px);align-items:center;border-top:1px solid var(--line);padding-top:16px}
 .voir-foot .voir-meta{font-size:13.5px;color:var(--fg-2);max-width:40em;line-height:1.5;margin:0}
 .vprog{height:1px;background:var(--line);position:relative}
@@ -905,8 +905,8 @@ footer::before{content:"";position:absolute;left:var(--gutter);right:var(--gutte
   .method.mstage .mgrid .fsig{right:-40vw;top:62%;width:120vw;height:120vw}
 }
 @media (max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px){.method.mstage .step .num b{display:none}}
-.voir.flat .card .vid video{opacity:0;transition:opacity .6s var(--ease)}
-.voir.flat .card .vid.playing video{opacity:1}
+.voir.flat .card .vid video,.voir.big .card .vid video{opacity:0;transition:opacity .6s var(--ease)}
+.voir.flat .card .vid.playing video,.voir.big .card .vid.playing video{opacity:1}
 /* usages des formats */
 .finc.fuse{margin-bottom:6px;color:var(--fg)}
 .fuse li::before,.frow2 ul.fuse2 li::before{content:"→";background:none;width:auto;height:auto;top:0;color:var(--gold);font-size:.85em;line-height:inherit}
@@ -947,9 +947,9 @@ body.in-hero .cursor{opacity:0!important}
 .card .glab i::before{content:"";position:absolute;left:0;top:50%;width:10px;height:1px;background:var(--gold)}
 .voir.grid .card .glab{opacity:1;transform:none;transition-delay:calc(.2s + var(--i,0) * 40ms)}
 .voir:not(.flat) .card .cap{bottom:44px}
-.voir.flat .card .glab{display:none}
+.voir.flat .card .glab,.voir.big .card .glab{display:none}
 .card .cap .csec{display:none}
-.voir.flat .card .cap .csec{display:block;grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.voir.flat .card .cap .csec,.voir.big .card .cap .csec{display:block;grid-column:1/-1;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
 /* atelier : le rôle humain */
 .humain .hm-head{display:grid;gap:16px;max-width:980px}
 .humain .hm-head .big em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--fg-2)}
@@ -972,7 +972,7 @@ body.in-hero .cursor{opacity:0!important}
 .vcta .vc-box:hover{background:radial-gradient(120% 120% at 50% 0%,rgba(201,155,69,.22),rgba(201,155,69,.04) 70%);border-color:var(--gold)}
 .vcta .vc-box:hover .vc-s i{transform:translateX(5px)}
 .voir.grid .vcta .glab{opacity:1;transform:none}
-.voir.flat .vcta .glab{display:none}
+.voir.flat .vcta .glab,.voir.big .vcta .glab{display:none}
 .vcta .glab{display:grid;align-content:start;gap:3px;height:44px;padding:9px 2px 0;opacity:0;transform:translateY(6px);transition:opacity .7s var(--ease),transform .8s var(--ease);transition-delay:calc(.2s + 23 * 40ms)}
 .vcta .glab b{font-weight:500;line-height:1.15;font-size:clamp(12px,.92vw,14px);letter-spacing:.01em;color:var(--fg);white-space:nowrap}
 .vcta .glab i{display:block;font-style:normal;line-height:1.3;font-family:var(--mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);white-space:nowrap;position:relative;padding-left:18px}
@@ -1040,11 +1040,21 @@ body.in-hero .cursor{opacity:0!important}
 @media (min-width:901px){.consent-b{left:auto;right:var(--gutter);bottom:88px}}
 /* grille de films desktop : légendes à l'échelle des grandes vignettes */
 @media (min-width:1001px){
-  .voir.flat .card .cap{padding-top:12px;gap:6px 12px}
-  .voir.flat .card .cap .t{font-size:clamp(14px,1.05vw,18px);letter-spacing:.03em}
-  .voir.flat .card .cap .n{font-size:11px}
-  .voir.flat .card .cap .s,.voir.flat .card .cap .csec{font-size:10.5px}
-  .voir.flat .card .vid{border-radius:6px;overflow:hidden}
+  .voir:is(.flat,.big) .card .cap{padding-top:12px;gap:6px 12px}
+  .voir:is(.flat,.big) .card .cap .t{font-size:clamp(14px,1.05vw,18px);letter-spacing:.03em}
+  .voir:is(.flat,.big) .card .cap .n{font-size:11px}
+  .voir:is(.flat,.big) .card .cap .s,.voir:is(.flat,.big) .card .cap .csec{font-size:10.5px}
+  .voir:is(.flat,.big) .card .vid{border-radius:6px;overflow:hidden}
 }
+/* desktop : le ruban circulaire se pose dans une grande grille (3 colonnes) qui continue au scroll */
+.voir.ribbon.big .voir-pin{height:auto;min-height:100vh}
+.voir.ribbon.big .vstage{min-height:calc(100vh - var(--nav) - 60px);perspective:none}
+.voir.ribbon.big .rscene{perspective:var(--P,900px);perspective-origin:50% 50%}
+.voir.ribbon.big .rscene{inset:auto;left:0;right:0;top:0;height:calc(100vh - var(--nav) - 60px)}
+.voir.ribbon.big .wall{position:relative;inset:auto;display:block;padding-top:8px;z-index:2}
+.voir.ribbon.big .vgrid{width:100%;grid-template-columns:repeat(3,minmax(0,1fr));--g:clamp(18px,2vw,32px);row-gap:clamp(28px,3vw,44px);transform:none!important;transform-style:flat;will-change:auto}
+.voir.ribbon.big .wtitle{display:block;grid-column:1/-1;position:static;transform:none;white-space:normal;text-align:left;font-size:clamp(44px,8vw,120px);margin:0 0 18px;opacity:0;transition:opacity .9s var(--ease)}
+.voir.ribbon.big.grid .wtitle{opacity:1}
+.voir.ribbon.big .vgrid>.card{grid-column:auto;grid-row:auto}
 </style>
 <script>document.documentElement.classList.add("js")</script>
