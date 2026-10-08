@@ -1056,5 +1056,17 @@ body.in-hero .cursor{opacity:0!important}
 .voir.ribbon.big .wtitle{display:block;grid-column:1/-1;position:static;transform:none;white-space:normal;text-align:left;font-size:clamp(44px,8vw,120px);margin:0 0 18px;opacity:0;transition:opacity .9s var(--ease)}
 .voir.ribbon.big.grid .wtitle{opacity:1}
 .voir.ribbon.big .vgrid>.card{grid-column:auto;grid-row:auto}
+/* logo UX Design Paris dans le menu : masque PNG, la couleur suit le fond (clair / sombre) */
+.uxdp{display:inline-flex;align-items:center;color:#F3F1EA;opacity:.82;transition:opacity .3s var(--ease),color .4s var(--ease)}
+.uxdp i,.uxdp-m{display:block;width:22px;height:24px;background:currentColor;-webkit-mask:url(media/uxdp.png) center/contain no-repeat;mask:url(media/uxdp.png) center/contain no-repeat}
+.uxdp:hover,.uxdp:focus-visible{opacity:1}
+.nav.ink .uxdp{color:#121210}
+.menu-open .nav .uxdp{color:#F3F1EA}
+.nav-right .uxdp{padding-right:18px;border-right:1px solid rgba(243,241,234,.22);margin-right:-2px}
+.nav.ink .nav-right .uxdp{border-right-color:rgba(18,18,16,.2)}
+.menu a.mx{margin-top:18px;display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-2)}
+.menu a.mx .uxdp-m{width:20px;height:22px;color:var(--cream)}
+.menu a.mx:hover{color:var(--gold-2)}
+@media (max-width:379px){.nav-right .uxdp{display:none}}
 </style>
 <script>document.documentElement.classList.add("js")</script>
