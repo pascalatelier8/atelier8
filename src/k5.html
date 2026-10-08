@@ -29,7 +29,7 @@
   /* ---------- langue ---------- */
   var LANGS=['fr','en'], lang='fr';
   function applyLang(scope){(scope||body).querySelectorAll('[lang]').forEach(function(el){var v=el.getAttribute('lang');if(LANGS.indexOf(v)>-1)el.hidden=(v!==lang);});}
-  function setLang(l){lang=(LANGS.indexOf(l)>-1)?l:'fr';applyLang();root.lang=lang;d.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang));});try{localStorage.setItem('a8-lang',lang);}catch(e){}if(typeof syncVer==='function')try{syncVer();}catch(e){}}
+  function setLang(l){lang=(LANGS.indexOf(l)>-1)?l:'fr';applyLang();root.lang=lang;d.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===lang));});if(!PATHMODE)try{localStorage.setItem('a8-lang',lang);}catch(e){}if(typeof syncVer==='function')try{syncVer();}catch(e){}}
   /* URL propres (/films/, /en/faq/…) en ligne ; ancres #vue en local (fichier .html) */
   var SEO=@@SEO@@, PATHMODE=/^https?:$/.test(location.protocol)&&!/\.html$/.test(location.pathname);
   function pathView(){var p=location.pathname.replace(/^\/en(?=\/|$)/,'').replace(/^\/+|\/+$/g,'');return p||'accueil';}
