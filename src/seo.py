@@ -124,6 +124,23 @@ def faqs(src):
     return out
 
 
+
+DTF_DATE = '2026-10-09T15:00:00+00:00'
+def dtf_video(lang):
+    fr = lang == 'fr'
+    return {'@type': 'VideoObject', '@id': SITE + '/#deux-traits-' + lang,
+            'name': 'Atelier 8 — Deux traits' if fr else 'Atelier 8 — Two Strokes',
+            'description': ('Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : l’impact, la méthode en quatre étapes, les cinq agents IA et les films, en 61 secondes.' if fr
+                            else 'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the impact, the four-step method, the five AI agents and the films, in 61 seconds.'),
+            'thumbnailUrl': SITE + '/media/films/atelier8-deux-traits-' + lang + '.jpg',
+            'contentUrl': SITE + '/media/films/atelier8-deux-traits-' + lang + '.mp4',
+            'uploadDate': DTF_DATE, 'duration': 'PT61S', 'width': 1600, 'height': 900, 'inLanguage': lang,
+            'creator': {'@id': SITE + '/#org'}, 'publisher': {'@id': SITE + '/#org'}, 'isFamilyFriendly': True,
+            'hasPart': [{'@type': 'Clip', 'name': n, 'startOffset': a, 'endOffset': b, 'url': url(lang, 'accueil') + '#dtf'}
+                        for n, a, b in zip(['L’impact', 'Deux traits', 'La méthode', 'Les agents', 'Les films', 'La signature'] if fr
+                                           else ['Impact', 'Two strokes', 'The method', 'The agents', 'The films', 'The signature'],
+                                           [0, 9, 13, 29, 35, 55], [9, 13, 29, 35, 55, 61])]}
+
 def graph(lang, v, F, Q):
     org = {
         '@type': ['Organization', 'ProfessionalService'], '@id': SITE + '/#org', 'name': 'Atelier 8', 'url': SITE + '/',
@@ -208,6 +225,8 @@ def graph(lang, v, F, Q):
             page['mainEntity'] = {'@type': 'ItemList', 'numberOfItems': len(items), 'itemListElement': items}
         elif items:
             G.append(items[0]['item'])
+    if v == 'accueil':
+        G.append(dtf_video(lang))
     return {'@context': 'https://schema.org', '@graph': G}
 
 
@@ -283,6 +302,16 @@ def sitemap(F):
             x.append(f'<loc>{url(lang, v)}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{pr[v]}</priority>')
             for hl, L in (('fr', 'fr'), ('en', 'en'), ('x-default', 'fr')):
                 x.append(f'<xhtml:link rel="alternate" hreflang="{hl}" href="{url(L, v)}"/>')
+            if v == 'accueil':
+                dv = dtf_video(lang)
+                x.append('<video:video>'
+                         f'<video:thumbnail_loc>{dv["thumbnailUrl"]}</video:thumbnail_loc>'
+                         f'<video:title>{H.escape(dv["name"])}</video:title>'
+                         f'<video:description>{H.escape(dv["description"])}</video:description>'
+                         f'<video:content_loc>{dv["contentUrl"]}</video:content_loc>'
+                         '<video:duration>61</video:duration>'
+                         f'<video:publication_date>{DTF_DATE}</video:publication_date>'
+                         '<video:family_friendly>yes</video:family_friendly></video:video>')
             if v == 'films':
                 for f in F:
                     src = f['src_en'] if (lang == 'en' and f['src_en']) else f['src']

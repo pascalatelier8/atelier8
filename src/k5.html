@@ -128,7 +128,24 @@
   function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
-  function syncVer(){if(!srMan)srSet(lang);}
+  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
+  /* ---------- le film de l’atelier : Deux traits ---------- */
+  var dtfSync=null;
+  (function(){
+    var s=d.getElementById('dtf'); if(!s)return;
+    var v=d.getElementById('dtfVid'), pv=v.querySelector('video'), img=v.querySelector('img'), man=false;
+    var SRC={fr:v.dataset.src,en:v.dataset.srcEn};
+    function setV(l){if(v.dataset.v===l&&pv.getAttribute('src')===(l==='en'?v.dataset.pvEn:v.dataset.pv))return;v.dataset.v=l;var pl=!pv.paused;v.classList.remove('playing');pv.src=l==='en'?v.dataset.pvEn:v.dataset.pv;img.src=l==='en'?v.dataset.posterEn:v.dataset.poster;if(pl)pv.play().then(function(){v.classList.add('playing');}).catch(function(){});s.querySelectorAll('.dtf-ver button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===l));});}
+    dtfSync=function(){if(!man)setV(lang);};
+    s.querySelector('.dtf-ver').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;man=true;setV(b.dataset.v);});
+    s.querySelector('.dtf-seal').addEventListener('click',function(){v.click();});
+    s.querySelector('.dtf-ch').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var t=+b.dataset.t||0,l=v.dataset.v||lang;
+      openLb(SRC[l],v.dataset.title,'',{fr:SRC.fr,en:SRC.en,v:l});
+      if(t>0){var go=function(){try{if(Math.abs(lbv.currentTime-t)>.6)lbv.currentTime=t;else stop();}catch(_){}},stop=function(){lbv.removeEventListener('loadedmetadata',go);lbv.removeEventListener('canplay',go);};lbv.addEventListener('loadedmetadata',go);lbv.addEventListener('canplay',go);setTimeout(stop,4000);if(lbv.readyState>=1)go();}
+      if(window.a8track)a8track('video_chapter',{video_title:'Atelier 8 — Deux traits',chapter_time:t});});
+    if(hasGsap&&!reduced&&fine){var stg=s.querySelector('.dtf-stage');gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:'26px'},{borderRadius:'12px',ease:'none'},0);}
+    dtfSync();
+  })();
   if(srVid){var srG=srVid.closest('.film').querySelector('.ver');if(srG)srG.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;srMan=true;srSet(b.dataset.v);});syncVer();}
   function closeLb(){if(!lb.classList.contains('open'))return;lb.classList.remove('open');lbv.pause();setTimeout(function(){lb.classList.remove('show');lbv.removeAttribute('src');lbv.load();},460);if(lenis)lenis.start();}
   d.getElementById('lbClose').addEventListener('click',closeLb);

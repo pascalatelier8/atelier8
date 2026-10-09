@@ -1049,6 +1049,54 @@ body.in-hero .cursor{opacity:0!important}
 .fsocial a.soc:hover .sic::before,.fsocial a.soc:focus-visible .sic::before{transform:scale(1)}
 .fsocial a.soc:hover b{color:var(--cream)}
 @media (prefers-reduced-motion:reduce){.fsocial .sic,.fsocial .sic::before{transition:none}}
+/* ---------- le film de l’atelier : Deux traits ---------- */
+.dtf{padding-block:clamp(84px,13vh,170px) clamp(72px,11vh,140px);border-top:1px solid var(--line);overflow:hidden}
+.dtf-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,96px);align-items:end;margin-bottom:clamp(36px,6vh,64px)}
+.dtf-h{display:grid;gap:18px}
+.dtf .big{font-size:clamp(34px,4.6vw,72px)}
+.dtf .big em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--fg-2)}
+.dtf-side{display:grid;gap:22px;justify-items:start}
+.dtf-stage{position:relative;max-width:1600px;margin-inline:auto;transform-origin:50% 35%;will-change:transform}
+.dtf-stage::before{content:"";position:absolute;left:8%;right:8%;bottom:-9%;height:40%;background:radial-gradient(50% 50% at 50% 50%,rgba(201,155,69,.22),rgba(201,155,69,0) 70%);filter:blur(30px);pointer-events:none}
+.dtf-vid{position:relative;aspect-ratio:16/9;background:#050505;overflow:hidden;cursor:pointer;border-radius:12px;box-shadow:0 70px 140px -50px rgba(0,0,0,.9),0 0 0 1px rgba(201,155,69,.2);}
+.dtf-vid img,.dtf-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dtf-vid video{opacity:0;transition:opacity 1s var(--ease)}
+.dtf-vid.playing video{opacity:1}
+.dtf-vid::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 95% at 50% 50%,rgba(0,0,0,0) 52%,rgba(0,0,0,.55)),linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 72%,rgba(0,0,0,.35));transition:opacity .6s var(--ease)}
+.dtf-vid:hover::after{opacity:.75}
+.dtf-vid:focus-visible{outline:1px solid var(--gold);outline-offset:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.dtf-seal{position:absolute;right:clamp(24px,6%,96px);bottom:0;z-index:4;width:clamp(112px,9.5vw,150px);aspect-ratio:1;transform:translateY(50%);display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(10,9,8,.92),rgba(10,9,8,.86) 70%,rgba(10,9,8,.0) 100%);cursor:pointer}
+.dtf-seal .txt{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:dtfSpin 22s linear infinite}
+.dtf-seal text{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;fill:var(--cream);text-transform:uppercase}
+html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:none}
+.dtf-seal .disc{position:relative;width:52%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(201,155,69,.6);overflow:hidden;transition:transform .7s var(--ease),border-color .5s var(--ease)}
+.dtf-seal .disc::before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(160deg,#F4E1A6,#C99B45 55%,#7C5B22);transform:scale(1);transition:transform .6s var(--ease)}
+.dtf-seal .disc svg{position:relative;width:34%;fill:#121210;margin-left:8%;transition:fill .4s var(--ease)}
+.dtf-seal:hover .disc,.dtf-seal:focus-visible .disc,.dtf-stage:has(.dtf-vid:hover) .dtf-seal .disc{transform:scale(1.1)}
+.dtf-seal:hover .txt,.dtf-stage:has(.dtf-vid:hover) .dtf-seal .txt{animation-duration:9s}
+.dtf-seal:focus-visible{outline:1px solid var(--gold);outline-offset:6px}
+@keyframes dtfSpin{to{transform:rotate(360deg)}}
+@media (max-width:640px){.dtf-seal{width:96px;right:18px}.dtf-seal text{font-size:13.5px}.dtf-ch{margin-top:72px}}
+.dtf-ch{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));max-width:1600px;margin:clamp(84px,11vh,110px) auto 0;padding:0;list-style:none;counter-reset:ch}
+.dtf-ch li{min-width:0}
+.dtf-ch button{position:relative;display:grid;gap:7px;width:100%;padding:16px 14px 6px 0;text-align:left;border-top:1px solid var(--line);color:var(--fg-3);transition:color .4s var(--ease)}
+.dtf-ch button::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,#F4E1A6,#C99B45);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
+.dtf-ch button::after{content:"";position:absolute;left:0;top:-4px;width:1px;height:7px;background:var(--gold)}
+.dtf-ch .ct{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--gold)}
+.dtf-ch .cl{font-size:14.5px;line-height:1.3;color:var(--fg-2);transition:color .4s var(--ease)}
+.dtf-ch button:hover::before,.dtf-ch button:focus-visible::before{transform:scaleX(1)}
+.dtf-ch button:hover .cl,.dtf-ch button:focus-visible .cl{color:var(--cream)}
+@media (max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px){
+  .dtf-head{grid-template-columns:1fr;gap:24px}
+  .dtf-ch{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:6px}
+  .dtf-vid{border-radius:8px}
+}
+@media (max-width:640px){
+  .dtf-ch{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dtf-ch .cl{font-size:13.5px}
+}
+@media (prefers-reduced-motion:reduce){.dtf-seal .txt{animation:none}.dtf-seal .disc,.dtf-seal .disc::before{transition:none}}
 .consent a,.legal2 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 /* bandeau de consentement : deux choix de même poids (CNIL) */
 .consent-b{position:fixed;z-index:95;left:max(16px,var(--gutter));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:min(430px,calc(100vw - 32px));padding:18px 20px 20px;background:rgba(14,13,11,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(232,214,178,.16);border-radius:14px;color:var(--cream);box-shadow:0 18px 60px rgba(0,0,0,.5);opacity:0;transform:translateY(16px);transition:opacity .45s var(--ease),transform .6s var(--ease)}
@@ -1221,6 +1269,27 @@ body.in-hero .cursor{opacity:0!important}
       <p class="reveal"><span lang="fr">Une page explique. Un film fait voir.</span><span lang="en" hidden>A page explains. A film shows.</span></p>
       <div class="mf-side rv"><p><span lang="fr">Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en" hidden>A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
     </div>
+  </section>
+
+  <section class="dtf dark" id="dtf" aria-labelledby="dtfT">
+    <div class="dtf-head">
+      <div class="dtf-h">
+        <span class="label"><span lang="fr">Le film de l’atelier</span><span lang="en" hidden>The studio’s own film</span> · 61 s</span>
+        <h2 class="big rv" id="dtfT"><span lang="fr">Deux traits.<em>Une minute pour tout montrer.</em></span><span lang="en" hidden>Two strokes.<em>One minute to show it all.</em></span></h2>
+      </div>
+      <div class="dtf-side rv">
+        <p class="body"><span lang="fr">Le film d’Atelier 8, fabriqué comme ceux que je livre : un script, un storyboard, cinq agents et un seul regard. D’abord l’impact, ensuite la marque.</span><span lang="en" hidden>Atelier 8’s own film, made the way I make yours: one script, one storyboard, five agents and a single eye. First the impact, then the brand.</span></p>
+        <div class="ver dtf-ver" role="group" aria-label="Version"><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">VO EN</button></div>
+      </div>
+    </div>
+    <div class="dtf-stage">
+      <div class="vid dtf-vid" id="dtfVid" data-v="fr" data-src="/media/films/atelier8-deux-traits-fr.mp4" data-src-en="/media/films/atelier8-deux-traits-en.mp4" data-pv="/media/films/atelier8-deux-traits-fr-pv.mp4" data-pv-en="/media/films/atelier8-deux-traits-en-pv.mp4" data-poster="/media/films/atelier8-deux-traits-fr.jpg" data-poster-en="/media/films/atelier8-deux-traits-en.jpg" data-title="Atelier 8 — Deux traits · 61 s" tabindex="0" role="button" aria-label="Lire le film Atelier 8 — Deux traits, avec le son">
+        <img src="/media/films/atelier8-deux-traits-fr.jpg" alt="Atelier 8 — Deux traits · film de marque du studio, 61 secondes" width="1600" height="900" loading="lazy" decoding="async">
+        <video src="/media/films/atelier8-deux-traits-fr-pv.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+        </div>
+      <button class="dtf-seal" type="button" aria-controls="lb"><span class="sr-only"><span lang="fr">Voir le film avec le son, 61 secondes</span><span lang="en" hidden>Watch the film with sound, 61 seconds</span></span><svg class="txt" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="dtfC" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text class="t-fr"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">VOIR LE FILM · AVEC LE SON · 61 S · </textPath></text><text class="t-en"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">WATCH THE FILM · WITH SOUND · 61 S · </textPath></text></svg><span class="disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
+    </div>
+    <ol class="dtf-ch" aria-label="Chapitres"><li style="--x:0.00%"><button type="button" data-t="0"><span class="ct">00:00</span><span class="cl"><span lang="fr">L’impact</span><span lang="en" hidden>Impact</span></span></button></li><li style="--x:14.75%"><button type="button" data-t="9"><span class="ct">00:09</span><span class="cl"><span lang="fr">Deux traits</span><span lang="en" hidden>Two strokes</span></span></button></li><li style="--x:21.31%"><button type="button" data-t="13"><span class="ct">00:13</span><span class="cl"><span lang="fr">La méthode</span><span lang="en" hidden>The method</span></span></button></li><li style="--x:47.54%"><button type="button" data-t="29"><span class="ct">00:29</span><span class="cl"><span lang="fr">Les agents</span><span lang="en" hidden>The agents</span></span></button></li><li style="--x:57.38%"><button type="button" data-t="35"><span class="ct">00:35</span><span class="cl"><span lang="fr">Les films</span><span lang="en" hidden>The films</span></span></button></li><li style="--x:90.16%"><button type="button" data-t="55"><span class="ct">00:55</span><span class="cl"><span lang="fr">La signature</span><span lang="en" hidden>The signature</span></span></button></li></ol>
   </section>
 
   <section class="voir light" id="voir">
@@ -1755,7 +1824,24 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
-  function syncVer(){if(!srMan)srSet(lang);}
+  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
+  /* ---------- le film de l’atelier : Deux traits ---------- */
+  var dtfSync=null;
+  (function(){
+    var s=d.getElementById('dtf'); if(!s)return;
+    var v=d.getElementById('dtfVid'), pv=v.querySelector('video'), img=v.querySelector('img'), man=false;
+    var SRC={fr:v.dataset.src,en:v.dataset.srcEn};
+    function setV(l){if(v.dataset.v===l&&pv.getAttribute('src')===(l==='en'?v.dataset.pvEn:v.dataset.pv))return;v.dataset.v=l;var pl=!pv.paused;v.classList.remove('playing');pv.src=l==='en'?v.dataset.pvEn:v.dataset.pv;img.src=l==='en'?v.dataset.posterEn:v.dataset.poster;if(pl)pv.play().then(function(){v.classList.add('playing');}).catch(function(){});s.querySelectorAll('.dtf-ver button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===l));});}
+    dtfSync=function(){if(!man)setV(lang);};
+    s.querySelector('.dtf-ver').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;man=true;setV(b.dataset.v);});
+    s.querySelector('.dtf-seal').addEventListener('click',function(){v.click();});
+    s.querySelector('.dtf-ch').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var t=+b.dataset.t||0,l=v.dataset.v||lang;
+      openLb(SRC[l],v.dataset.title,'',{fr:SRC.fr,en:SRC.en,v:l});
+      if(t>0){var go=function(){try{if(Math.abs(lbv.currentTime-t)>.6)lbv.currentTime=t;else stop();}catch(_){}},stop=function(){lbv.removeEventListener('loadedmetadata',go);lbv.removeEventListener('canplay',go);};lbv.addEventListener('loadedmetadata',go);lbv.addEventListener('canplay',go);setTimeout(stop,4000);if(lbv.readyState>=1)go();}
+      if(window.a8track)a8track('video_chapter',{video_title:'Atelier 8 — Deux traits',chapter_time:t});});
+    if(hasGsap&&!reduced&&fine){var stg=s.querySelector('.dtf-stage');gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:'26px'},{borderRadius:'12px',ease:'none'},0);}
+    dtfSync();
+  })();
   if(srVid){var srG=srVid.closest('.film').querySelector('.ver');if(srG)srG.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;srMan=true;srSet(b.dataset.v);});syncVer();}
   function closeLb(){if(!lb.classList.contains('open'))return;lb.classList.remove('open');lbv.pause();setTimeout(function(){lb.classList.remove('show');lbv.removeAttribute('src');lbv.load();},460);if(lenis)lenis.start();}
   d.getElementById('lbClose').addEventListener('click',closeLb);
