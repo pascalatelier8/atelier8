@@ -1050,7 +1050,7 @@ body.in-hero .cursor{opacity:0!important}
 .fsocial a.soc:hover b{color:var(--cream)}
 @media (prefers-reduced-motion:reduce){.fsocial .sic,.fsocial .sic::before{transition:none}}
 /* ---------- le film de l’atelier : Deux traits ---------- */
-.dtf{padding-block:clamp(84px,13vh,170px) clamp(72px,11vh,140px);border-top:1px solid var(--line);overflow:hidden}
+.dtf{padding-block:clamp(56px,9vh,112px) clamp(72px,11vh,140px);border-top:1px solid var(--line);overflow:hidden}
 .dtf-head{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,5vw,96px);align-items:end;margin-bottom:clamp(36px,6vh,64px)}
 .dtf-h{display:grid;gap:18px}
 .dtf .big{font-size:clamp(34px,4.6vw,72px)}
@@ -1065,6 +1065,9 @@ body.in-hero .cursor{opacity:0!important}
 .dtf-vid::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 95% at 50% 50%,rgba(0,0,0,0) 52%,rgba(0,0,0,.55)),linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 72%,rgba(0,0,0,.35));transition:opacity .6s var(--ease)}
 .dtf-vid:hover::after{opacity:.75}
 .dtf-vid:focus-visible{outline:1px solid var(--gold);outline-offset:6px}
+.dtf .manif.dtf-head{margin-top:0;padding-top:0;border-top:0;margin-bottom:clamp(40px,7vh,72px)}
+.dtf .mf-side .dtf-k{color:var(--gold)}
+.dtf-row{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;max-width:26em}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .dtf-seal{position:absolute;right:clamp(24px,6%,96px);bottom:0;z-index:4;width:clamp(112px,9.5vw,150px);aspect-ratio:1;transform:translateY(50%);display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(10,9,8,.92),rgba(10,9,8,.86) 70%,rgba(10,9,8,.0) 100%);cursor:pointer}
 .dtf-seal .txt{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:dtfSpin 22s linear infinite}
@@ -1265,21 +1268,15 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
     <div class="hm-head"><span class="label"><span lang="fr" hidden>Le rôle humain</span><span lang="en">The human role</span></span><h2 class="big rv"><span lang="fr" hidden>Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en">The agents execute.<em>I frame, check and decide.</em></span></h2></div>
     <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr" hidden>Cadrer avant de produire</span><span lang="en">Frame before producing</span></h3><p><span lang="fr" hidden>Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en">A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr" hidden>Orchestrer, pas prompter</span><span lang="en">Orchestrate, not prompt</span></h3><p><span lang="fr" hidden>Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en">Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr" hidden>Vérifier, puis livrer</span><span lang="en">Check, then deliver</span></h3><p><span lang="fr" hidden>Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en">I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
     </div>
-    <div class="manif">
-      <p class="reveal"><span lang="fr" hidden>Une page explique. Un film fait voir.</span><span lang="en">A page explains. A film shows.</span></p>
-      <div class="mf-side rv"><p><span lang="fr" hidden>Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en">A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
-    </div>
   </section>
 
   <section class="dtf dark" id="dtf" aria-labelledby="dtfT">
-    <div class="dtf-head">
-      <div class="dtf-h">
-        <span class="label"><span lang="fr" hidden>Le film de l’atelier</span><span lang="en">The studio’s own film</span> · 61 s</span>
-        <h2 class="big rv" id="dtfT"><span lang="fr" hidden>Deux traits.<em>Une minute pour tout montrer.</em></span><span lang="en">Two strokes.<em>One minute to show it all.</em></span></h2>
-      </div>
-      <div class="dtf-side rv">
-        <p class="body"><span lang="fr" hidden>Le film d’Atelier 8, fabriqué comme ceux que je livre : un script, un storyboard, cinq agents et un seul regard. D’abord l’impact, ensuite la marque.</span><span lang="en">Atelier 8’s own film, made the way I make yours: one script, one storyboard, five agents and a single eye. First the impact, then the brand.</span></p>
-        <div class="ver dtf-ver" role="group" aria-label="Version"><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">VO EN</button></div>
+    <div class="manif dtf-head">
+      <p class="reveal" id="dtfT"><span lang="fr" hidden>Une page explique. Un film fait voir.</span><span lang="en">A page explains. A film shows.</span></p>
+      <div class="mf-side rv">
+        <span class="label dtf-k"><span lang="fr" hidden>Le film de l’atelier</span><span lang="en">The studio’s own film</span> · 61 s</span>
+        <p><span lang="fr" hidden>Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez. Le voici appliqué à l’atelier : un script, un storyboard, cinq agents et un seul regard.</span><span lang="en">A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying. Here it is, applied to the studio: one script, one storyboard, five agents and a single eye.</span></p>
+        <div class="dtf-row"><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span><div class="ver dtf-ver" role="group" aria-label="Version"><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">VO EN</button></div></div>
       </div>
     </div>
     <div class="dtf-stage">
