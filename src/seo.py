@@ -130,6 +130,7 @@ def graph(lang, v, F, Q):
         'logo': {'@type': 'ImageObject', 'url': LOGO, 'width': 180, 'height': 180}, 'image': OG, 'email': MAIL,
         'description': T[lang]['accueil'][1], 'slogan': 'Un film qui marque.' if lang == 'fr' else 'A film that leaves a mark.',
         'founder': {'@id': SITE + '/#pascal'}, 'foundingDate': '2026',
+        'sameAs': ['https://www.instagram.com/atelier8.io/', 'https://www.linkedin.com/company/atelier8-io/'],
         'address': [{'@type': 'PostalAddress', 'addressLocality': 'Paris', 'addressCountry': 'FR'},
                     {'@type': 'PostalAddress', 'addressLocality': 'Hong Kong', 'addressCountry': 'HK'}],
         'areaServed': [{'@type': 'Country', 'name': 'France'}, {'@type': 'Place', 'name': 'Hong Kong'},
@@ -315,7 +316,8 @@ def llms(F, Q):
          '- Méthode : cinq temps (brief, devis, conception, production, livraison) et trois validations (script et storyboard, première version, livraison).',
          '- Équipe : un regard humain (Pascal) et cinq agents IA, un par métier (stratégie, produit, scénario, storyboard, motion design). '
          'La direction artistique, le montage final et chaque validation restent humains.',
-         f'- Contact : {MAIL}. Réponse et devis sous deux jours ouvrés. Brief en ligne : https://atelier8.io/brief/', '',
+         f'- Contact : {MAIL}. Réponse et devis sous deux jours ouvrés. Brief en ligne : https://atelier8.io/brief/',
+         '- Réseaux : Instagram https://www.instagram.com/atelier8.io/ · LinkedIn https://www.linkedin.com/company/atelier8-io/', '',
          '## Formats et prix (hors taxes)', '']
     for slug, name, price, (dmin, dmax), rev, desc in OFFERS:
         L.append(f'- {name} : à partir de {price:,} € HT'.replace(',', ' ') + f', {dmin} à {dmax} jours ouvrés, {rev} révisions. {desc["fr"]}')
