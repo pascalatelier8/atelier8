@@ -8,7 +8,7 @@ import html as H, json, os, re
 
 SITE = 'https://atelier8.io'
 TODAY = '2026-10-08'
-VIEWS = ['accueil', 'films', 'formats', 'atelier', 'faq', 'brief']
+VIEWS = ['accueil', 'films', 'usages', 'formats', 'atelier', 'faq', 'brief']
 MAIL = 'pascal@atelier8.io'
 OG = SITE + '/media/og-atelier8.jpg'
 LOGO = SITE + '/media/apple-touch-icon.png'
@@ -24,6 +24,8 @@ T = {
               'Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.'),
   'films':   ('Films en motion design : 27 réalisations · Atelier 8',
               'Vingt-sept films en motion design : concepts pour des marques SaaS, tech et luxe, démos pour agences et showreel. 15 à 75 secondes, script, image et son.'),
+  'usages':  ('Cas d’usage d’un film de marque : SaaS, réseaux, lancement · Atelier 8',
+              'Six usages d’un film de marque, chacun avec un film exemple : offre SaaS, LinkedIn, présentation, lancement, démo produit, publicité. Formats et prix.'),
   'formats': ('Prix d’un film en motion design, dès 2 500 € · Atelier 8',
               'Trois formats à prix écrits : Signal 15–30 s dès 2 500 € HT, Portrait 45–90 s dès 4 500 € HT, Campagne dès 7 500 € HT. Délais, révisions, droits inclus.'),
   'atelier': ('L’atelier : Pascal EK Loui et cinq agents IA · Atelier 8',
@@ -38,6 +40,8 @@ T = {
               'Independent motion design studio between Paris and Hong Kong. Brand films of 15 to 90 s: script, voice, music and edit. From €2,500, delivered in 5 to 30 days.'),
   'films':   ('Motion design films: 27 projects · Atelier 8',
               'Twenty-seven motion design films: concepts for SaaS, tech and luxury brands, agency demos and a showreel. 15 to 75 seconds, script, picture and sound.'),
+  'usages':  ('Brand film use cases: SaaS, social, launch · Atelier 8',
+              'Six uses for a brand film, each with an example: explaining a SaaS offer, LinkedIn, company intro, launch, product demo, ads. Formats and prices.'),
   'formats': ('Motion design film pricing from €2,500 · Atelier 8',
               'Three formats with written prices: Signal 15–30 s from €2,500, Portrait 45–90 s from €4,500, Campaign from €7,500, excl. VAT. Timing, revisions, rights included.'),
   'atelier': ('The studio: Pascal EK Loui and five AI agents · Atelier 8',
@@ -48,9 +52,9 @@ T = {
               'Send your brief in two minutes: your website and a few lines. First read and a quote within two working days, from Pascal himself.'),
  },
 }
-NAV = {'fr': {'accueil': 'Accueil', 'films': 'Films', 'formats': 'Formats', 'atelier': 'L’atelier', 'faq': 'FAQ', 'brief': 'Brief'},
-       'en': {'accueil': 'Home', 'films': 'Films', 'formats': 'Formats', 'atelier': 'The studio', 'faq': 'FAQ', 'brief': 'Brief'}}
-PAGETYPE = {'accueil': 'WebPage', 'films': 'CollectionPage', 'formats': 'WebPage', 'atelier': 'AboutPage', 'faq': 'FAQPage', 'brief': 'ContactPage'}
+NAV = {'fr': {'accueil': 'Accueil', 'films': 'Films', 'usages': 'Usages', 'formats': 'Formats', 'atelier': 'L’atelier', 'faq': 'FAQ', 'brief': 'Brief'},
+       'en': {'accueil': 'Home', 'films': 'Films', 'usages': 'Use cases', 'formats': 'Formats', 'atelier': 'The studio', 'faq': 'FAQ', 'brief': 'Brief'}}
+PAGETYPE = {'accueil': 'WebPage', 'films': 'CollectionPage', 'usages': 'WebPage', 'formats': 'WebPage', 'atelier': 'AboutPage', 'faq': 'FAQPage', 'brief': 'ContactPage'}
 
 OFFERS = [
  ('signal', 'Signal', 2500, (5, 10), 2,
@@ -63,6 +67,9 @@ OFFERS = [
   {'fr': 'Cinq films : un Portrait, un Signal et trois déclinaisons courtes pour les réseaux, en français et en anglais.',
    'en': 'Five films: one Portrait, one Signal and three short cut-downs for social, in French and English.'}),
 ]
+
+
+UCD = ([], [])
 
 
 def url(lang, v):
@@ -107,6 +114,23 @@ def films(src):
                         sector={l: span(dl['Secteur'], l) for l in ('fr', 'en')} if 'Secteur' in dl else None,
                         secs=int(sec.group(1)) if sec else 30))
     return out
+
+
+def usages(src):
+    sec = src.split('data-view="usages"', 1)[1].split('<!-- FORMATS -->', 1)[0]
+    out = []
+    for uid, a in re.findall(r'<article class="uc" id="uc-([a-z]+)"[^>]*>(.*?)</article>', sec, re.S):
+        h = re.search(r'<h2 class="uc-h[^"]*">(.*?)</h2>', a, re.S).group(1)
+        b = re.search(r'<p class="body[^"]*">(.*?)</p>', a, re.S).group(1)
+        dds = re.findall(r'<dd>(.*?)</dd>', a, re.S)
+        it = {'id': uid}
+        for l in ('fr', 'en'):
+            it[l] = (span(h, l).rstrip('.'), span(b, l), span(dds[2], l) if len(dds) > 2 else '')
+        out.append(it)
+    q = []
+    for qq, aa in re.findall(r'<summary><span class="n">\d+</span><span>(.*?)</span><span class="x"></span></summary><div class="a">(.*?)</div></details>', sec, re.S):
+        q.append({l: (span(qq, l), span(aa, l)) for l in ('fr', 'en')})
+    return out, q
 
 
 def faqs(src):
@@ -202,6 +226,13 @@ def graph(lang, v, F, Q):
                                'acceptedAnswer': {'@type': 'Answer', 'text': q[lang][1]}} for q in Q]
     if v == 'atelier':
         page['mainEntity'] = {'@id': SITE + '/#pascal'}
+    if v == 'usages' and UCD[0]:
+        page['mainEntity'] = {'@type': 'ItemList', 'name': NAV[lang][v], 'numberOfItems': len(UCD[0]), 'itemListElement': [
+            {'@type': 'ListItem', 'position': i + 1, 'url': u + '#uc-' + it['id'], 'name': it[lang][0],
+             'description': it[lang][1] + ' ' + it[lang][2]} for i, it in enumerate(UCD[0])]}
+        if UCD[1]:
+            G.append({'@type': 'FAQPage', '@id': u + '#faq', 'url': u, 'inLanguage': lang, 'isPartOf': {'@id': u + '#page'},
+                      'mainEntity': [{'@type': 'Question', 'name': q[lang][0], 'acceptedAnswer': {'@type': 'Answer', 'text': q[lang][1]}} for q in UCD[1]]})
     if v in ('films', 'accueil'):
         items = []
         for i, f in enumerate(F if v == 'films' else [f for f in F if f['kind'] == 'showreel']):
@@ -295,7 +326,7 @@ def robots():
 def sitemap(F):
     x = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">']
-    pr = {'accueil': '1.0', 'films': '0.9', 'formats': '0.9', 'atelier': '0.7', 'faq': '0.8', 'brief': '0.6'}
+    pr = {'accueil': '1.0', 'films': '0.9', 'usages': '0.8', 'formats': '0.9', 'atelier': '0.7', 'faq': '0.8', 'brief': '0.6'}
     for lang in ('fr', 'en'):
         for v in VIEWS:
             x.append('<url>')
@@ -358,6 +389,10 @@ def llms(F, Q):
     for f in F:
         k = {'concept': 'concept, démo non officielle', 'demo': 'démo réalisée pour une agence, non validée par la marque', 'showreel': 'showreel FR/EN'}[f['kind']]
         L.append(f'- {f["title"]["fr"]} ({f["secs"]} s, {k}) : {SITE}/{f["src"]}')
+    if UCD[0]:
+        L += ['', '## Cas d’usage', '']
+        for it in UCD[0]:
+            L.append(f'- {it["fr"][0]} : {it["fr"][1]} Format conseillé : {it["fr"][2]}. {url("fr", "usages")}#uc-{it["id"]}')
     L += ['', '## Questions fréquentes', '']
     for q in Q:
         L.append(f'### {q["fr"][0]}')
@@ -365,6 +400,7 @@ def llms(F, Q):
     L += ['## Pages', '',
           f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")})',
           f'- [Films]({url("fr", "films")}) : 27 films, nature de chaque film précisée',
+          f'- [Cas d’usage]({url("fr", "usages")}) : six usages d’un film de marque, un film exemple pour chacun',
           f'- [Formats et prix]({url("fr", "formats")})',
           f'- [L’atelier]({url("fr", "atelier")}) : Pascal EK Loui et les cinq agents IA',
           f'- [FAQ]({url("fr", "faq")})',
@@ -419,7 +455,9 @@ h1{font-weight:300;font-size:clamp(40px,9vw,96px);margin:0;letter-spacing:.02em}
 def build(full, out):
     """full : page unique complète (chemins relatifs). Écrit tout l'arbre dans out/."""
     full = absolutize(full.replace('@@SEO@@', seo_titles()))
+    global UCD
     F, Q = films(full), faqs(full)
+    UCD = usages(full)
     for lang in ('fr', 'en'):
         for v in VIEWS:
             d = os.path.join(out, *(['en'] if lang == 'en' else []), *([] if v == 'accueil' else [v]))
