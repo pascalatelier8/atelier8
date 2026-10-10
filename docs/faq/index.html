@@ -1648,7 +1648,7 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
       <div class="fnav"><span class="fhint">01 / 03</span><button class="pill solid gold" type="button" data-next><span lang="fr">Continuer</span><span lang="en" hidden>Continue</span> <i>→</i></button></div>
     </div>
     <div class="fstep" data-s="1" hidden>
-      <div class="field"><label for="f-site"><span lang="fr">Adresse de votre site</span><span lang="en" hidden>Your website address</span></label><input id="f-site" name="site" type="url" placeholder="https://votre-societe.com" required inputmode="url"><small class="err" hidden><span lang="fr">Cette adresse semble incomplète. Elle commence par https://.</span><span lang="en" hidden>This address looks incomplete. It starts with https://.</span></small></div>
+      <div class="field"><label for="f-site"><span lang="fr">Adresse de votre site</span><span lang="en" hidden>Your website address</span></label><input id="f-site" name="site" type="text" placeholder="votre-societe.com" required inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="url"><small class="err" hidden><span lang="fr">Cette adresse semble incomplète, par exemple : votre-societe.com</span><span lang="en" hidden>This address looks incomplete, for example: your-company.com</span></small></div>
       <div class="field"><label for="f-ctx"><span lang="fr">Votre société, vos produits</span><span lang="en" hidden>Your company and products</span></label><textarea id="f-ctx" name="context" rows="3" required placeholder=""></textarea><small><span lang="fr">Quelques lignes suffisent. Pour un accord de confidentialité avant l’envoi, écrivez-le ici.</span><span lang="en" hidden>A few lines are enough. For an NDA before you send anything, mention it here.</span></small></div>
       <div class="fnav"><button class="back" type="button" data-back><span lang="fr">← Retour</span><span lang="en" hidden>← Back</span></button><span class="fhint">02 / 03</span><button class="pill solid gold" type="button" data-next><span lang="fr">Continuer</span><span lang="en" hidden>Continue</span> <i>→</i></button></div>
     </div>
@@ -2103,7 +2103,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     st.querySelectorAll('[required]').forEach(function(f){
       var bad=(f.type==='checkbox')?!f.checked:!f.value.trim();
       if(f.type==='email'&&!bad)bad=!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
-      if(f.type==='url'){var good=/^https?:\/\/[^\s.]+\.[^\s]+$/i.test(f.value.trim());var err=f.parentNode.querySelector('.err');if(err)err.hidden=good;if(!good)bad=true;}
+      if(f.id==='f-site'){var sv=f.value.trim().replace(/\s+/g,'');if(sv&&!/^https?:\/\//i.test(sv))sv='https://'+sv.replace(/^\/+/,'');f.value=sv;var good=/^https?:\/\/[^\s\/.]+(\.[^\s\/.]+)*\.[a-z]{2,}(\/\S*)?$/i.test(sv);var err=f.parentNode.querySelector('.err');if(err)err.hidden=good;if(!good)bad=true;}
       f.style.borderColor=bad?'#C99B45':''; if(bad)ok=false;
     });
     return ok;
