@@ -1071,6 +1071,11 @@ body.in-hero .cursor{opacity:0!important}
 .dtf .manif.dtf-head{margin-top:0;padding-top:0;border-top:0;margin-bottom:clamp(40px,7vh,72px)}
 .dtf .mf-side .dtf-k{color:var(--gold)}
 .dtf-row{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;max-width:26em}
+.hp-trap{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.field label .opt{font-style:normal;text-transform:none;letter-spacing:.04em;color:var(--fg-3);opacity:.7;margin-left:6px}
+#fSend.busy{pointer-events:none;opacity:.7}
+#fSend.busy::after{content:"";display:inline-block;width:10px;height:10px;margin-left:10px;border-radius:50%;border:1.5px solid currentColor;border-right-color:transparent;animation:fSpin .8s linear infinite;vertical-align:-1px}
+@keyframes fSpin{to{transform:rotate(360deg)}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .dtf-seal{position:absolute;right:clamp(24px,6%,96px);bottom:0;z-index:4;width:clamp(112px,9.5vw,150px);aspect-ratio:1;transform:translateY(50%);display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(10,9,8,.92),rgba(10,9,8,.86) 70%,rgba(10,9,8,.0) 100%);cursor:pointer}
 .dtf-seal .txt{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:dtfSpin 22s linear infinite}
@@ -1641,6 +1646,8 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
     <div class="fstep" data-s="0">
       <div class="field"><label for="f-name"><span lang="fr">Prénom & nom</span><span lang="en" hidden>First & last name</span></label><input id="f-name" name="name" type="text" placeholder="Camille Dupont" required autocomplete="name"></div>
       <div class="field"><label for="f-mail"><span lang="fr">E-mail professionnel</span><span lang="en" hidden>Work e-mail</span></label><input id="f-mail" name="email" type="email" placeholder="camille@exemple.com" required autocomplete="email"></div>
+      <div class="field"><label for="f-tel"><span lang="fr">Téléphone</span><span lang="en" hidden>Phone</span> <em class="opt"><span lang="fr">facultatif</span><span lang="en" hidden>optional</span></em></label><input id="f-tel" name="phone" type="tel" placeholder="+33 6 12 34 56 78" autocomplete="tel" inputmode="tel"></div>
+      <div class="hp-trap" aria-hidden="true"><label for="f-hon">Ne pas remplir</label><input id="f-hon" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
       <div class="fnav"><span class="fhint">01 / 03</span><button class="pill solid gold" type="button" data-next><span lang="fr">Continuer</span><span lang="en" hidden>Continue</span> <i>→</i></button></div>
     </div>
     <div class="fstep" data-s="1" hidden>
@@ -1655,11 +1662,11 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
       </div>
       <div class="field"><label for="f-refs"><span lang="fr">Références</span><span lang="en" hidden>References</span></label><input id="f-refs" name="refs" type="text" placeholder="Liens, Drive, WeTransfer…"><small><span lang="fr">Les vôtres, ou des films qui vous inspirent.</span><span lang="en" hidden>Yours, or films you admire.</span></small></div>
       <label class="consent"><input id="f-ok" type="checkbox" name="consent" required><span><span lang="fr">J’accepte d’être recontacté au sujet de ma demande (<a href="/confidentialite/" target="_blank" rel="noopener">politique de confidentialité</a>).</span><span lang="en" hidden>I agree to be contacted about my request (<a href="/confidentialite/" target="_blank" rel="noopener">privacy policy</a>).</span></span></label>
-      <div class="fnav"><button class="back" type="button" data-back><span lang="fr">← Retour</span><span lang="en" hidden>← Back</span></button><span class="fhint">03 / 03</span><button class="pill solid gold" type="submit"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></button></div>
+      <div class="fnav"><button class="back" type="button" data-back><span lang="fr">← Retour</span><span lang="en" hidden>← Back</span></button><span class="fhint">03 / 03</span><button class="pill solid gold" type="submit" id="fSend"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></button></div>
     </div>
-    <div class="fdone" data-s="3" hidden><h3><span lang="fr">Brief prêt.</span><span lang="en" hidden>Brief ready.</span></h3><p><span lang="fr">Votre messagerie s’ouvre avec le brief déjà rédigé : il ne reste qu’à l’envoyer. Réponse et devis sous deux jours ouvrés. Rien ne s’ouvre ? Écrivez à pascal@atelier8.io.</span><span lang="en" hidden>Your e-mail app opens with the brief already written: just press send. Reply and quote within two working days. Nothing opened? Write to pascal@atelier8.io.</span></p></div>
+    <div class="fdone" data-s="3" hidden><h3 id="fDoneT"><span lang="fr">Brief envoyé.</span><span lang="en" hidden>Brief sent.</span></h3><p id="fDoneOk"><span lang="fr">Merci. Pascal lit votre brief et vous répond, avec un devis, sous deux jours ouvrés.</span><span lang="en" hidden>Thank you. Pascal reads your brief and replies, with a quote, within two working days.</span></p><p id="fDoneMail" hidden><span lang="fr">L’envoi direct n’a pas abouti : votre messagerie s’ouvre avec le brief déjà rédigé, il ne reste qu’à l’envoyer. Rien ne s’ouvre ? Écrivez à pascal@atelier8.io.</span><span lang="en" hidden>Direct sending failed: your e-mail app opens with the brief already written, just press send. Nothing opened? Write to pascal@atelier8.io.</span></p></div>
     <div class="fprog"><i id="fprog" style="--s:1"></i></div>
-    <span class="fhint fnote"><span lang="fr">Vos informations servent uniquement à répondre à votre demande. Le brief part de votre messagerie : rien n’est stocké sur ce site.</span><span lang="en" hidden>Your details are only used to answer your request. The brief is sent from your own e-mail app: nothing is stored on this site.</span></span>
+    <span class="fhint fnote"><span lang="fr">Vos informations servent uniquement à répondre à votre demande. Elles sont transmises par e-mail à Pascal (service d’envoi FormSubmit) et ne sont pas stockées sur ce site.</span><span lang="en" hidden>Your details are only used to answer your request. They are e-mailed to Pascal (FormSubmit sending service) and are not stored on this site.</span></span>
   </form>
 </section>
 
@@ -2107,17 +2114,28 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     if(e.target.closest('[data-next]')){e.preventDefault();if(validStep(fs))showStep(fs+1);}
     if(e.target.closest('[data-back]')){e.preventDefault();showStep(Math.max(0,fs-1));}
   });
-  form.addEventListener('submit',function(e){e.preventDefault();if(!validStep(2))return;
-    if(window.a8track)a8track('generate_lead',{method:'brief',form_format:(d.getElementById('f-fmt')||{}).value||'nsp'});
+  var sending=false;
+  form.addEventListener('submit',function(e){e.preventDefault();if(sending||!validStep(2))return;
     function val(id){var f=d.getElementById(id);if(!f)return '';if(f.tagName==='SELECT'){var o=f.options[f.selectedIndex];return o&&f.value?o.textContent.trim():'';}return f.value.trim();}
-    var en=lang==='en', L=en?['Name','E-mail','Website','Company and products','Format','By when','References']:['Nom','E-mail','Site','Société et produits','Format','Pour quand','Références'];
-    var V=[val('f-name'),val('f-mail'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
-    var lines=[en?'Hello Pascal,':'Bonjour Pascal,','',en?'Here is my brief:':'Voici mon brief :',''];
-    V.forEach(function(v,k){if(v)lines.push(L[k]+' : '+v);});
-    lines.push('',en?'Sent from atelier8.io':'Envoyé depuis atelier8.io');
-    var subj=(en?'Brief Atelier 8 — ':'Brief Atelier 8 — ')+(V[0]||'')+(V[2]?' ('+V[2].replace(/^https?:\/\//,'').replace(/\/$/,'')+')':'');
-    location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
-    showStep(3);});
+    var en=lang==='en', L=en?['Name','E-mail','Phone','Website','Company and products','Format','By when','References']:['Nom','E-mail','Téléphone','Site','Société et produits','Format','Pour quand','Références'];
+    var V=[val('f-name'),val('f-mail'),val('f-tel'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
+    var subj='Brief Atelier 8 — '+(V[0]||'')+(V[3]?' ('+V[3].replace(/^https?:\/\//,'').replace(/\/$/,'')+')':'');
+    function mailto(){var lines=[en?'Hello Pascal,':'Bonjour Pascal,','',en?'Here is my brief:':'Voici mon brief :',''];V.forEach(function(v,k){if(v)lines.push(L[k]+' : '+v);});lines.push('',en?'Sent from atelier8.io':'Envoyé depuis atelier8.io');
+      location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));}
+    function done(ok){sending=false;btn.disabled=false;btn.classList.remove('busy');d.getElementById('fDoneOk').hidden=!ok;d.getElementById('fDoneMail').hidden=ok;
+      var t=d.getElementById('fDoneT');t.innerHTML=ok?'<span lang="fr"'+(en?' hidden':'')+'>Brief envoyé.</span><span lang="en"'+(en?'':' hidden')+'>Brief sent.</span>':'<span lang="fr"'+(en?' hidden':'')+'>Brief prêt.</span><span lang="en"'+(en?'':' hidden')+'>Brief ready.</span>';
+      showStep(3);if(!ok)mailto();if(window.a8track)a8track('generate_lead',{method:ok?'brief_form':'brief_mailto',form_format:(d.getElementById('f-fmt')||{}).value||'nsp'});}
+    var hon=d.getElementById('f-hon'); if(hon&&hon.value){showStep(3);return;}
+    var btn=d.getElementById('fSend'); sending=true; btn.disabled=true; btn.classList.add('busy');
+    var data={}; data['_subject']=subj; data['_template']='table'; data['_captcha']='false'; data['_replyto']=V[1];
+    L.forEach(function(k,i){data[k]=V[i]||'—';}); data[en?'Language':'Langue']=en?'English':'Français'; data['Page']=location.href;
+    if(!window.fetch){done(false);return;}
+    var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){if(ctl)ctl.abort();},15000);
+    fetch('https://formsubmit.co/ajax/pascal@atelier8.io',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl?ctl.signal:undefined})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return r.ok&&(j.success===true||j.success==='true');});})
+      .catch(function(){return false;})
+      .then(function(ok){clearTimeout(to);done(ok);});
+  });
   showStep(0);
   /* ---------- consentement et mesure d'audience : Google Analytics ne se charge qu'après « Accepter » ---------- */
   (function(){

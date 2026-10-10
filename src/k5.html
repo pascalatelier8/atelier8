@@ -411,17 +411,28 @@
     if(e.target.closest('[data-next]')){e.preventDefault();if(validStep(fs))showStep(fs+1);}
     if(e.target.closest('[data-back]')){e.preventDefault();showStep(Math.max(0,fs-1));}
   });
-  form.addEventListener('submit',function(e){e.preventDefault();if(!validStep(2))return;
-    if(window.a8track)a8track('generate_lead',{method:'brief',form_format:(d.getElementById('f-fmt')||{}).value||'nsp'});
+  var sending=false;
+  form.addEventListener('submit',function(e){e.preventDefault();if(sending||!validStep(2))return;
     function val(id){var f=d.getElementById(id);if(!f)return '';if(f.tagName==='SELECT'){var o=f.options[f.selectedIndex];return o&&f.value?o.textContent.trim():'';}return f.value.trim();}
-    var en=lang==='en', L=en?['Name','E-mail','Website','Company and products','Format','By when','References']:['Nom','E-mail','Site','Société et produits','Format','Pour quand','Références'];
-    var V=[val('f-name'),val('f-mail'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
-    var lines=[en?'Hello Pascal,':'Bonjour Pascal,','',en?'Here is my brief:':'Voici mon brief :',''];
-    V.forEach(function(v,k){if(v)lines.push(L[k]+' : '+v);});
-    lines.push('',en?'Sent from atelier8.io':'Envoyé depuis atelier8.io');
-    var subj=(en?'Brief Atelier 8 — ':'Brief Atelier 8 — ')+(V[0]||'')+(V[2]?' ('+V[2].replace(/^https?:\/\//,'').replace(/\/$/,'')+')':'');
-    location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));
-    showStep(3);});
+    var en=lang==='en', L=en?['Name','E-mail','Phone','Website','Company and products','Format','By when','References']:['Nom','E-mail','Téléphone','Site','Société et produits','Format','Pour quand','Références'];
+    var V=[val('f-name'),val('f-mail'),val('f-tel'),val('f-site'),val('f-ctx'),val('f-fmt'),val('f-when'),val('f-refs')];
+    var subj='Brief Atelier 8 — '+(V[0]||'')+(V[3]?' ('+V[3].replace(/^https?:\/\//,'').replace(/\/$/,'')+')':'');
+    function mailto(){var lines=[en?'Hello Pascal,':'Bonjour Pascal,','',en?'Here is my brief:':'Voici mon brief :',''];V.forEach(function(v,k){if(v)lines.push(L[k]+' : '+v);});lines.push('',en?'Sent from atelier8.io':'Envoyé depuis atelier8.io');
+      location.href='mailto:pascal@atelier8.io?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(lines.join('\n'));}
+    function done(ok){sending=false;btn.disabled=false;btn.classList.remove('busy');d.getElementById('fDoneOk').hidden=!ok;d.getElementById('fDoneMail').hidden=ok;
+      var t=d.getElementById('fDoneT');t.innerHTML=ok?'<span lang="fr"'+(en?' hidden':'')+'>Brief envoyé.</span><span lang="en"'+(en?'':' hidden')+'>Brief sent.</span>':'<span lang="fr"'+(en?' hidden':'')+'>Brief prêt.</span><span lang="en"'+(en?'':' hidden')+'>Brief ready.</span>';
+      showStep(3);if(!ok)mailto();if(window.a8track)a8track('generate_lead',{method:ok?'brief_form':'brief_mailto',form_format:(d.getElementById('f-fmt')||{}).value||'nsp'});}
+    var hon=d.getElementById('f-hon'); if(hon&&hon.value){showStep(3);return;}
+    var btn=d.getElementById('fSend'); sending=true; btn.disabled=true; btn.classList.add('busy');
+    var data={}; data['_subject']=subj; data['_template']='table'; data['_captcha']='false'; data['_replyto']=V[1];
+    L.forEach(function(k,i){data[k]=V[i]||'—';}); data[en?'Language':'Langue']=en?'English':'Français'; data['Page']=location.href;
+    if(!window.fetch){done(false);return;}
+    var ctl=window.AbortController?new AbortController():null, to=setTimeout(function(){if(ctl)ctl.abort();},15000);
+    fetch('https://formsubmit.co/ajax/pascal@atelier8.io',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl?ctl.signal:undefined})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return r.ok&&(j.success===true||j.success==='true');});})
+      .catch(function(){return false;})
+      .then(function(ok){clearTimeout(to);done(ok);});
+  });
   showStep(0);
   /* ---------- consentement et mesure d'audience : Google Analytics ne se charge qu'après « Accepter » ---------- */
   (function(){
