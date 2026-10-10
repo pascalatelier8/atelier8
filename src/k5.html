@@ -6,6 +6,9 @@
   var d=document, root=d.documentElement, body=d.body;
   var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+  /* ruban 3D (216 calques canvas en matrix3d) réservé aux moteurs Blink : Safari et Firefox saccadent ou cassent l’empilement 3D */
+  var rich3d=/Chrome\/|Chromium\//.test(navigator.userAgent)&&!/Firefox\/|FxiOS|CriOS|EdgiOS/.test(navigator.userAgent);
+  if(!rich3d)d.documentElement.classList.add('lite3d');
   function compact(){return matchMedia('(max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px)').matches;}
   /* rotation d'écran : si la mise en page change (tablette, téléphone en paysage), on recharge proprement */
   (function(){var c0=compact(),t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){if(compact()!==c0)location.reload();},350);});})();
@@ -241,7 +244,7 @@
   var wallVids=Array.prototype.slice.call(d.querySelectorAll('#voir video'));
   wallVids.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.parentNode.classList.add('playing');});});
   /* grille à plat (mobile, tablette, écrans tactiles) : seules les vidéos vraiment à l'écran jouent, 3 au plus sur tactile, 6 sinon */
-  var flatWall=!hasGsap||reduced||compact()||!fine, bigWall=!flatWall, cardIO=null, playQ=[], MAXP=fine?6:3;
+  var flatWall=!hasGsap||reduced||compact()||!fine||!rich3d, bigWall=!flatWall, cardIO=null, playQ=[], MAXP=fine?6:3;
   function flatPlay(){
     if(cardIO||!('IntersectionObserver' in window))return;
     cardIO=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target.querySelector('video');if(!v)return;
@@ -295,7 +298,7 @@
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
     /* tactile, petits écrans : grille directe. Desktop : ruban circulaire, qui se pose en grande grille (3 colonnes) qu'on continue de faire défiler */
-    if(!hasGsap||reduced||compact()||!fine){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
+    if(!hasGsap||reduced||compact()||!fine||!rich3d){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');if(!compact()&&fine)voir.classList.add('flatd');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
     voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon','big'); bigWall=true; flatWall=false; sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),

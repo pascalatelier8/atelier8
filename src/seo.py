@@ -225,6 +225,8 @@ def graph(lang, v, F, Q):
             page['mainEntity'] = {'@type': 'ItemList', 'numberOfItems': len(items), 'itemListElement': items}
         elif items:
             G.append(items[0]['item'])
+    if v == 'accueil':
+        G.append(dtf_video(lang))
     return {'@context': 'https://schema.org', '@graph': G}
 
 
@@ -300,6 +302,16 @@ def sitemap(F):
             x.append(f'<loc>{url(lang, v)}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{pr[v]}</priority>')
             for hl, L in (('fr', 'fr'), ('en', 'en'), ('x-default', 'fr')):
                 x.append(f'<xhtml:link rel="alternate" hreflang="{hl}" href="{url(L, v)}"/>')
+            if v == 'accueil':
+                dv = dtf_video(lang)
+                x.append('<video:video>'
+                         f'<video:thumbnail_loc>{dv["thumbnailUrl"]}</video:thumbnail_loc>'
+                         f'<video:title>{H.escape(dv["name"])}</video:title>'
+                         f'<video:description>{H.escape(dv["description"])}</video:description>'
+                         f'<video:content_loc>{dv["contentUrl"]}</video:content_loc>'
+                         '<video:duration>61</video:duration>'
+                         f'<video:publication_date>{DTF_DATE}</video:publication_date>'
+                         '<video:family_friendly>yes</video:family_friendly></video:video>')
             if v == 'films':
                 for f in F:
                     src = f['src_en'] if (lang == 'en' and f['src_en']) else f['src']

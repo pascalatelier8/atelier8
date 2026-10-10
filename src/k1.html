@@ -1153,5 +1153,9 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
   .body,.sr-sub,.clead,.fintro,.mf-side p{font-size:16px}
   .info dd,.finc li,.fuse2 li,.frow2 li,.fcols2 a,.fcols2 span:not(.mk){font-size:15px}
 }
+
+/* Safari / Firefox : le grain en overlay force un recomposite plein écran à chaque image vidéo */
+.lite3d .grain{mix-blend-mode:normal;opacity:.028}
+.lite3d .hero-video{filter:none}
 </style>
 <script>document.documentElement.classList.add("js")</script>
