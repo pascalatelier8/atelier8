@@ -379,10 +379,10 @@ PRIVACY = """<!doctype html>
 <link rel="canonical" href="https://atelier8.io/confidentialite/"><meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png">
 <style>
-:root{color-scheme:dark}body{margin:0;background:#090908;color:#EFEDE6;font:16px/1.65 'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+@font-face{font-family:'Jost';font-weight:300;font-display:swap;src:url(/media/fonts/jost-300.woff2) format('woff2')}@font-face{font-family:'Jost';font-weight:400;font-display:swap;src:url(/media/fonts/jost-400.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-weight:400;font-display:swap;src:url(/media/fonts/jbmono-400.woff2) format('woff2')}:root{color-scheme:dark}body{margin:0;background:#090908;color:#EFEDE6;font:17px/1.65 'Jost','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
 main{max-width:720px;margin:0 auto;padding:56px 20px 96px}a{color:#C99B45}h1{font-weight:300;font-size:clamp(34px,7vw,56px);letter-spacing:.02em;line-height:1.05;margin:28px 0 8px;text-transform:uppercase}
-h2{font-weight:400;font-size:19px;margin:40px 0 8px;color:#F4E1A6}p,li{color:rgba(239,237,230,.78)}small{color:rgba(239,237,230,.45);font-family:ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;font-size:11px}
-.top{display:flex;justify-content:space-between;align-items:center}.top a{text-decoration:none;letter-spacing:.3em;font-size:13px;color:#EFEDE6}hr{border:0;border-top:1px solid rgba(232,214,178,.13);margin:56px 0 24px}
+h2{font-weight:400;font-size:19px;margin:40px 0 8px;color:#F4E1A6}p,li{color:rgba(239,237,230,.78)}small{color:rgba(239,237,230,.6);font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;font-size:11px}
+.top{display:flex;justify-content:space-between;align-items:center}.top a{text-decoration:none;letter-spacing:.2em;font-size:12px;font-family:'JetBrains Mono',ui-monospace,monospace;color:#EFEDE6}hr{border:0;border-top:1px solid rgba(232,214,178,.13);margin:56px 0 24px}
 </style></head><body><main>
 <div class="top"><a href="/">← ATELIER 8</a><a href="#en">EN</a></div>
 <h1>Confidentialité</h1><small>Mise à jour : 8 octobre 2026</small>
@@ -410,8 +410,8 @@ NOTFOUND = """<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page introuvable · Atelier 8</title><meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#090908;color:#EFEDE6;font:16px/1.6 'Helvetica Neue',Arial,sans-serif;text-align:center}
-h1{font-weight:300;font-size:clamp(40px,9vw,96px);margin:0;letter-spacing:.02em}p{color:rgba(239,237,230,.6)}a{color:#C99B45;text-decoration:none;letter-spacing:.2em;text-transform:uppercase;font-size:13px}</style></head>
+<style>@font-face{font-family:'Jost';font-weight:300;font-display:swap;src:url(/media/fonts/jost-300.woff2) format('woff2')}@font-face{font-family:'Jost';font-weight:400;font-display:swap;src:url(/media/fonts/jost-400.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-weight:400;font-display:swap;src:url(/media/fonts/jbmono-400.woff2) format('woff2')}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#090908;color:#EFEDE6;font:17px/1.6 'Jost','Helvetica Neue',Arial,sans-serif;text-align:center}
+h1{font-weight:300;font-size:clamp(40px,9vw,96px);margin:0;letter-spacing:.02em}p{color:rgba(239,237,230,.6)}a{color:#C99B45;text-decoration:none;letter-spacing:.16em;text-transform:uppercase;font-size:12px;font-family:'JetBrains Mono',ui-monospace,monospace}</style></head>
 <body><div><h1>八</h1><p>Cette page n’existe pas. This page does not exist.</p><p><a href="/">Atelier 8 →</a> &nbsp; <a href="/films/">Films</a> &nbsp; <a href="/formats/">Formats</a> &nbsp; <a href="/brief/">Brief</a></p></div></body></html>
 """
 
