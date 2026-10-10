@@ -129,7 +129,7 @@
   d.querySelectorAll('a[data-play]').forEach(function(a){a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();e.stopPropagation();openLb(a.dataset.play,a.dataset.title,'demo');});});
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
-  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();if(srSync)srSync();}
+  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
   /* ---------- le film de l’atelier : Deux traits ---------- */
   var dtfSync=null;
   (function(){
@@ -544,36 +544,7 @@
     measureSp(); beats(0); b1.classList.add('on'); setTimeout(function(){b1.dataset.t='1';beats(sp);},1600);
     if(reduced){b1.classList.add('it-on');}
   })();
-/* ---------- hero : showreel 15 s (VF / VO selon la langue) ---------- */
-  var srSync=null;
-  (function(){
-    var s=d.getElementById('sr'); if(!s)return;
-    var v=d.getElementById('srV'), fr=d.getElementById('srFrame'), hd=d.getElementById('srHead'), ft=d.getElementById('srFoot'), snd=d.getElementById('srSnd'), play=d.getElementById('srPlay'), prog=d.getElementById('srProg');
-    var srL=null, mobV=matchMedia('(max-width:900px)').matches;
-    function srSrc(l){l=(l==='en')?'en':'fr';if(l===srL)return;srL=l;var t=v.currentTime||0,was=!v.paused||!v.src;v.poster=v.dataset['poster'+(l==='en'?'En':'Fr')];v.src=mobV?v.dataset[l+'M']:v.dataset[l];v.load();v.addEventListener('loadedmetadata',function f(){v.removeEventListener('loadedmetadata',f);if(t)try{v.currentTime=t;}catch(_){}if(was&&!reduced)pl();});}
-    srSync=function(){srSrc(lang);};
-    (function tick(){var du=v.duration||15;prog.style.setProperty('--p',((v.currentTime||0)/du).toFixed(4));requestAnimationFrame(tick);})();
-    var pl=function(){var q=v.play();if(q&&q.catch)q.catch(function(){});};
-    srSrc(lang);
-    if(reduced){v.removeAttribute('autoplay');v.pause();}
-    function setSound(on){v.muted=!on;snd.setAttribute('aria-pressed',String(on));s.classList.toggle('sound',on);if(on){v.volume=.9;pl();}if(window.a8track)a8track('hero_sound',{on:on});}
-    snd.addEventListener('click',function(){setSound(v.muted);});
-    play.addEventListener('click',function(e){e.stopPropagation();v.currentTime=0;setSound(true);});
-    if('IntersectionObserver' in window)new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduced)pl();}else v.pause();});},{threshold:.05}).observe(s);
-    d.addEventListener('visibilitychange',function(){if(d.hidden)v.pause();else if(!reduced)pl();});
-    var big=matchMedia('(min-width:901px)').matches&&!matchMedia('(orientation:portrait) and (max-width:1180px)').matches;
-    if(hasGsap&&!reduced&&big){
-      var sc=function(){var r=fr.getBoundingClientRect();return Math.max(innerWidth/r.width,innerHeight/r.height)*1.002;};
-      var dy=function(){var r=fr.getBoundingClientRect();return innerHeight/2-(r.top+r.height/2);};
-      var tl=gsap.timeline({scrollTrigger:{trigger:s,start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}});
-      tl.to(hd,{opacity:0,y:-30,ease:'none',duration:.35},0)
-        .to(ft,{opacity:0,y:20,ease:'none',duration:.35},0)
-        .to(play,{autoAlpha:0,ease:'none',duration:.2},0)
-        .fromTo(fr,{scale:1,y:0,borderRadius:'14px'},{scale:sc,y:dy,borderRadius:'0px',ease:'power1.inOut',duration:.75},0)
-        .to({},{duration:.25});
-    }
-  })();
-    var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
+var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
   // signature du pied : le 八 se trace en or, puis se pose en encre claire
   (function(){var w=d.querySelector('.wordmark2'), tt=d.getElementById('toTop'); if(tt)tt.addEventListener('click',function(){scrollTo(0);});
     if(w&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){w.classList.toggle('in',e.isIntersecting);});},{threshold:.4}).observe(w);}else if(w)w.classList.add('in');})();

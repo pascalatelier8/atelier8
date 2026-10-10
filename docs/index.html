@@ -31,6 +31,9 @@
 <meta name="theme-color" content="#090908">
 <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png">
 <link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
+<link rel="preload" as="fetch" href="/media/hero-lo-v2.mp4" crossorigin media="(orientation: landscape), (min-width: 1181px)">
+<link rel="preload" as="fetch" href="/media/hero-lo-t-v2.mp4" crossorigin media="(orientation: portrait) and (min-width: 600px) and (max-width: 1180px)">
+<link rel="preload" as="fetch" href="/media/hero-lo-m-v2.mp4" crossorigin media="(orientation: portrait) and (max-width: 599px)">
 <link rel="preload" as="font" type="font/woff2" href="/media/fonts/jost-300.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/media/fonts/jost-400.woff2" crossorigin>
 <script defer src="/libs/gsap.min.js"></script>
@@ -1073,52 +1076,6 @@ body.in-hero .cursor{opacity:0!important}
 #fSend.busy{pointer-events:none;opacity:.7}
 #fSend.busy::after{content:"";display:inline-block;width:10px;height:10px;margin-left:10px;border-radius:50%;border:1.5px solid currentColor;border-right-color:transparent;animation:fSpin .8s linear infinite;vertical-align:-1px}
 @keyframes fSpin{to{transform:rotate(360deg)}}
-/* ===== hero : showreel 15 s ===== */
-.sr{height:210vh;position:relative;padding-inline:0;background:var(--noir)}
-.sr-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:calc(var(--nav,72px) + clamp(14px,3vh,34px)) var(--gutter) clamp(16px,3vh,30px);background:radial-gradient(70% 60% at 50% 55%,rgba(201,155,69,.10),rgba(201,155,69,0) 70%),var(--noir)}
-.sr-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(20px,4vw,72px);align-items:end;padding-bottom:clamp(14px,2.6vh,28px);position:relative;z-index:2}
-.sr-hl{display:grid;gap:12px}
-.sr-l{color:var(--fg-3)}
-.sr-h{margin:0;font-weight:300;font-size:clamp(30px,min(4.2vw,6.6vh),80px);line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
-.sr-h em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.015em;font-size:.84em;line-height:1.08;background:linear-gradient(100deg,#F4E1A6,#C99B45 45%,#F4E1A6 70%,#B8862F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.sr-hr{display:grid;gap:16px;justify-items:start;padding-bottom:.3em}
-.sr-sub{margin:0;color:var(--fg-2);font-size:clamp(14px,1.05vw,16px);line-height:1.6;max-width:30em}
-.sr-hl,.sr-hr{opacity:0;transform:translateY(18px);transition:opacity 1.1s var(--ease),transform 1.3s var(--ease)}
-.loaded .sr-hl{opacity:1;transform:none;transition-delay:.15s}.loaded .sr-hr{opacity:1;transform:none;transition-delay:.4s}
-.sr-stage{position:relative;display:grid;place-items:center;min-height:0;z-index:1}
-.sr-frame{position:relative;height:100%;max-height:100%;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#050505;box-shadow:0 60px 120px -50px rgba(0,0,0,.9),0 0 0 1px rgba(201,155,69,.22);transform-origin:50% 50%;will-change:transform}
-.sr-stage{opacity:0;transform:scale(.96);transition:opacity 1.2s var(--ease) .5s,transform 1.4s var(--ease) .5s}
-.loaded .sr-stage{opacity:1;transform:none}
-.sr-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.sr-play{position:absolute;right:clamp(14px,2.2%,30px);bottom:calc(clamp(14px,2.2%,30px) + 4%);width:clamp(52px,4.6vw,72px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;z-index:2;cursor:pointer;transition:opacity .5s var(--ease)}
-.sr-play .disc{position:relative;width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#F4E1A6,#C99B45 55%,#7C5B22);box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .6s var(--ease)}
-.sr-play .disc::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(233,207,139,.55);animation:srPulse 2.4s var(--ease) infinite}
-@keyframes srPulse{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.35);opacity:0}}
-.sr-play svg{width:34%;fill:#121210;margin-left:8%}
-.sr-play:hover .disc{transform:scale(1.08)}
-.sr.sound .sr-play{pointer-events:none}.sr.sound .sr-play .disc{opacity:0;transform:scale(.7)}
-.sr-play .disc{transition:transform .6s var(--ease),opacity .5s var(--ease)}
-.sr-foot{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,2vw,28px);padding-top:clamp(12px,2.2vh,22px);font-family:var(--mono);font-size:var(--fs-mini);letter-spacing:.16em;text-transform:uppercase;color:rgba(243,241,234,.7);position:relative;z-index:2}
-.sr-k{display:flex;align-items:center;gap:10px;white-space:nowrap}.sr-k b{width:6px;height:6px;border-radius:50%;background:#C99B45;box-shadow:0 0 12px rgba(201,155,69,.9)}
-.sr-tl{position:relative;height:1px;background:rgba(243,241,234,.18)}
-.sr-tl i{position:absolute;left:0;top:-.5px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,#F4E1A6,#C99B45)}
-@media (max-width:900px),(orientation:portrait) and (max-width:1180px){
-  .sr{height:auto}
-  .sr-pin{position:relative;height:auto;min-height:0;grid-template-rows:auto auto auto;padding-bottom:40px}
-  .sr-head{grid-template-columns:1fr;gap:18px}
-  .sr-frame{height:auto;width:100%;border-radius:10px}
-  .sr-h{font-size:clamp(32px,9vw,60px)}
-}
-@media (max-width:520px){.sr-foot{grid-template-columns:1fr auto;font-size:var(--fs-mini);letter-spacing:.16em}.sr-tl{display:none}.sr-play{width:46px}}
-@media (prefers-reduced-motion:reduce){.sr-play .disc::after,.hp-snd .eq i{animation:none!important}}
-.hp-snd{display:inline-flex;align-items:center;gap:12px;padding:10px 16px 10px 14px;border:1px solid rgba(243,241,234,.28);border-radius:999px;color:var(--cream);font:inherit;letter-spacing:inherit;text-transform:inherit;background:rgba(10,9,8,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .4s var(--ease),background .4s var(--ease)}
-.hp-snd:hover{border-color:#C99B45}
-.hp-snd .on{display:none}.hp-snd[aria-pressed="true"] .on{display:inline}.hp-snd[aria-pressed="true"] .off{display:none}
-.hp-snd .eq{display:inline-flex;align-items:flex-end;gap:2px;height:11px}
-.hp-snd .eq i{width:2px;height:3px;background:#C99B45;border-radius:1px;transition:height .3s}
-.hp-snd[aria-pressed="true"] .eq i{animation:hpEq .9s ease-in-out infinite}
-.hp-snd[aria-pressed="true"] .eq i:nth-child(2){animation-delay:-.3s}.hp-snd[aria-pressed="true"] .eq i:nth-child(3){animation-delay:-.6s}.hp-snd[aria-pressed="true"] .eq i:nth-child(4){animation-delay:-.15s}
-@keyframes hpEq{0%,100%{height:3px}50%{height:11px}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .dtf-seal{position:absolute;right:clamp(24px,6%,96px);bottom:0;z-index:4;width:clamp(112px,9.5vw,150px);aspect-ratio:1;transform:translateY(50%);display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(10,9,8,.92),rgba(10,9,8,.86) 70%,rgba(10,9,8,.0) 100%);cursor:pointer}
 .dtf-seal .txt{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:dtfSpin 22s linear infinite}
@@ -1210,7 +1167,7 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
   .info dd,.finc li,.fuse2 li,.frow2 li,.fcols2 a,.fcols2 span:not(.mk){font-size:15px}
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","ProfessionalService"],"@id":"https://atelier8.io/#org","name":"Atelier 8","url":"https://atelier8.io/","logo":{"@type":"ImageObject","url":"https://atelier8.io/media/apple-touch-icon.png","width":180,"height":180},"image":"https://atelier8.io/media/og-atelier8.jpg","email":"pascal@atelier8.io","description":"Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.","slogan":"Un film qui marque.","founder":{"@id":"https://atelier8.io/#pascal"},"foundingDate":"2026","sameAs":["https://www.instagram.com/atelier8.io/","https://www.linkedin.com/company/atelier8-io/"],"address":[{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},{"@type":"PostalAddress","addressLocality":"Hong Kong","addressCountry":"HK"}],"areaServed":[{"@type":"Country","name":"France"},{"@type":"Place","name":"Hong Kong"},{"@type":"Place","name":"Europe"},{"@type":"Place","name":"Asia"}],"knowsLanguage":["fr","en"],"priceRange":"2 500 € – 7 500 € HT","knowsAbout":["Motion design","Brand film","Explainer video","Product video","SaaS video","Animation","Sound design","Storyboard","Video scriptwriting","AI-assisted video production"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"pascal@atelier8.io","availableLanguage":["French","English"],"areaServed":["FR","HK","EU"]},"hasOfferCatalog":{"@id":"https://atelier8.io/#catalogue"}},{"@type":"Person","@id":"https://atelier8.io/#pascal","name":"Pascal EK Loui","url":"https://atelier8.io/atelier/","jobTitle":"Fondateur et directeur de création, Atelier 8","worksFor":{"@id":"https://atelier8.io/#org"},"knowsLanguage":["fr","en"],"description":"Designer produit depuis quinze ans pour de grandes marques et des start-ups, entre Paris et Hong Kong. Fondateur d’Atelier 8, il écrit, dirige et valide chaque film en motion design.","knowsAbout":["Motion design","Product design","UX design","Art direction"],"homeLocation":[{"@type":"Place","name":"Paris"},{"@type":"Place","name":"Hong Kong"}]},{"@type":"WebSite","@id":"https://atelier8.io/#website","url":"https://atelier8.io/","name":"Atelier 8","inLanguage":["fr","en"],"publisher":{"@id":"https://atelier8.io/#org"}},{"@type":"OfferCatalog","@id":"https://atelier8.io/#catalogue","name":"Formats de films en motion design","itemListElement":[{"@type":"Offer","name":"Signal","url":"https://atelier8.io/formats/","description":"Film court de 15 à 30 secondes : une seule idée, écrite et storyboardée pour votre marque, musique et sous-titres intégrés, livré en 16:9, 9:16, 1:1 et 4:5.","price":2500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":2500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":10,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Signal","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Portrait","url":"https://atelier8.io/formats/","description":"Film de marque de 45 à 90 secondes qui explique votre société : voix off en français ou en anglais, musique, sound design, sous-titres, tous les formats réseaux.","price":4500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":4500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":10,"maxValue":20,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Portrait","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Campagne","url":"https://atelier8.io/formats/","description":"Cinq films : un Portrait, un Signal et trois déclinaisons courtes pour les réseaux, en français et en anglais.","price":7500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":7500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":25,"maxValue":30,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Campagne","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}}]},{"@type":"WebPage","@id":"https://atelier8.io/#page","url":"https://atelier8.io/","name":"Atelier 8 · Studio de motion design à Paris et Hong Kong","description":"Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.","inLanguage":"fr","isPartOf":{"@id":"https://atelier8.io/#website"},"about":{"@id":"https://atelier8.io/#org"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://atelier8.io/media/og-atelier8.jpg"},"dateModified":"2026-10-08"},{"@type":"VideoObject","@id":"https://atelier8.io/films/#uxdp-showreel-fr","name":"UX Design Paris — Showreel 2026","description":"Showreel 2026 d’Atelier 8 pour UX Design Paris, en français et en anglais. Secteur : Formation & conseil IA. Film en motion design de 67 secondes, script, image et son par Atelier 8.","thumbnailUrl":"https://atelier8.io/media/films/uxdp-showreel-fr.jpg","contentUrl":"https://atelier8.io/media/films/uxdp-showreel-fr.mp4","uploadDate":"2026-10-08T10:48:51+00:00","duration":"PT67S","width":1280,"height":720,"inLanguage":["fr","en"],"creator":{"@id":"https://atelier8.io/#org"},"publisher":{"@id":"https://atelier8.io/#org"},"isFamilyFriendly":true},{"@type":"VideoObject","@id":"https://atelier8.io/#deux-traits-fr","name":"Atelier 8 — Deux traits","description":"Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : l’impact, la méthode en quatre étapes, les cinq agents IA et les films, en 61 secondes.","thumbnailUrl":"https://atelier8.io/media/films/atelier8-deux-traits-fr.jpg","contentUrl":"https://atelier8.io/media/films/atelier8-deux-traits-fr.mp4","uploadDate":"2026-10-09T15:00:00+00:00","duration":"PT61S","width":1600,"height":900,"inLanguage":"fr","creator":{"@id":"https://atelier8.io/#org"},"publisher":{"@id":"https://atelier8.io/#org"},"isFamilyFriendly":true,"hasPart":[{"@type":"Clip","name":"L’impact","startOffset":0,"endOffset":9,"url":"https://atelier8.io/#dtf"},{"@type":"Clip","name":"Deux traits","startOffset":9,"endOffset":13,"url":"https://atelier8.io/#dtf"},{"@type":"Clip","name":"La méthode","startOffset":13,"endOffset":29,"url":"https://atelier8.io/#dtf"},{"@type":"Clip","name":"Les agents","startOffset":29,"endOffset":35,"url":"https://atelier8.io/#dtf"},{"@type":"Clip","name":"Les films","startOffset":35,"endOffset":55,"url":"https://atelier8.io/#dtf"},{"@type":"Clip","name":"La signature","startOffset":55,"endOffset":61,"url":"https://atelier8.io/#dtf"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Organization","ProfessionalService"],"@id":"https://atelier8.io/#org","name":"Atelier 8","url":"https://atelier8.io/","logo":{"@type":"ImageObject","url":"https://atelier8.io/media/apple-touch-icon.png","width":180,"height":180},"image":"https://atelier8.io/media/og-atelier8.jpg","email":"pascal@atelier8.io","description":"Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.","slogan":"Un film qui marque.","founder":{"@id":"https://atelier8.io/#pascal"},"foundingDate":"2026","sameAs":["https://www.instagram.com/atelier8.io/","https://www.linkedin.com/company/atelier8-io/"],"address":[{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},{"@type":"PostalAddress","addressLocality":"Hong Kong","addressCountry":"HK"}],"areaServed":[{"@type":"Country","name":"France"},{"@type":"Place","name":"Hong Kong"},{"@type":"Place","name":"Europe"},{"@type":"Place","name":"Asia"}],"knowsLanguage":["fr","en"],"priceRange":"2 500 € – 7 500 € HT","knowsAbout":["Motion design","Brand film","Explainer video","Product video","SaaS video","Animation","Sound design","Storyboard","Video scriptwriting","AI-assisted video production"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"pascal@atelier8.io","availableLanguage":["French","English"],"areaServed":["FR","HK","EU"]},"hasOfferCatalog":{"@id":"https://atelier8.io/#catalogue"}},{"@type":"Person","@id":"https://atelier8.io/#pascal","name":"Pascal EK Loui","url":"https://atelier8.io/atelier/","jobTitle":"Fondateur et directeur de création, Atelier 8","worksFor":{"@id":"https://atelier8.io/#org"},"knowsLanguage":["fr","en"],"description":"Designer produit depuis quinze ans pour de grandes marques et des start-ups, entre Paris et Hong Kong. Fondateur d’Atelier 8, il écrit, dirige et valide chaque film en motion design.","knowsAbout":["Motion design","Product design","UX design","Art direction"],"homeLocation":[{"@type":"Place","name":"Paris"},{"@type":"Place","name":"Hong Kong"}]},{"@type":"WebSite","@id":"https://atelier8.io/#website","url":"https://atelier8.io/","name":"Atelier 8","inLanguage":["fr","en"],"publisher":{"@id":"https://atelier8.io/#org"}},{"@type":"OfferCatalog","@id":"https://atelier8.io/#catalogue","name":"Formats de films en motion design","itemListElement":[{"@type":"Offer","name":"Signal","url":"https://atelier8.io/formats/","description":"Film court de 15 à 30 secondes : une seule idée, écrite et storyboardée pour votre marque, musique et sous-titres intégrés, livré en 16:9, 9:16, 1:1 et 4:5.","price":2500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":2500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":5,"maxValue":10,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Signal","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Portrait","url":"https://atelier8.io/formats/","description":"Film de marque de 45 à 90 secondes qui explique votre société : voix off en français ou en anglais, musique, sound design, sous-titres, tous les formats réseaux.","price":4500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":4500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":10,"maxValue":20,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Portrait","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}},{"@type":"Offer","name":"Campagne","url":"https://atelier8.io/formats/","description":"Cinq films : un Portrait, un Signal et trois déclinaisons courtes pour les réseaux, en français et en anglais.","price":7500,"priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":7500,"priceCurrency":"EUR","valueAddedTaxIncluded":false,"description":"À partir de, hors taxes"},"deliveryLeadTime":{"@type":"QuantitativeValue","minValue":25,"maxValue":30,"unitCode":"DAY","description":"jours ouvrés"},"itemOffered":{"@type":"Service","name":"Film motion design Campagne","serviceType":"Motion design","provider":{"@id":"https://atelier8.io/#org"},"areaServed":["FR","HK","EU"]},"seller":{"@id":"https://atelier8.io/#org"}}]},{"@type":"WebPage","@id":"https://atelier8.io/#page","url":"https://atelier8.io/","name":"Atelier 8 · Studio de motion design à Paris et Hong Kong","description":"Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.","inLanguage":"fr","isPartOf":{"@id":"https://atelier8.io/#website"},"about":{"@id":"https://atelier8.io/#org"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://atelier8.io/media/og-atelier8.jpg"},"dateModified":"2026-10-08"},{"@type":"VideoObject","@id":"https://atelier8.io/films/#uxdp-showreel-fr","name":"UX Design Paris — Showreel 2026","description":"Showreel 2026 d’Atelier 8 pour UX Design Paris, en français et en anglais. Secteur : Formation & conseil IA. Film en motion design de 67 secondes, script, image et son par Atelier 8.","thumbnailUrl":"https://atelier8.io/media/films/uxdp-showreel-fr.jpg","contentUrl":"https://atelier8.io/media/films/uxdp-showreel-fr.mp4","uploadDate":"2026-10-08T10:48:51+00:00","duration":"PT67S","width":1280,"height":720,"inLanguage":["fr","en"],"creator":{"@id":"https://atelier8.io/#org"},"publisher":{"@id":"https://atelier8.io/#org"},"isFamilyFriendly":true}]}</script>
 </head>
 <body>
 
@@ -1263,29 +1220,46 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 
 <!-- ACCUEIL -->
 <div class="view on" data-view="accueil" data-fr="Accueil" data-en="Home">
-  <section class="sr dark" id="sr" aria-label="Atelier 8 — Showreel 2026">
-    <div class="sr-pin">
-      <div class="sr-head" id="srHead">
-        <div class="sr-hl">
-          <span class="label sr-l"><span lang="fr">Atelier 8 · Studio de motion design · Paris — Hong Kong</span><span lang="en" hidden>Atelier 8 · Motion design studio · Paris — Hong Kong</span></span>
-          <h1 class="sr-h"><span lang="fr">Films de marque, <em>de 15 à 90 secondes.</em></span><span lang="en" hidden>Brand films, <em>15 to 90 seconds.</em></span></h1>
-        </div>
-        <div class="sr-hr">
-          <p class="sr-sub"><span lang="fr">Script, image, voix, musique et montage, sous une seule direction. Pour chaque écran, chaque format.</span><span lang="en" hidden>Script, picture, voice, music and edit, under one direction. For every screen, every format.</span></p>
-          <div class="cta-row"><a class="pill solid" href="/brief/" data-go="brief"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></a><a class="ulink" href="/films/" data-go="films"><span lang="fr">Voir les films</span><span lang="en" hidden>Watch the films</span> <small>(27)</small></a></div>
-        </div>
+  <section class="hero dark" id="hero">
+    <div class="hero-sticky">
+      <picture><source media="(orientation: portrait) and (max-width: 599px)" srcset="/media/hero-poster-m.webp"><source media="(orientation: portrait) and (max-width: 1180px)" srcset="/media/hero-poster-t.webp"><img class="hero-video" id="heroPoster" src="/media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
+      <video class="hero-video hv" id="heroVideo" muted playsinline preload="none" aria-hidden="true"></video>
+      <video class="hero-video hv" id="heroVideoHd" muted playsinline preload="none" aria-hidden="true"></video>
+      <script>/* hero : version légère d'abord, HD ensuite, chargées en mémoire pour un scrub sans attente réseau */
+      (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
+        if(mq('(prefers-reduced-motion: reduce)'))return;
+        var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
+        var F={'':['/media/hero-lo-v2.mp4','/media/hero-hd-v2.mp4'],'-t':['/media/hero-lo-t-v2.mp4','/media/hero-hd-t-v2.mp4'],'-m':['/media/hero-lo-m-v2.mp4','/media/hero-hd-m-v2.mp4']}, lo=F[v][0], hd=F[v][1];
+        function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
+          return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
+        var H=window.__hero={};
+        H.lo=get(lo,'high');
+        if(!slow)H.hd=H.lo.then(function(){return get(hd,'auto');});
+      })();</script>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="vf" aria-hidden="true">
+        <i class="vc tl"></i><i class="vc tr"></i><i class="vc bl"></i><i class="vc br"></i>
+        <div class="vsafe"></div>
+        <div class="vtop"><span class="rec"><b></b>REC</span><span class="tc" id="heroTc">00:00:00</span><span class="vsep">A001_C008</span></div>
+        <div class="vtopr"><span>4K · 24p</span><span>2.39:1</span><span class="bat"><i></i></span></div>
+        <div class="vcross"></div>
+        <div class="vfocus" id="vFocus"><i></i><i></i><i></i><i></i><span id="vAf">AF</span></div>
+        <div class="vbot"><span>35 mm</span><span>f/2.8</span><span>ISO 800</span><span>180°</span><span>5600 K</span></div>
+        <div class="vaud"><span>CH1</span><div class="m"><i style="--d:.0s"></i></div><span>CH2</span><div class="m"><i style="--d:-.37s"></i></div></div>
       </div>
-      <div class="sr-stage">
-        <div class="sr-frame" id="srFrame">
-          <video class="sr-v" id="srV" muted loop playsinline autoplay preload="auto" poster="/media/showreel-15.jpg" aria-label="Showreel Atelier 8, 15 s" data-fr="/media/showreel-15.mp4" data-fr-m="/media/showreel-15-m.mp4" data-en="/media/showreel-15-en.mp4" data-en-m="/media/showreel-15-en-m.mp4" data-poster-fr="/media/showreel-15.jpg" data-poster-en="/media/showreel-15-en.jpg"></video>
-          <button class="sr-play" id="srPlay" type="button" aria-label="Lire avec le son"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
-        </div>
+      <div class="beat b1" id="beat1">
+        <span class="label"><span lang="fr">Atelier 8 · Motion design · Paris — Hong Kong</span><span lang="en" hidden>Atelier 8 · Motion design · Paris — Hong Kong</span></span>
+        <div class="hero-title"><h1 class="giant"><span lang="fr">UN FILM QUI <span class="it">marque.</span></span><span lang="en" hidden>A FILM THAT <span class="it">leaves a mark.</span></span></h1></div>
       </div>
-      <div class="sr-foot" id="srFoot">
-        <span class="sr-k"><b></b><span lang="fr">Showreel 2026</span><span lang="en" hidden>Showreel 2026</span> · 15 s</span>
-        <div class="sr-tl" aria-hidden="true"><i id="srProg"></i></div>
-        <button class="hp-snd sr-snd" id="srSnd" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="off"><span lang="fr">Activer le son</span><span lang="en" hidden>Sound on</span></span><span class="on"><span lang="fr">Couper le son</span><span lang="en" hidden>Sound off</span></span></button>
+      <div class="beat bx b2" id="beat2"><p class="giant line"><span lang="fr"><span class="cap">D’ABORD L’IMPACT.</span> <span class="it">Ensuite, la marque.</span></span><span lang="en" hidden><span class="cap">IMPACT FIRST.</span> <span class="it">Then the brand.</span></span></p></div>
+      <div class="beat bx b3" id="beat3"><p class="giant line"><span lang="fr"><span class="cap">CE QUI TOMBE</span> <span class="it">finit par marquer.</span></span><span lang="en" hidden><span class="cap">WHAT FALLS</span> <span class="it">ends up leaving a mark.</span></span></p></div>
+      <div class="beat bx b4" id="beat4"><p class="giant line"><span lang="fr"><span class="cap">ON NE REFAIT PAS</span> <span class="it">une première impression.</span></span><span lang="en" hidden><span class="cap">YOU DON’T GET</span> <span class="it">a second first impression.</span></span></p></div>
+      <div class="beat bx b5" id="beat5">
+        <p class="giant line"><span lang="fr"><span class="cap">VOTRE MARQUE</span> <span class="it">mérite son film.</span></span><span lang="en" hidden><span class="cap">YOUR BRAND</span> <span class="it">deserves its film.</span></span></p>
+        <p class="sub"><span lang="fr">De 15 à 90 secondes, écrit, animé et mis en son pour elle seule.</span><span lang="en" hidden>15 to 90 seconds, written, animated and scored for it alone.</span></p>
+        <div class="cta-row"><a class="pill solid" href="/brief/" data-go="brief"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></a><a class="ulink" href="/films/" data-go="films"><span lang="fr">Voir les films</span><span lang="en" hidden>Watch the films</span> <small>(27)</small></a></div>
       </div>
+      <div class="hero-meta"><span class="label scrollhint"><span lang="fr">Défiler</span><span lang="en" hidden>Scroll</span> <i>↓</i></span></div>
     </div>
   </section>
 
@@ -1312,26 +1286,12 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
     <div class="hm-head"><span class="label"><span lang="fr">Le rôle humain</span><span lang="en" hidden>The human role</span></span><h2 class="big rv"><span lang="fr">Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en" hidden>The agents execute.<em>I frame, check and decide.</em></span></h2></div>
     <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr">Cadrer avant de produire</span><span lang="en" hidden>Frame before producing</span></h3><p><span lang="fr">Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en" hidden>A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr">Orchestrer, pas prompter</span><span lang="en" hidden>Orchestrate, not prompt</span></h3><p><span lang="fr">Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en" hidden>Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr">Vérifier, puis livrer</span><span lang="en" hidden>Check, then deliver</span></h3><p><span lang="fr">Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en" hidden>I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
     </div>
+    <div class="manif">
+      <p class="reveal"><span lang="fr">Une page explique. Un film fait voir.</span><span lang="en" hidden>A page explains. A film shows.</span></p>
+      <div class="mf-side rv"><p><span lang="fr">Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en" hidden>A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
+    </div>
   </section>
 
-  <section class="dtf dark" id="dtf" aria-labelledby="dtfT">
-    <div class="manif dtf-head">
-      <p class="reveal" id="dtfT"><span lang="fr">Une page explique. Un film fait voir.</span><span lang="en" hidden>A page explains. A film shows.</span></p>
-      <div class="mf-side rv">
-        <span class="label dtf-k"><span lang="fr">Le film de l’atelier</span><span lang="en" hidden>The studio’s own film</span> · 61 s</span>
-        <p><span lang="fr">Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez. Le voici appliqué à l’atelier : un script, un storyboard, cinq agents et un seul regard.</span><span lang="en" hidden>A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying. Here it is, applied to the studio: one script, one storyboard, five agents and a single eye.</span></p>
-        <div class="dtf-row"><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span><div class="ver dtf-ver" role="group" aria-label="Version"><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">VO EN</button></div></div>
-      </div>
-    </div>
-    <div class="dtf-stage">
-      <div class="vid dtf-vid" id="dtfVid" data-v="fr" data-src="/media/films/atelier8-deux-traits-fr.mp4" data-src-en="/media/films/atelier8-deux-traits-en.mp4" data-pv="/media/films/atelier8-deux-traits-fr-pv.mp4" data-pv-en="/media/films/atelier8-deux-traits-en-pv.mp4" data-poster="/media/films/atelier8-deux-traits-fr.jpg" data-poster-en="/media/films/atelier8-deux-traits-en.jpg" data-title="Atelier 8 — Deux traits · 61 s" tabindex="0" role="button" aria-label="Lire le film Atelier 8 — Deux traits, avec le son">
-        <img src="/media/films/atelier8-deux-traits-fr.jpg" alt="Atelier 8 — Deux traits · film de marque du studio, 61 secondes" width="1600" height="900" loading="lazy" decoding="async">
-        <video src="/media/films/atelier8-deux-traits-fr-pv.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
-        </div>
-      <button class="dtf-seal" type="button" aria-controls="lb"><span class="sr-only"><span lang="fr">Voir le film avec le son, 61 secondes</span><span lang="en" hidden>Watch the film with sound, 61 seconds</span></span><svg class="txt" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="dtfC" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text class="t-fr"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">VOIR LE FILM · AVEC LE SON · 61 S · </textPath></text><text class="t-en"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">WATCH THE FILM · WITH SOUND · 61 S · </textPath></text></svg><span class="disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
-    </div>
-    <ol class="dtf-ch" aria-label="Chapitres"><li style="--x:0.00%"><button type="button" data-t="0"><span class="ct">00:00</span><span class="cl"><span lang="fr">L’impact</span><span lang="en" hidden>Impact</span></span></button></li><li style="--x:14.75%"><button type="button" data-t="9"><span class="ct">00:09</span><span class="cl"><span lang="fr">Deux traits</span><span lang="en" hidden>Two strokes</span></span></button></li><li style="--x:21.31%"><button type="button" data-t="13"><span class="ct">00:13</span><span class="cl"><span lang="fr">La méthode</span><span lang="en" hidden>The method</span></span></button></li><li style="--x:47.54%"><button type="button" data-t="29"><span class="ct">00:29</span><span class="cl"><span lang="fr">Les agents</span><span lang="en" hidden>The agents</span></span></button></li><li style="--x:57.38%"><button type="button" data-t="35"><span class="ct">00:35</span><span class="cl"><span lang="fr">Les films</span><span lang="en" hidden>The films</span></span></button></li><li style="--x:90.16%"><button type="button" data-t="55"><span class="ct">00:55</span><span class="cl"><span lang="fr">La signature</span><span lang="en" hidden>The signature</span></span></button></li></ol>
-  </section>
 
   <section class="voir light" id="voir">
     <div class="voir-pin">
@@ -1868,7 +1828,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   d.querySelectorAll('a[data-play]').forEach(function(a){a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();e.stopPropagation();openLb(a.dataset.play,a.dataset.title,'demo');});});
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
-  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();if(srSync)srSync();}
+  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
   /* ---------- le film de l’atelier : Deux traits ---------- */
   var dtfSync=null;
   (function(){
@@ -2283,36 +2243,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     measureSp(); beats(0); b1.classList.add('on'); setTimeout(function(){b1.dataset.t='1';beats(sp);},1600);
     if(reduced){b1.classList.add('it-on');}
   })();
-/* ---------- hero : showreel 15 s (VF / VO selon la langue) ---------- */
-  var srSync=null;
-  (function(){
-    var s=d.getElementById('sr'); if(!s)return;
-    var v=d.getElementById('srV'), fr=d.getElementById('srFrame'), hd=d.getElementById('srHead'), ft=d.getElementById('srFoot'), snd=d.getElementById('srSnd'), play=d.getElementById('srPlay'), prog=d.getElementById('srProg');
-    var srL=null, mobV=matchMedia('(max-width:900px)').matches;
-    function srSrc(l){l=(l==='en')?'en':'fr';if(l===srL)return;srL=l;var t=v.currentTime||0,was=!v.paused||!v.src;v.poster=v.dataset['poster'+(l==='en'?'En':'Fr')];v.src=mobV?v.dataset[l+'M']:v.dataset[l];v.load();v.addEventListener('loadedmetadata',function f(){v.removeEventListener('loadedmetadata',f);if(t)try{v.currentTime=t;}catch(_){}if(was&&!reduced)pl();});}
-    srSync=function(){srSrc(lang);};
-    (function tick(){var du=v.duration||15;prog.style.setProperty('--p',((v.currentTime||0)/du).toFixed(4));requestAnimationFrame(tick);})();
-    var pl=function(){var q=v.play();if(q&&q.catch)q.catch(function(){});};
-    srSrc(lang);
-    if(reduced){v.removeAttribute('autoplay');v.pause();}
-    function setSound(on){v.muted=!on;snd.setAttribute('aria-pressed',String(on));s.classList.toggle('sound',on);if(on){v.volume=.9;pl();}if(window.a8track)a8track('hero_sound',{on:on});}
-    snd.addEventListener('click',function(){setSound(v.muted);});
-    play.addEventListener('click',function(e){e.stopPropagation();v.currentTime=0;setSound(true);});
-    if('IntersectionObserver' in window)new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduced)pl();}else v.pause();});},{threshold:.05}).observe(s);
-    d.addEventListener('visibilitychange',function(){if(d.hidden)v.pause();else if(!reduced)pl();});
-    var big=matchMedia('(min-width:901px)').matches&&!matchMedia('(orientation:portrait) and (max-width:1180px)').matches;
-    if(hasGsap&&!reduced&&big){
-      var sc=function(){var r=fr.getBoundingClientRect();return Math.max(innerWidth/r.width,innerHeight/r.height)*1.002;};
-      var dy=function(){var r=fr.getBoundingClientRect();return innerHeight/2-(r.top+r.height/2);};
-      var tl=gsap.timeline({scrollTrigger:{trigger:s,start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}});
-      tl.to(hd,{opacity:0,y:-30,ease:'none',duration:.35},0)
-        .to(ft,{opacity:0,y:20,ease:'none',duration:.35},0)
-        .to(play,{autoAlpha:0,ease:'none',duration:.2},0)
-        .fromTo(fr,{scale:1,y:0,borderRadius:'14px'},{scale:sc,y:dy,borderRadius:'0px',ease:'power1.inOut',duration:.75},0)
-        .to({},{duration:.25});
-    }
-  })();
-    var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
+var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
   // signature du pied : le 八 se trace en or, puis se pose en encre claire
   (function(){var w=d.querySelector('.wordmark2'), tt=d.getElementById('toTop'); if(tt)tt.addEventListener('click',function(){scrollTo(0);});
     if(w&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){w.classList.toggle('in',e.isIntersecting);});},{threshold:.4}).observe(w);}else if(w)w.classList.add('in');})();

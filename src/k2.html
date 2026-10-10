@@ -47,29 +47,46 @@
 
 <!-- ACCUEIL -->
 <div class="view on" data-view="accueil" data-fr="Accueil" data-en="Home">
-  <section class="sr dark" id="sr" aria-label="Atelier 8 — Showreel 2026">
-    <div class="sr-pin">
-      <div class="sr-head" id="srHead">
-        <div class="sr-hl">
-          <span class="label sr-l"><span lang="fr">Atelier 8 · Studio de motion design · Paris — Hong Kong</span><span lang="en" hidden>Atelier 8 · Motion design studio · Paris — Hong Kong</span></span>
-          <h1 class="sr-h"><span lang="fr">Films de marque, <em>de 15 à 90 secondes.</em></span><span lang="en" hidden>Brand films, <em>15 to 90 seconds.</em></span></h1>
-        </div>
-        <div class="sr-hr">
-          <p class="sr-sub"><span lang="fr">Script, image, voix, musique et montage, sous une seule direction. Pour chaque écran, chaque format.</span><span lang="en" hidden>Script, picture, voice, music and edit, under one direction. For every screen, every format.</span></p>
-          <div class="cta-row"><a class="pill solid" href="/brief/" data-go="brief"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></a><a class="ulink" href="/films/" data-go="films"><span lang="fr">Voir les films</span><span lang="en" hidden>Watch the films</span> <small>(27)</small></a></div>
-        </div>
+  <section class="hero dark" id="hero">
+    <div class="hero-sticky">
+      <picture><source media="(orientation: portrait) and (max-width: 599px)" srcset="media/hero-poster-m.webp"><source media="(orientation: portrait) and (max-width: 1180px)" srcset="media/hero-poster-t.webp"><img class="hero-video" id="heroPoster" src="media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
+      <video class="hero-video hv" id="heroVideo" muted playsinline preload="none" aria-hidden="true"></video>
+      <video class="hero-video hv" id="heroVideoHd" muted playsinline preload="none" aria-hidden="true"></video>
+      <script>/* hero : version légère d'abord, HD ensuite, chargées en mémoire pour un scrub sans attente réseau */
+      (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
+        if(mq('(prefers-reduced-motion: reduce)'))return;
+        var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
+        var F={'':['media/hero-lo-v2.mp4','media/hero-hd-v2.mp4'],'-t':['media/hero-lo-t-v2.mp4','media/hero-hd-t-v2.mp4'],'-m':['media/hero-lo-m-v2.mp4','media/hero-hd-m-v2.mp4']}, lo=F[v][0], hd=F[v][1];
+        function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
+          return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
+        var H=window.__hero={};
+        H.lo=get(lo,'high');
+        if(!slow)H.hd=H.lo.then(function(){return get(hd,'auto');});
+      })();</script>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="vf" aria-hidden="true">
+        <i class="vc tl"></i><i class="vc tr"></i><i class="vc bl"></i><i class="vc br"></i>
+        <div class="vsafe"></div>
+        <div class="vtop"><span class="rec"><b></b>REC</span><span class="tc" id="heroTc">00:00:00</span><span class="vsep">A001_C008</span></div>
+        <div class="vtopr"><span>4K · 24p</span><span>2.39:1</span><span class="bat"><i></i></span></div>
+        <div class="vcross"></div>
+        <div class="vfocus" id="vFocus"><i></i><i></i><i></i><i></i><span id="vAf">AF</span></div>
+        <div class="vbot"><span>35 mm</span><span>f/2.8</span><span>ISO 800</span><span>180°</span><span>5600 K</span></div>
+        <div class="vaud"><span>CH1</span><div class="m"><i style="--d:.0s"></i></div><span>CH2</span><div class="m"><i style="--d:-.37s"></i></div></div>
       </div>
-      <div class="sr-stage">
-        <div class="sr-frame" id="srFrame">
-          <video class="sr-v" id="srV" muted loop playsinline autoplay preload="auto" poster="media/showreel-15.jpg" aria-label="Showreel Atelier 8, 15 s" data-fr="media/showreel-15.mp4" data-fr-m="media/showreel-15-m.mp4" data-en="media/showreel-15-en.mp4" data-en-m="media/showreel-15-en-m.mp4" data-poster-fr="media/showreel-15.jpg" data-poster-en="media/showreel-15-en.jpg"></video>
-          <button class="sr-play" id="srPlay" type="button" aria-label="Lire avec le son"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
-        </div>
+      <div class="beat b1" id="beat1">
+        <span class="label"><span lang="fr">Atelier 8 · Motion design · Paris — Hong Kong</span><span lang="en" hidden>Atelier 8 · Motion design · Paris — Hong Kong</span></span>
+        <div class="hero-title"><h1 class="giant"><span lang="fr">UN FILM QUI <span class="it">marque.</span></span><span lang="en" hidden>A FILM THAT <span class="it">leaves a mark.</span></span></h1></div>
       </div>
-      <div class="sr-foot" id="srFoot">
-        <span class="sr-k"><b></b><span lang="fr">Showreel 2026</span><span lang="en" hidden>Showreel 2026</span> · 15 s</span>
-        <div class="sr-tl" aria-hidden="true"><i id="srProg"></i></div>
-        <button class="hp-snd sr-snd" id="srSnd" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="off"><span lang="fr">Activer le son</span><span lang="en" hidden>Sound on</span></span><span class="on"><span lang="fr">Couper le son</span><span lang="en" hidden>Sound off</span></span></button>
+      <div class="beat bx b2" id="beat2"><p class="giant line"><span lang="fr"><span class="cap">D’ABORD L’IMPACT.</span> <span class="it">Ensuite, la marque.</span></span><span lang="en" hidden><span class="cap">IMPACT FIRST.</span> <span class="it">Then the brand.</span></span></p></div>
+      <div class="beat bx b3" id="beat3"><p class="giant line"><span lang="fr"><span class="cap">CE QUI TOMBE</span> <span class="it">finit par marquer.</span></span><span lang="en" hidden><span class="cap">WHAT FALLS</span> <span class="it">ends up leaving a mark.</span></span></p></div>
+      <div class="beat bx b4" id="beat4"><p class="giant line"><span lang="fr"><span class="cap">ON NE REFAIT PAS</span> <span class="it">une première impression.</span></span><span lang="en" hidden><span class="cap">YOU DON’T GET</span> <span class="it">a second first impression.</span></span></p></div>
+      <div class="beat bx b5" id="beat5">
+        <p class="giant line"><span lang="fr"><span class="cap">VOTRE MARQUE</span> <span class="it">mérite son film.</span></span><span lang="en" hidden><span class="cap">YOUR BRAND</span> <span class="it">deserves its film.</span></span></p>
+        <p class="sub"><span lang="fr">De 15 à 90 secondes, écrit, animé et mis en son pour elle seule.</span><span lang="en" hidden>15 to 90 seconds, written, animated and scored for it alone.</span></p>
+        <div class="cta-row"><a class="pill solid" href="/brief/" data-go="brief"><span lang="fr">Envoyer mon brief</span><span lang="en" hidden>Send my brief</span></a><a class="ulink" href="/films/" data-go="films"><span lang="fr">Voir les films</span><span lang="en" hidden>Watch the films</span> <small>(27)</small></a></div>
       </div>
+      <div class="hero-meta"><span class="label scrollhint"><span lang="fr">Défiler</span><span lang="en" hidden>Scroll</span> <i>↓</i></span></div>
     </div>
   </section>
 
@@ -96,26 +113,12 @@
     <div class="hm-head"><span class="label"><span lang="fr">Le rôle humain</span><span lang="en" hidden>The human role</span></span><h2 class="big rv"><span lang="fr">Les agents exécutent.<em>Je cadre, je vérifie, je décide.</em></span><span lang="en" hidden>The agents execute.<em>I frame, check and decide.</em></span></h2></div>
     <div class="hm-grid"><div class="hm-col rv"><span class="hm-n">01</span><h3><span lang="fr">Cadrer avant de produire</span><span lang="en" hidden>Frame before producing</span></h3><p><span lang="fr">Un agent mal cadré se trompe vite, et avec assurance. Le brief, l’angle et ce qu’on attend du film, c’est moi qui les pose. Cette partie ne se délègue pas.</span><span lang="en" hidden>A poorly framed agent gets it wrong fast, and confidently. The brief, the angle and what the film must achieve are set by me. That part is never delegated.</span></p></div><div class="hm-col rv"><span class="hm-n">02</span><h3><span lang="fr">Orchestrer, pas prompter</span><span lang="en" hidden>Orchestrate, not prompt</span></h3><p><span lang="fr">Cinq agents, un par poste, et un point de contrôle entre chaque étape. Savoir les lancer compte moins que savoir quand les arrêter.</span><span lang="en" hidden>Five agents, one per role, and a checkpoint between every step. Knowing when to launch them matters less than knowing when to stop them.</span></p></div><div class="hm-col rv"><span class="hm-n">03</span><h3><span lang="fr">Vérifier, puis livrer</span><span lang="en" hidden>Check, then deliver</span></h3><p><span lang="fr">Je relis chaque plan, chaque mot, chaque coupe son. Le détail qui cloche, c’est un œil humain qui le voit. C’est lui qui fait la qualité finale.</span><span lang="en" hidden>I review every shot, every word, every sound cut. The detail that’s off is spotted by a human eye. That eye is what makes the final quality.</span></p></div></div>
     </div>
+    <div class="manif">
+      <p class="reveal"><span lang="fr">Une page explique. Un film fait voir.</span><span lang="en" hidden>A page explains. A film shows.</span></p>
+      <div class="mf-side rv"><p><span lang="fr">Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez.</span><span lang="en" hidden>A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying.</span></p><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span></div>
+    </div>
   </section>
 
-  <section class="dtf dark" id="dtf" aria-labelledby="dtfT">
-    <div class="manif dtf-head">
-      <p class="reveal" id="dtfT"><span lang="fr">Une page explique. Un film fait voir.</span><span lang="en" hidden>A page explains. A film shows.</span></p>
-      <div class="mf-side rv">
-        <span class="label dtf-k"><span lang="fr">Le film de l’atelier</span><span lang="en" hidden>The studio’s own film</span> · 61 s</span>
-        <p><span lang="fr">Un visiteur parcourt une page en diagonale ; un film d’une minute impose l’ordre, le rythme et ce qu’on laisse de côté. C’est ce choix que vous achetez. Le voici appliqué à l’atelier : un script, un storyboard, cinq agents et un seul regard.</span><span lang="en" hidden>A visitor skims a page; a one-minute film sets the order, the pace and what gets left out. That choice is what you are buying. Here it is, applied to the studio: one script, one storyboard, five agents and a single eye.</span></p>
-        <div class="dtf-row"><span class="ssig"><svg viewBox="-86 -80 172 160" aria-hidden="true"><use href="#ba8s" x="-86" y="-80" width="172" height="160"/></svg>Pascal EK Loui</span><div class="ver dtf-ver" role="group" aria-label="Version"><button type="button" data-v="fr" aria-pressed="true">VF</button><button type="button" data-v="en" aria-pressed="false">VO EN</button></div></div>
-      </div>
-    </div>
-    <div class="dtf-stage">
-      <div class="vid dtf-vid" id="dtfVid" data-v="fr" data-src="media/films/atelier8-deux-traits-fr.mp4" data-src-en="media/films/atelier8-deux-traits-en.mp4" data-pv="media/films/atelier8-deux-traits-fr-pv.mp4" data-pv-en="media/films/atelier8-deux-traits-en-pv.mp4" data-poster="media/films/atelier8-deux-traits-fr.jpg" data-poster-en="media/films/atelier8-deux-traits-en.jpg" data-title="Atelier 8 — Deux traits · 61 s" tabindex="0" role="button" aria-label="Lire le film Atelier 8 — Deux traits, avec le son">
-        <img src="media/films/atelier8-deux-traits-fr.jpg" alt="Atelier 8 — Deux traits · film de marque du studio, 61 secondes" width="1600" height="900" loading="lazy" decoding="async">
-        <video src="media/films/atelier8-deux-traits-fr-pv.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
-        </div>
-      <button class="dtf-seal" type="button" aria-controls="lb"><span class="sr-only"><span lang="fr">Voir le film avec le son, 61 secondes</span><span lang="en" hidden>Watch the film with sound, 61 seconds</span></span><svg class="txt" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="dtfC" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text class="t-fr"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">VOIR LE FILM · AVEC LE SON · 61 S · </textPath></text><text class="t-en"><textPath href="#dtfC" textLength="500" lengthAdjust="spacing">WATCH THE FILM · WITH SOUND · 61 S · </textPath></text></svg><span class="disc" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
-    </div>
-    <ol class="dtf-ch" aria-label="Chapitres"><li style="--x:0.00%"><button type="button" data-t="0"><span class="ct">00:00</span><span class="cl"><span lang="fr">L’impact</span><span lang="en" hidden>Impact</span></span></button></li><li style="--x:14.75%"><button type="button" data-t="9"><span class="ct">00:09</span><span class="cl"><span lang="fr">Deux traits</span><span lang="en" hidden>Two strokes</span></span></button></li><li style="--x:21.31%"><button type="button" data-t="13"><span class="ct">00:13</span><span class="cl"><span lang="fr">La méthode</span><span lang="en" hidden>The method</span></span></button></li><li style="--x:47.54%"><button type="button" data-t="29"><span class="ct">00:29</span><span class="cl"><span lang="fr">Les agents</span><span lang="en" hidden>The agents</span></span></button></li><li style="--x:57.38%"><button type="button" data-t="35"><span class="ct">00:35</span><span class="cl"><span lang="fr">Les films</span><span lang="en" hidden>The films</span></span></button></li><li style="--x:90.16%"><button type="button" data-t="55"><span class="ct">00:55</span><span class="cl"><span lang="fr">La signature</span><span lang="en" hidden>The signature</span></span></button></li></ol>
-  </section>
 
   <section class="voir light" id="voir">
     <div class="voir-pin">
