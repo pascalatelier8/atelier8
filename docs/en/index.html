@@ -31,9 +31,6 @@
 <meta name="theme-color" content="#090908">
 <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon-32.png">
 <link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
-<link rel="preload" as="fetch" href="/media/hero-lo-v2.mp4" crossorigin media="(orientation: landscape), (min-width: 1181px)">
-<link rel="preload" as="fetch" href="/media/hero-lo-t-v2.mp4" crossorigin media="(orientation: portrait) and (min-width: 600px) and (max-width: 1180px)">
-<link rel="preload" as="fetch" href="/media/hero-lo-m-v2.mp4" crossorigin media="(orientation: portrait) and (max-width: 599px)">
 <link rel="preload" as="font" type="font/woff2" href="/media/fonts/jost-300.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/media/fonts/jost-400.woff2" crossorigin>
 <script defer src="/libs/gsap.min.js"></script>
@@ -1076,6 +1073,52 @@ body.in-hero .cursor{opacity:0!important}
 #fSend.busy{pointer-events:none;opacity:.7}
 #fSend.busy::after{content:"";display:inline-block;width:10px;height:10px;margin-left:10px;border-radius:50%;border:1.5px solid currentColor;border-right-color:transparent;animation:fSpin .8s linear infinite;vertical-align:-1px}
 @keyframes fSpin{to{transform:rotate(360deg)}}
+/* ===== hero : showreel 15 s ===== */
+.sr{height:210vh;position:relative;padding-inline:0;background:var(--noir)}
+.sr-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;padding:calc(var(--nav,72px) + clamp(14px,3vh,34px)) var(--gutter) clamp(16px,3vh,30px);background:radial-gradient(70% 60% at 50% 55%,rgba(201,155,69,.10),rgba(201,155,69,0) 70%),var(--noir)}
+.sr-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(20px,4vw,72px);align-items:end;padding-bottom:clamp(14px,2.6vh,28px);position:relative;z-index:2}
+.sr-hl{display:grid;gap:12px}
+.sr-l{color:var(--fg-3)}
+.sr-h{margin:0;font-weight:300;font-size:clamp(30px,min(4.2vw,6.6vh),80px);line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
+.sr-h em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.015em;font-size:.84em;line-height:1.08;background:linear-gradient(100deg,#F4E1A6,#C99B45 45%,#F4E1A6 70%,#B8862F);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sr-hr{display:grid;gap:16px;justify-items:start;padding-bottom:.3em}
+.sr-sub{margin:0;color:var(--fg-2);font-size:clamp(14px,1.05vw,16px);line-height:1.6;max-width:30em}
+.sr-hl,.sr-hr{opacity:0;transform:translateY(18px);transition:opacity 1.1s var(--ease),transform 1.3s var(--ease)}
+.loaded .sr-hl{opacity:1;transform:none;transition-delay:.15s}.loaded .sr-hr{opacity:1;transform:none;transition-delay:.4s}
+.sr-stage{position:relative;display:grid;place-items:center;min-height:0;z-index:1}
+.sr-frame{position:relative;height:100%;max-height:100%;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#050505;box-shadow:0 60px 120px -50px rgba(0,0,0,.9),0 0 0 1px rgba(201,155,69,.22);transform-origin:50% 50%;will-change:transform}
+.sr-stage{opacity:0;transform:scale(.96);transition:opacity 1.2s var(--ease) .5s,transform 1.4s var(--ease) .5s}
+.loaded .sr-stage{opacity:1;transform:none}
+.sr-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sr-play{position:absolute;right:clamp(14px,2.2%,30px);bottom:calc(clamp(14px,2.2%,30px) + 4%);width:clamp(52px,4.6vw,72px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;z-index:2;cursor:pointer;transition:opacity .5s var(--ease)}
+.sr-play .disc{position:relative;width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,#F4E1A6,#C99B45 55%,#7C5B22);box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .6s var(--ease)}
+.sr-play .disc::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(233,207,139,.55);animation:srPulse 2.4s var(--ease) infinite}
+@keyframes srPulse{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.35);opacity:0}}
+.sr-play svg{width:34%;fill:#121210;margin-left:8%}
+.sr-play:hover .disc{transform:scale(1.08)}
+.sr.sound .sr-play{pointer-events:none}.sr.sound .sr-play .disc{opacity:0;transform:scale(.7)}
+.sr-play .disc{transition:transform .6s var(--ease),opacity .5s var(--ease)}
+.sr-foot{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,2vw,28px);padding-top:clamp(12px,2.2vh,22px);font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,241,234,.7);position:relative;z-index:2}
+.sr-k{display:flex;align-items:center;gap:10px;white-space:nowrap}.sr-k b{width:6px;height:6px;border-radius:50%;background:#C99B45;box-shadow:0 0 12px rgba(201,155,69,.9)}
+.sr-tl{position:relative;height:1px;background:rgba(243,241,234,.18)}
+.sr-tl i{position:absolute;left:0;top:-.5px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,#F4E1A6,#C99B45)}
+@media (max-width:900px),(orientation:portrait) and (max-width:1180px){
+  .sr{height:auto}
+  .sr-pin{position:relative;height:auto;min-height:0;grid-template-rows:auto auto auto;padding-bottom:40px}
+  .sr-head{grid-template-columns:1fr;gap:18px}
+  .sr-frame{height:auto;width:100%;border-radius:10px}
+  .sr-h{font-size:clamp(32px,9vw,60px)}
+}
+@media (max-width:520px){.sr-foot{grid-template-columns:1fr auto;font-size:9px;letter-spacing:.16em}.sr-tl{display:none}.sr-play{width:46px}}
+@media (prefers-reduced-motion:reduce){.sr-play .disc::after,.hp-snd .eq i{animation:none!important}}
+.hp-snd{display:inline-flex;align-items:center;gap:12px;padding:10px 16px 10px 14px;border:1px solid rgba(243,241,234,.28);border-radius:999px;color:var(--cream);font:inherit;letter-spacing:inherit;text-transform:inherit;background:rgba(10,9,8,.25);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .4s var(--ease),background .4s var(--ease)}
+.hp-snd:hover{border-color:#C99B45}
+.hp-snd .on{display:none}.hp-snd[aria-pressed="true"] .on{display:inline}.hp-snd[aria-pressed="true"] .off{display:none}
+.hp-snd .eq{display:inline-flex;align-items:flex-end;gap:2px;height:11px}
+.hp-snd .eq i{width:2px;height:3px;background:#C99B45;border-radius:1px;transition:height .3s}
+.hp-snd[aria-pressed="true"] .eq i{animation:hpEq .9s ease-in-out infinite}
+.hp-snd[aria-pressed="true"] .eq i:nth-child(2){animation-delay:-.3s}.hp-snd[aria-pressed="true"] .eq i:nth-child(3){animation-delay:-.6s}.hp-snd[aria-pressed="true"] .eq i:nth-child(4){animation-delay:-.15s}
+@keyframes hpEq{0%,100%{height:3px}50%{height:11px}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .dtf-seal{position:absolute;right:clamp(24px,6%,96px);bottom:0;z-index:4;width:clamp(112px,9.5vw,150px);aspect-ratio:1;transform:translateY(50%);display:grid;place-items:center;border-radius:50%;background:radial-gradient(closest-side,rgba(10,9,8,.92),rgba(10,9,8,.86) 70%,rgba(10,9,8,.0) 100%);cursor:pointer}
 .dtf-seal .txt{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:dtfSpin 22s linear infinite}
@@ -1210,46 +1253,29 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 
 <!-- ACCUEIL -->
 <div class="view on" data-view="accueil" data-fr="Accueil" data-en="Home">
-  <section class="hero dark" id="hero">
-    <div class="hero-sticky">
-      <picture><source media="(orientation: portrait) and (max-width: 599px)" srcset="/media/hero-poster-m.webp"><source media="(orientation: portrait) and (max-width: 1180px)" srcset="/media/hero-poster-t.webp"><img class="hero-video" id="heroPoster" src="/media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
-      <video class="hero-video hv" id="heroVideo" muted playsinline preload="none" aria-hidden="true"></video>
-      <video class="hero-video hv" id="heroVideoHd" muted playsinline preload="none" aria-hidden="true"></video>
-      <script>/* hero : version légère d'abord, HD ensuite, chargées en mémoire pour un scrub sans attente réseau */
-      (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
-        if(mq('(prefers-reduced-motion: reduce)'))return;
-        var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
-        var F={'':['/media/hero-lo-v2.mp4','/media/hero-hd-v2.mp4'],'-t':['/media/hero-lo-t-v2.mp4','/media/hero-hd-t-v2.mp4'],'-m':['/media/hero-lo-m-v2.mp4','/media/hero-hd-m-v2.mp4']}, lo=F[v][0], hd=F[v][1];
-        function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
-          return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
-        var H=window.__hero={};
-        H.lo=get(lo,'high');
-        if(!slow)H.hd=H.lo.then(function(){return get(hd,'auto');});
-      })();</script>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <div class="vf" aria-hidden="true">
-        <i class="vc tl"></i><i class="vc tr"></i><i class="vc bl"></i><i class="vc br"></i>
-        <div class="vsafe"></div>
-        <div class="vtop"><span class="rec"><b></b>REC</span><span class="tc" id="heroTc">00:00:00</span><span class="vsep">A001_C008</span></div>
-        <div class="vtopr"><span>4K · 24p</span><span>2.39:1</span><span class="bat"><i></i></span></div>
-        <div class="vcross"></div>
-        <div class="vfocus" id="vFocus"><i></i><i></i><i></i><i></i><span id="vAf">AF</span></div>
-        <div class="vbot"><span>35 mm</span><span>f/2.8</span><span>ISO 800</span><span>180°</span><span>5600 K</span></div>
-        <div class="vaud"><span>CH1</span><div class="m"><i style="--d:.0s"></i></div><span>CH2</span><div class="m"><i style="--d:-.37s"></i></div></div>
+  <section class="sr dark" id="sr" aria-label="Atelier 8 — Showreel 2026">
+    <div class="sr-pin">
+      <div class="sr-head" id="srHead">
+        <div class="sr-hl">
+          <span class="label sr-l"><span lang="fr" hidden>Atelier 8 · Studio de motion design · Paris — Hong Kong</span><span lang="en">Atelier 8 · Motion design studio · Paris — Hong Kong</span></span>
+          <h1 class="sr-h"><span lang="fr" hidden>Films de marque, <em>de 15 à 90 secondes.</em></span><span lang="en">Brand films, <em>15 to 90 seconds.</em></span></h1>
+        </div>
+        <div class="sr-hr">
+          <p class="sr-sub"><span lang="fr" hidden>Script, image, voix, musique et montage, sous une seule direction. Pour chaque écran, chaque format.</span><span lang="en">Script, picture, voice, music and edit, under one direction. For every screen, every format.</span></p>
+          <div class="cta-row"><a class="pill solid" href="/en/brief/" data-go="brief"><span lang="fr" hidden>Envoyer mon brief</span><span lang="en">Send my brief</span></a><a class="ulink" href="/en/films/" data-go="films"><span lang="fr" hidden>Voir les films</span><span lang="en">Watch the films</span> <small>(27)</small></a></div>
+        </div>
       </div>
-      <div class="beat b1" id="beat1">
-        <span class="label"><span lang="fr" hidden>Atelier 8 · Motion design · Paris — Hong Kong</span><span lang="en">Atelier 8 · Motion design · Paris — Hong Kong</span></span>
-        <div class="hero-title"><h1 class="giant"><span lang="fr" hidden>UN FILM QUI <span class="it">marque.</span></span><span lang="en">A FILM THAT <span class="it">leaves a mark.</span></span></h1></div>
+      <div class="sr-stage">
+        <div class="sr-frame" id="srFrame">
+          <video class="sr-v" id="srV" muted loop playsinline autoplay preload="auto" poster="/media/showreel-15.jpg" aria-label="Showreel Atelier 8, 15 s" data-fr="/media/showreel-15.mp4" data-fr-m="/media/showreel-15-m.mp4" data-en="/media/showreel-15-en.mp4" data-en-m="/media/showreel-15-en-m.mp4" data-poster-fr="/media/showreel-15.jpg" data-poster-en="/media/showreel-15-en.jpg"></video>
+          <button class="sr-play" id="srPlay" type="button" aria-label="Lire avec le son"><span class="disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.8v12.4L18.6 12z"/></svg></span></button>
+        </div>
       </div>
-      <div class="beat bx b2" id="beat2"><p class="giant line"><span lang="fr" hidden><span class="cap">D’ABORD L’IMPACT.</span> <span class="it">Ensuite, la marque.</span></span><span lang="en"><span class="cap">IMPACT FIRST.</span> <span class="it">Then the brand.</span></span></p></div>
-      <div class="beat bx b3" id="beat3"><p class="giant line"><span lang="fr" hidden><span class="cap">CE QUI TOMBE</span> <span class="it">finit par marquer.</span></span><span lang="en"><span class="cap">WHAT FALLS</span> <span class="it">ends up leaving a mark.</span></span></p></div>
-      <div class="beat bx b4" id="beat4"><p class="giant line"><span lang="fr" hidden><span class="cap">ON NE REFAIT PAS</span> <span class="it">une première impression.</span></span><span lang="en"><span class="cap">YOU DON’T GET</span> <span class="it">a second first impression.</span></span></p></div>
-      <div class="beat bx b5" id="beat5">
-        <p class="giant line"><span lang="fr" hidden><span class="cap">VOTRE MARQUE</span> <span class="it">mérite son film.</span></span><span lang="en"><span class="cap">YOUR BRAND</span> <span class="it">deserves its film.</span></span></p>
-        <p class="sub"><span lang="fr" hidden>De 15 à 90 secondes, écrit, animé et mis en son pour elle seule.</span><span lang="en">15 to 90 seconds, written, animated and scored for it alone.</span></p>
-        <div class="cta-row"><a class="pill solid" href="/en/brief/" data-go="brief"><span lang="fr" hidden>Envoyer mon brief</span><span lang="en">Send my brief</span></a><a class="ulink" href="/en/films/" data-go="films"><span lang="fr" hidden>Voir les films</span><span lang="en">Watch the films</span> <small>(27)</small></a></div>
+      <div class="sr-foot" id="srFoot">
+        <span class="sr-k"><b></b><span lang="fr" hidden>Showreel 2026</span><span lang="en">Showreel 2026</span> · 15 s</span>
+        <div class="sr-tl" aria-hidden="true"><i id="srProg"></i></div>
+        <button class="hp-snd sr-snd" id="srSnd" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="off"><span lang="fr" hidden>Activer le son</span><span lang="en">Sound on</span></span><span class="on"><span lang="fr" hidden>Couper le son</span><span lang="en">Sound off</span></span></button>
       </div>
-      <div class="hero-meta"><span class="label scrollhint"><span lang="fr" hidden>Défiler</span><span lang="en">Scroll</span> <i>↓</i></span></div>
     </div>
   </section>
 
@@ -1832,7 +1858,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   d.querySelectorAll('a[data-play]').forEach(function(a){a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();e.stopPropagation();openLb(a.dataset.play,a.dataset.title,'demo');});});
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
-  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
+  function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();if(srSync)srSync();}
   /* ---------- le film de l’atelier : Deux traits ---------- */
   var dtfSync=null;
   (function(){
@@ -2247,7 +2273,36 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     measureSp(); beats(0); b1.classList.add('on'); setTimeout(function(){b1.dataset.t='1';beats(sp);},1600);
     if(reduced){b1.classList.add('it-on');}
   })();
-  var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
+/* ---------- hero : showreel 15 s (VF / VO selon la langue) ---------- */
+  var srSync=null;
+  (function(){
+    var s=d.getElementById('sr'); if(!s)return;
+    var v=d.getElementById('srV'), fr=d.getElementById('srFrame'), hd=d.getElementById('srHead'), ft=d.getElementById('srFoot'), snd=d.getElementById('srSnd'), play=d.getElementById('srPlay'), prog=d.getElementById('srProg');
+    var srL=null, mobV=matchMedia('(max-width:900px)').matches;
+    function srSrc(l){l=(l==='en')?'en':'fr';if(l===srL)return;srL=l;var t=v.currentTime||0,was=!v.paused||!v.src;v.poster=v.dataset['poster'+(l==='en'?'En':'Fr')];v.src=mobV?v.dataset[l+'M']:v.dataset[l];v.load();v.addEventListener('loadedmetadata',function f(){v.removeEventListener('loadedmetadata',f);if(t)try{v.currentTime=t;}catch(_){}if(was&&!reduced)pl();});}
+    srSync=function(){srSrc(lang);};
+    (function tick(){var du=v.duration||15;prog.style.setProperty('--p',((v.currentTime||0)/du).toFixed(4));requestAnimationFrame(tick);})();
+    var pl=function(){var q=v.play();if(q&&q.catch)q.catch(function(){});};
+    srSrc(lang);
+    if(reduced){v.removeAttribute('autoplay');v.pause();}
+    function setSound(on){v.muted=!on;snd.setAttribute('aria-pressed',String(on));s.classList.toggle('sound',on);if(on){v.volume=.9;pl();}if(window.a8track)a8track('hero_sound',{on:on});}
+    snd.addEventListener('click',function(){setSound(v.muted);});
+    play.addEventListener('click',function(e){e.stopPropagation();v.currentTime=0;setSound(true);});
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(!reduced)pl();}else v.pause();});},{threshold:.05}).observe(s);
+    d.addEventListener('visibilitychange',function(){if(d.hidden)v.pause();else if(!reduced)pl();});
+    var big=matchMedia('(min-width:901px)').matches&&!matchMedia('(orientation:portrait) and (max-width:1180px)').matches;
+    if(hasGsap&&!reduced&&big){
+      var sc=function(){var r=fr.getBoundingClientRect();return Math.max(innerWidth/r.width,innerHeight/r.height)*1.002;};
+      var dy=function(){var r=fr.getBoundingClientRect();return innerHeight/2-(r.top+r.height/2);};
+      var tl=gsap.timeline({scrollTrigger:{trigger:s,start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:true}});
+      tl.to(hd,{opacity:0,y:-30,ease:'none',duration:.35},0)
+        .to(ft,{opacity:0,y:20,ease:'none',duration:.35},0)
+        .to(play,{autoAlpha:0,ease:'none',duration:.2},0)
+        .fromTo(fr,{scale:1,y:0,borderRadius:'14px'},{scale:sc,y:dy,borderRadius:'0px',ease:'power1.inOut',duration:.75},0)
+        .to({},{duration:.25});
+    }
+  })();
+    var loader=d.getElementById('loader'), lMark=buildMark(d.getElementById('loaderMark'),'l',true), lLock=d.getElementById('loaderLock'), lDone=false;
   // signature du pied : le 八 se trace en or, puis se pose en encre claire
   (function(){var w=d.querySelector('.wordmark2'), tt=d.getElementById('toTop'); if(tt)tt.addEventListener('click',function(){scrollTo(0);});
     if(w&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){w.classList.toggle('in',e.isIntersecting);});},{threshold:.4}).observe(w);}else if(w)w.classList.add('in');})();
