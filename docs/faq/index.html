@@ -1230,7 +1230,7 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
       (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
         if(mq('(prefers-reduced-motion: reduce)'))return;
         var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
-        var F={'':['/media/hero-lo-v2.mp4','/media/hero-hd-v2.mp4'],'-t':['/media/hero-lo-t-v2.mp4','/media/hero-hd-t-v2.mp4'],'-m':['/media/hero-lo-m-v2.mp4','/media/hero-hd-m-v2.mp4']}, lo=F[v][0], hd=F[v][1];
+        var F={'':['/media/hero-lo-v3.mp4','/media/hero-hd-v3.mp4'],'-t':['/media/hero-lo-t-v3.mp4','/media/hero-hd-t-v3.mp4'],'-m':['/media/hero-lo-m-v3.mp4','/media/hero-hd-m-v3.mp4']}, lo=F[v][0], hd=F[v][1];
         function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
           return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
         var H=window.__hero={};
@@ -1723,7 +1723,11 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
   /* ruban 3D (216 calques canvas en matrix3d) réservé aux moteurs Blink : Safari et Firefox saccadent ou cassent l’empilement 3D */
   var rich3d=/Chrome\/|Chromium\//.test(navigator.userAgent)&&!/Firefox\/|FxiOS|CriOS|EdgiOS/.test(navigator.userAgent);
+  var QS=location.search; if(/[?&]a8lite=1/.test(QS))rich3d=false;
   if(!rich3d)d.documentElement.classList.add('lite3d');
+  if(/[?&]a8fps=1/.test(QS))addEventListener('load',function(){var o=d.createElement('div');o.style.cssText='position:fixed;left:10px;top:84px;z-index:999;font:600 14px/1.4 monospace;background:#000;color:#0f0;padding:6px 10px;border-radius:6px;pointer-events:none;white-space:pre';d.body.appendChild(o);var fr=0,t0=performance.now(),mn=99,hist=[];(function c(){fr++;requestAnimationFrame(c);})();
+    setInterval(function(){var t=performance.now(),f=Math.round(fr*1000/(t-t0));fr=0;t0=t;var v=d.getElementById('voir');if(v){var r=v.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){hist.push(f);if(f<mn)mn=f;}}o.textContent='fps '+f+'  min '+(mn===99?'-':mn)+'  moy '+(hist.length?Math.round(hist.reduce(function(a,b){return a+b;},0)/hist.length):'-')+'\n'+(v?v.className:'')+(d.documentElement.classList.contains('lite3d')?' lite3d':'');},1000);
+    if(/[?&]a8auto=1/.test(QS))setTimeout(function(){var v=d.getElementById('voir');if(!v)return;var y0=v.getBoundingClientRect().top+scrollY-40,y1=y0+innerHeight*6.4,T=22000,s=performance.now();(function st(){var p=Math.min(1,(performance.now()-s)/T);scrollTo(y0+(y1-y0)*p,{immediate:true});if(p<1)requestAnimationFrame(st);})();},1500);});
   function compact(){return matchMedia('(max-width:900px),(orientation:portrait) and (max-width:1180px),(orientation:landscape) and (max-width:1000px) and (max-height:560px)').matches;}
   /* rotation d'écran : si la mise en page change (tablette, téléphone en paysage), on recharge proprement */
   (function(){var c0=compact(),t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){if(compact()!==c0)location.reload();},350);});})();
@@ -1959,7 +1963,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   var wallVids=Array.prototype.slice.call(d.querySelectorAll('#voir video'));
   wallVids.forEach(function(v){v.muted=true;v.addEventListener('playing',function(){v.parentNode.classList.add('playing');});});
   /* grille à plat (mobile, tablette, écrans tactiles) : seules les vidéos vraiment à l'écran jouent, 3 au plus sur tactile, 6 sinon */
-  var flatWall=!hasGsap||reduced||compact()||!fine||!rich3d, bigWall=!flatWall, cardIO=null, playQ=[], MAXP=fine?6:3;
+  var flatWall=!hasGsap||reduced||compact()||!fine, bigWall=!flatWall, cardIO=null, playQ=[], MAXP=fine?6:3;
   function flatPlay(){
     if(cardIO||!('IntersectionObserver' in window))return;
     cardIO=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target.querySelector('video');if(!v)return;
@@ -2013,15 +2017,15 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
     /* tactile, petits écrans : grille directe. Desktop : ruban circulaire, qui se pose en grande grille (3 colonnes) qu'on continue de faire défiler */
-    if(!hasGsap||reduced||compact()||!fine||!rich3d){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');if(!compact()&&fine)voir.classList.add('flatd');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
+    if(!hasGsap||reduced||compact()||!fine||/[?&]a8flat=1/.test(QS)){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');if(!compact()&&fine)voir.classList.add('flatd');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
     voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon','big'); bigWall=true; flatWall=false; sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),
         world=d.getElementById('rworld'), rt1=d.getElementById('rt1'), rt2=d.getElementById('rt2'),
-        cards=Array.prototype.slice.call(grid.querySelectorAll('.card')), N=cards.length, K=8, srcs=[], sl=[], R=1000, cw=400, ch=225, sw=50, P=900, W=1, H=1, ALPHA=2*Math.PI/N*.86, gt=[];
+        cards=Array.prototype.slice.call(grid.querySelectorAll('.card')), N=cards.length, K=rich3d?8:4, srcs=[], sl=[], R=1000, cw=400, ch=225, sw=50, P=900, W=1, H=1, ALPHA=2*Math.PI/N*.86, gt=[];
     world.style.transform='none'; var ring=d.getElementById('rring'); ring.style.transform='none';
     cards.forEach(function(c,i){
-      var sv=c.querySelector('video'), so={v:sv,im:c.querySelector('img'),dirty:true,back:false}; srcs.push(so); var row=[];
+      var sv=rich3d?c.querySelector('video'):null, im0=c.querySelector('img'), so={v:sv,im:im0,dirty:true,back:false}; if(!rich3d&&im0){im0.loading='eager';im0.decoding='async';if(!im0.complete)im0.addEventListener('load',function(){so.dirty=true;so.back=null;});} srcs.push(so); var row=[];
       if(sv){var mark=function(){so.dirty=true;}; if(sv.requestVideoFrameCallback){var cb=function(){so.dirty=true;sv.requestVideoFrameCallback(cb);};sv.requestVideoFrameCallback(cb);}else{sv.addEventListener('timeupdate',mark);} sv.addEventListener('loadeddata',mark);}
       for(var k=0;k<K;k++){var cv=d.createElement('canvas'); cv.width=80; cv.height=180; if(k===0)cv.className='l'; if(k===K-1)cv.className='r'; ring.appendChild(cv); row.push(cv);} sl.push(row);
     });
