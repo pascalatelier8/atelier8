@@ -52,7 +52,7 @@ T = {
               'Send your brief in two minutes: your website and a few lines. First read and a quote within two working days, from Pascal himself.'),
  },
 }
-NAV = {'fr': {'accueil': 'Accueil', 'films': 'Films', 'usages': 'Usages', 'formats': 'Formats', 'atelier': 'L’atelier', 'faq': 'FAQ', 'brief': 'Brief'},
+NAV = {'fr': {'accueil': 'Accueil', 'films': 'Films', 'usages': 'Cas d’usage', 'formats': 'Formats', 'atelier': 'L’atelier', 'faq': 'FAQ', 'brief': 'Brief'},
        'en': {'accueil': 'Home', 'films': 'Films', 'usages': 'Use cases', 'formats': 'Formats', 'atelier': 'The studio', 'faq': 'FAQ', 'brief': 'Brief'}}
 PAGETYPE = {'accueil': 'WebPage', 'films': 'CollectionPage', 'usages': 'WebPage', 'formats': 'WebPage', 'atelier': 'AboutPage', 'faq': 'FAQPage', 'brief': 'ContactPage'}
 
