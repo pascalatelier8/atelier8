@@ -1234,5 +1234,17 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 @media (max-width:520px){.uc-film figcaption{flex-direction:column;gap:4px}.uc-stat .v{font-size:clamp(64px,22vw,96px)}}
 @media (prefers-reduced-motion:reduce){.uc-shell,.uc .vid img,.uc .vid video{transition:none}}
 @media (max-width:1280px){.nav-links{gap:clamp(16px,1.6vw,26px)}.nav-links a{letter-spacing:.12em}}
+
+/* hero mobile portrait : le cadre suit la zone visible de Safari (barres d'outils comprises), rocher ancré en bas */
+@media (max-width:1180px) and (orientation:portrait){.hero-sticky{height:100vh;height:100dvh}}
+@media (max-width:600px) and (orientation:portrait) and (max-height:780px){
+  .b1,.b5,.b2,.b3,.b4{top:calc(var(--nav) + 42px)}
+  .b5 .cta-row{flex-wrap:nowrap;gap:16px}
+  .b5 .cta-row .pill{padding-left:16px;padding-right:18px}
+  .bx .line{font-size:clamp(32px,9.4vw,48px)}
+  .hero-title .giant{font-size:clamp(40px,12vw,60px)}
+  .b1{gap:10px}.b5{gap:12px}
+  .b5 .sub{font-size:14px;line-height:1.45}
+}
 </style>
 <script>document.documentElement.classList.add("js")</script>
