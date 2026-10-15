@@ -184,7 +184,7 @@ def graph(lang, v, F, Q):
         'hasOfferCatalog': {'@id': SITE + '/#catalogue'},
     }
     person = {
-        '@type': 'Person', '@id': SITE + '/#pascal', 'name': 'Pascal EK Loui', 'url': url(lang, 'atelier'),
+        '@type': 'Person', '@id': SITE + '/#pascal', 'name': 'Pascal EK Loui', 'url': url(lang, 'atelier'), 'image': SITE + '/media/pascal-talent.webp',
         'jobTitle': 'Fondateur et directeur de création, Atelier 8' if lang == 'fr' else 'Founder and creative director, Atelier 8',
         'worksFor': {'@id': SITE + '/#org'}, 'knowsLanguage': ['fr', 'en'],
         'description': ('Designer produit depuis quinze ans pour de grandes marques et des start-ups, entre Paris et Hong Kong. '
