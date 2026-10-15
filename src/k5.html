@@ -131,9 +131,9 @@
   /* ---------- vidéos : lecture quand visibles, plein écran au clic ---------- */
   var lb=d.getElementById('lb'), lbv=d.getElementById('lbVideo'), lbc=d.getElementById('lbCap');
   var lbVer=d.getElementById('lbVer'),lbAlt=null;
-  function lbSet(v){if(!lbAlt)return;lbAlt.v=v;lbVer.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
+  function lbSet(v){if(!lbAlt)return;lbAlt.v=v;if(lbAlt.t&&lbAlt.t[v]){var n=lbc.firstChild;if(n&&n.nodeType===3)n.nodeValue=lbAlt.t[v];}lbVer.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
   if(lbVer)lbVer.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||!lbAlt||b.dataset.v===lbAlt.v)return;var t=lbv.currentTime||0;lbSet(b.dataset.v);lbv.src=lbAlt[b.dataset.v];lbv.addEventListener('loadedmetadata',function f(){lbv.removeEventListener('loadedmetadata',f);try{lbv.currentTime=Math.min(t,(lbv.duration||t)-.1);}catch(_){}lbv.play().catch(function(){});});});
-  function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
+  function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=(alt&&alt.t&&alt.t[alt.v])||title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
   /* générique : aperçu vidéo au survol (desktop, navigateurs riches) */
   (function(){var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
     if(!fine||rm)return;
@@ -157,7 +157,7 @@
     s.querySelector('.dtf-ver').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;man=true;setV(b.dataset.v);});
     s.querySelector('.dtf-seal').addEventListener('click',function(){v.click();});
     s.querySelector('.dtf-ch').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var t=+b.dataset.t||0,l=v.dataset.v||lang;
-      openLb(SRC[l],v.dataset.title,'',{fr:SRC.fr,en:SRC.en,v:l});
+      openLb(SRC[l],v.dataset.title,'',{fr:SRC.fr,en:SRC.en,v:l,t:{fr:v.dataset.title,en:v.dataset.titleEn||v.dataset.title}});
       if(t>0){var go=function(){try{if(Math.abs(lbv.currentTime-t)>.6)lbv.currentTime=t;else stop();}catch(_){}},stop=function(){lbv.removeEventListener('loadedmetadata',go);lbv.removeEventListener('canplay',go);};lbv.addEventListener('loadedmetadata',go);lbv.addEventListener('canplay',go);setTimeout(stop,4000);if(lbv.readyState>=1)go();}
       if(window.a8track)a8track('video_chapter',{video_title:'Atelier 8 — Un film qui marque',chapter_time:t});});
     if(hasGsap&&!reduced&&fine){var stg=s.querySelector('.dtf-stage');gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:'26px'},{borderRadius:'12px',ease:'none'},0);
@@ -177,7 +177,7 @@
   var vio=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target.querySelector('video');if(!v)return;if(e.isIntersecting&&!reduced){v.preload='auto';v.play().then(function(){e.target.classList.add('playing');}).catch(function(){});}else{v.pause();}});},{threshold:.25}):null;
   d.querySelectorAll('.vid').forEach(function(m){
     if(vio&&!m.closest('#voir'))vio.observe(m);
-    m.addEventListener('click',function(){if(Date.now()-(lastMove||0)<350)return;openLb(m.dataset.src,m.dataset.title,m.querySelector('.tag.demo')?'demo':(m.querySelector('.tag.concept')?'concept':''),m.dataset.srcEn?{fr:m.dataset.src,en:m.dataset.srcEn,v:(m.dataset.v||lang)}:null);});
+    m.addEventListener('click',function(){if(Date.now()-(lastMove||0)<350)return;openLb(m.dataset.src,m.dataset.title,m.querySelector('.tag.demo')?'demo':(m.querySelector('.tag.concept')?'concept':''),m.dataset.srcEn?{fr:m.dataset.src,en:m.dataset.srcEn,v:(m.dataset.v||lang),t:{fr:m.dataset.title,en:m.dataset.titleEn||m.dataset.title}}:null);});
     m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();m.click();}});
   });
 
