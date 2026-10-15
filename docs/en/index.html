@@ -272,16 +272,38 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .hero-meta{position:absolute;right:var(--gutter);bottom:clamp(22px,4vh,40px);z-index:2;display:flex;gap:28px;align-items:center;color:var(--cream-3)}
 .hero-meta .tc{font-variant-numeric:tabular-nums;letter-spacing:.2em;color:var(--cream-2)}
 .gen{padding-block:clamp(40px,6vh,72px) clamp(56px,9vh,110px)}
-.gen-k{justify-self:end;align-self:start;color:var(--fg-3)}
-.hero-foot{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr) minmax(0,1fr);gap:clamp(20px,3vw,56px);align-items:start;border-top:1px solid var(--line);padding-top:clamp(18px,2.6vh,28px)}
+.hero-foot{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,72px);align-items:start;border-top:1px solid var(--line);padding-top:clamp(18px,2.6vh,28px)}
 .hero-foot>*{min-width:0}
 .hero-foot .body{max-width:30em;font-size:14.5px}
-.hero-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,32px)}
-.hero-list a{display:grid;gap:8px;color:var(--fg);padding-left:14px;border-left:1px solid var(--line);transition:border-color .5s var(--ease)}
-.hero-list a:hover{border-color:var(--gold)}
+.gen-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:clamp(14px,2vh,22px)}
+.gen-k{color:var(--fg-3)}
+.gen-head>*{white-space:nowrap}
+.gen-all{display:inline-flex;align-items:baseline;gap:8px;font-family:var(--mono);font-weight:500;font-size:var(--fs-mini);letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);transition:color .4s var(--ease)}
+.gen-all small{font-size:inherit;color:var(--fg-3)}
+.gen-all i{font-style:normal;display:inline-block;transition:transform .5s var(--ease)}
+.gen-all:hover{color:var(--gold-2)}.gen-all:hover i{transform:translateX(4px)}
+.hero-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,26px)}
+.hero-list a{display:grid;gap:14px;color:var(--fg)}
+.hero-list .th{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#0d0c0a;box-shadow:0 0 0 1px rgba(244,225,166,.08),0 18px 40px -22px rgba(0,0,0,.9);transition:box-shadow .6s var(--ease)}
+.hero-list .th img,.hero-list .th video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.01);transition:transform 1.2s var(--ease),opacity .5s var(--ease),filter .6s var(--ease)}
+.hero-list .th img{filter:saturate(.82) brightness(.86)}
+.hero-list .th video{opacity:0}
+.hero-list .th::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,7,6,0) 52%,rgba(8,7,6,.62));pointer-events:none}
+.hero-list .pl{position:absolute;left:12px;bottom:11px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;color:var(--cream);background:rgba(12,11,9,.38);border:1px solid rgba(244,225,166,.32);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background-color .5s var(--ease),border-color .5s var(--ease),color .5s var(--ease),transform .6s var(--ease)}
+.hero-list .pl svg{margin-left:2px}
+.hero-list .dur{position:absolute;right:12px;bottom:13px;z-index:2;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--cream-2);font-variant-numeric:tabular-nums}
+.hero-list .cap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:baseline;padding-top:12px;border-top:1px solid var(--line);position:relative}
+.hero-list .cap::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .8s var(--ease)}
 .hero-list .n{font-family:var(--mono);font-size:var(--fs-mini);letter-spacing:.16em;color:var(--fg-3)}
-.hero-list .t{font-weight:400;font-size:14.5px;line-height:1.35}
+.hero-list .t{font-weight:300;font-size:14.5px;line-height:1.35;color:var(--fg-2)}
+.hero-list .t b{font-weight:500;color:var(--fg);margin-right:2px}
 .hero-list .m{font-family:var(--mono);font-size:var(--fs-mini);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3)}
+.hero-list a:hover .th,.hero-list a:focus-visible .th{box-shadow:0 0 0 1px rgba(201,155,69,.55),0 26px 50px -24px rgba(0,0,0,.95)}
+.hero-list a:hover .th img,.hero-list a:focus-visible .th img{transform:scale(1.06);filter:saturate(1) brightness(1)}
+.hero-list a.pv .th video{opacity:1;transform:scale(1.04)}
+.hero-list a:hover .pl,.hero-list a:focus-visible .pl{background:var(--gold);border-color:var(--gold);color:#14110c;transform:scale(1.08)}
+.hero-list a:hover .cap::before,.hero-list a:focus-visible .cap::before{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.hero-list .th img,.hero-list .th video{transition:none}.hero-list a:hover .th img{transform:scale(1.01)}}
 .scrollhint{justify-self:end;display:flex;align-items:center;gap:10px;white-space:nowrap}
 .scrollhint i{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-style:normal;color:var(--fg);animation:hint 2.4s var(--ease) infinite}
 @keyframes hint{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
@@ -801,8 +823,12 @@ footer::before{content:"";position:absolute;left:var(--gutter);right:var(--gutte
   .b2.off,.b3.off,.b4.off{transform:translateY(-22px)}
   .hero-meta .scrollhint{display:none}
   .hero-foot{grid-template-columns:1fr}
-  .hero-list{grid-template-columns:1fr;gap:12px}
-  .gen-k{display:none}
+  .gen-films{margin-inline:calc(var(--gutter)*-1)}
+  .gen-head{padding-inline:var(--gutter)}
+  .gk2{display:none}
+  .hero-list{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutter) 6px;scroll-padding-inline:var(--gutter);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .hero-list::-webkit-scrollbar{display:none}
+  .hero-list li{flex:0 0 min(78vw,340px);scroll-snap-align:start}
   .clair,.cta{grid-template-columns:1fr}
   .clair{padding-top:72px}
   .cportrait{order:2;width:min(92%,400px)}
@@ -1353,12 +1379,14 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
   <section class="gen dark">
     <div class="hero-foot">
       <p class="body"><span lang="fr" hidden>Atelier 8 est un studio de motion design indépendant entre Paris et Hong Kong, fondé par Pascal EK Loui. Il réalise des films de marque de 15 à 90 secondes pour des start-ups, des éditeurs SaaS et des marques premium : script, storyboard, voix, musique et montage, sous une seule direction, du brief à la livraison.</span><span lang="en">Atelier 8 is an independent motion design studio between Paris and Hong Kong, founded by Pascal EK Loui. It makes brand films of 15 to 90 seconds for start-ups, SaaS companies and premium brands: script, storyboard, voice, music and edit, under one direction, from brief to delivery.</span></p>
-      <ul class="hero-list">
-        <li><a href="/en/films/" data-play="/media/films/nomos-s2.mp4" data-title="NOMOS Glashütte — Treize secondes" aria-label="Play the film NOMOS Glashütte — Treize secondes"><span class="n">01</span><span class="t">NOMOS Glashütte — <span lang="fr" hidden>Treize secondes (démo)</span><span lang="en">Thirteen Seconds (demo)</span></span><span class="m">30 s</span></a></li>
-        <li><a href="/en/films/" data-play="/media/films/aesop-s2.mp4" data-title="Aesop — Treize présents" aria-label="Play the film Aesop — Treize présents"><span class="n">02</span><span class="t">Aesop — <span lang="fr" hidden>Treize présents (démo)</span><span lang="en">Thirteen Gifts (demo)</span></span><span class="m">30 s</span></a></li>
-        <li><a href="/en/films/" data-play="/media/films/on-s3.mp4" data-title="On — Le Premier Pas" aria-label="Play the film On — Le Premier Pas"><span class="n">03</span><span class="t">On — <span lang="fr" hidden>Le Premier Pas (démo)</span><span lang="en">The First Step (demo)</span></span><span class="m">30 s</span></a></li>
-      </ul>
-      <span class="label gen-k"><span lang="fr" hidden>Générique</span><span lang="en">Credits</span></span>
+      <div class="gen-films">
+        <div class="gen-head"><span class="label gen-k"><span lang="fr" hidden>Générique<span class="gk2"> · trois films</span></span><span lang="en">Credits<span class="gk2"> · three films</span></span></span><a class="gen-all" href="/en/films/" data-go="films"><span lang="fr" hidden>Tous les films</span><span lang="en">All films</span> <small>(27)</small> <i aria-hidden="true">→</i></a></div>
+        <ul class="hero-list">
+        <li><a href="/en/films/" data-play="/media/films/nomos-s2.mp4" data-title="NOMOS Glashütte — Treize secondes" aria-label="Play the film NOMOS Glashütte — Treize secondes"><span class="th"><img src="/media/films/th/nomos.jpg" width="800" height="450" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/media/films/th/nomos.mp4" aria-hidden="true"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span><span class="dur">00:30</span></span><span class="cap"><span class="n">01</span><span class="t"><b>NOMOS Glashütte</b> <span lang="fr" hidden>Treize secondes</span><span lang="en">Thirteen Seconds</span></span><span class="m"><span lang="fr" hidden>Démo</span><span lang="en">Demo</span></span></span></a></li>
+        <li><a href="/en/films/" data-play="/media/films/aesop-s2.mp4" data-title="Aesop — Treize présents" aria-label="Play the film Aesop — Treize présents"><span class="th"><img src="/media/films/th/aesop.jpg" width="800" height="450" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/media/films/th/aesop.mp4" aria-hidden="true"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span><span class="dur">00:30</span></span><span class="cap"><span class="n">02</span><span class="t"><b>Aesop</b> <span lang="fr" hidden>Treize présents</span><span lang="en">Thirteen Gifts</span></span><span class="m"><span lang="fr" hidden>Démo</span><span lang="en">Demo</span></span></span></a></li>
+        <li><a href="/en/films/" data-play="/media/films/on-s3.mp4" data-title="On — Le Premier Pas" aria-label="Play the film On — Le Premier Pas"><span class="th"><img src="/media/films/th/on.jpg" width="800" height="450" alt="" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/media/films/th/on.mp4" aria-hidden="true"></video><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg></span><span class="dur">00:30</span></span><span class="cap"><span class="n">03</span><span class="t"><b>On</b> <span lang="fr" hidden>Le Premier Pas</span><span lang="en">The First Step</span></span><span class="m"><span lang="fr" hidden>Démo</span><span lang="en">Demo</span></span></span></a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -1958,6 +1986,14 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
   function lbSet(v){if(!lbAlt)return;lbAlt.v=v;lbVer.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
   if(lbVer)lbVer.addEventListener('click',function(e){var b=e.target.closest('button');if(!b||!lbAlt||b.dataset.v===lbAlt.v)return;var t=lbv.currentTime||0;lbSet(b.dataset.v);lbv.src=lbAlt[b.dataset.v];lbv.addEventListener('loadedmetadata',function f(){lbv.removeEventListener('loadedmetadata',f);try{lbv.currentTime=Math.min(t,(lbv.duration||t)-.1);}catch(_){}lbv.play().catch(function(){});});});
   function openLb(src,title,demo,alt){if(window.a8track)a8track('video_open',{video_title:title||''});lbAlt=alt||null;if(lbVer)lbVer.hidden=!alt;if(alt){lbSet(alt.v);src=alt[alt.v];}lbv.src=src;lbc.textContent=title||'';if(demo){var t=d.createElement('span');t.className='lb-demo';var en=(d.documentElement.lang==='en');t.textContent=demo==='concept'?(en?'Concept · unofficial demo':'Concept · démo non officielle'):(en?'Agency demo · not approved by the client':'Démo agence · non validée par le client');lbc.appendChild(t);}lb.classList.add('show');requestAnimationFrame(function(){requestAnimationFrame(function(){lb.classList.add('open');});});lbv.muted=false;lbv.play().catch(function(){});if(lenis)lenis.stop();}
+  /* générique : aperçu vidéo au survol (desktop, navigateurs riches) */
+  (function(){var fine=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(!fine||rm)return;
+    d.querySelectorAll('.hero-list a').forEach(function(a){var v=a.querySelector('video');if(!v)return;var t=null;
+      function on(){t=setTimeout(function(){if(!v.src){v.src=v.dataset.src;}var p=v.play();if(p&&p.then)p.then(function(){a.classList.add('pv');}).catch(function(){});else a.classList.add('pv');},140);}
+      function off(){clearTimeout(t);a.classList.remove('pv');setTimeout(function(){if(!a.classList.contains('pv')){v.pause();}},500);}
+      a.addEventListener('mouseenter',on);a.addEventListener('mouseleave',off);a.addEventListener('focus',on);a.addEventListener('blur',off);});
+  })();
   d.querySelectorAll('a[data-play]').forEach(function(a){a.addEventListener('click',function(e){if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();e.stopPropagation();openLb(a.dataset.play,a.dataset.title,a.hasAttribute('data-kind')?a.dataset.kind:'demo');});});
   var srVid=d.getElementById('srVid'),srMan=false;
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
