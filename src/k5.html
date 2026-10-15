@@ -544,11 +544,15 @@
       F32[o+6]=R();F32[o+7]=L+(y-s.y0)/(s.y1-s.y0||1);F32[o+8]=R();F32[o+9]=R()*6.2832; /* aR : apparition, ordre du tracé (haut→bas, gauche puis droite), dispersion, phase */
       F32[o+10]=b;F32[o+11]=.4+R()*.6;}                                         /* aE : lumière, opacité */
     var VS='precision highp float;attribute vec3 aN;attribute vec3 aL;attribute vec4 aR;attribute vec2 aE;'+
-      'uniform vec2 uC,uX,uG;uniform float uPiv,uU,uD,uF,uCy,uSy,uCp,uSp,uV,uTr,uDis,uT,uPx,uFilm;uniform vec4 uBr;uniform vec2 uRes;varying float vA;varying float vK;'+
+      'uniform vec2 uC,uX,uG;uniform float uPiv,uM1,uM2,uO0,uO1,uO2,uU,uD,uF,uCy,uSy,uCp,uSp,uV,uTr,uDis,uT,uPx,uFilm;uniform vec4 uBr;uniform vec2 uRes;varying float vA;varying float vK;'+
       'float ez(float k){k=clamp(k,0.,1.);return k*k*(3.-2.*k);}'+
       'void main(){float ap=clamp((uV-aR.x)*10.,0.,1.);'+
       'vec3 nb=vec3(aN.xy*uX,aN.z);vec3 n=nb+vec3(sin(uT*.6+aR.w)*8.,cos(uT*.5+aR.w*1.7)*8.,sin(uT*.35+aR.w*2.3)*8.);'+
       'float cP=cos(uPiv),sP=sin(uPiv);vec3 aP=vec3(aL.x*cP-(aL.z-24.)*sP,aL.y,aL.x*sP+(aL.z-24.)*cP+24.);'+
+      /* glissement droite<->gauche : chaque particule part avec un léger décalage, tourne autour de l'axe du 八, s'envole vers la caméra et se repose */
+      'float m1=ez((uM1-aR.z*.4)/.6),m2=ez((uM2-aR.z*.4)/.6),fl=sin(m1*3.14159)+sin(m2*3.14159);'+
+      'float tw=(m1+m2)*6.2832,cT=cos(tw),sT=sin(tw);aP=vec3(aP.x*cT-(aP.z-24.)*sT,aP.y,aP.x*sT+(aP.z-24.)*cT+24.);'+
+      'aP.x+=mix(mix(uO0,uO1,m1),uO2,m2);aP.z-=fl*150.*(.35+aR.z);aP.y+=fl*(fract(aR.w*3.7)-.5)*46.;aP.x+=fl*(fract(aR.w*5.3)-.5)*30.;'+
       'float k=ez((uTr-aR.y)*3.);vec3 p=mix(n,aP,k);'+
       'float k2=ez(uDis*1.5-aR.z*.5);vec3 g=vec3(aN.xy*uG,40.)+vec3(sin(uT*.5+aR.w)*3.,cos(uT*.4+aR.w)*3.,0.);'+
       'vec3 q=mix(aP,g,k2);q=mix(q,n,sin(k2*3.14159)*.45);p=mix(p,q,step(.0001,uDis));'+
@@ -559,7 +563,7 @@
       'vec2 dv=px-uBr.xy;float l=length(dv);if(uBr.z>0.&&l<uBr.w&&l>.01){float f=1.-l/uBr.w;px+=dv/l*f*f*uBr.w*.75*uBr.z;}'+
       'float kk=k*(1.-k2);float al=mix(aE.y,.15+.95*aE.x,kk)*ap*clamp(1.35-dd/1100.,.3,1.);if(dd<150.)al*=.45;'+
       'al*=mix(1.,.5*(1.-.4*uFilm),k2);'+
-      'vA=clamp(al,0.,1.);vK=kk*aE.x;'+
+      'al*=1.-.42*fl;vA=clamp(al,0.,1.);vK=kk*aE.x;'+
       'gl_Position=vec4(px.x/uRes.x*2.-1.,1.-px.y/uRes.y*2.,0.,1.);'+
       'gl_PointSize=uPx*(.7+fract(aR.w*7.31)*.5)*clamp(s*1.25,.85,3.2);}';
     var FS='precision mediump float;varying float vA;varying float vK;void main(){vec3 c=mix(vec3(.949,.941,.918),vec3(.92,.80,.56),.28*vK);gl_FragColor=vec4(c*vA,vA);}';
@@ -569,7 +573,7 @@
     gl.useProgram(pr);
     var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,F32,gl.STATIC_DRAW);
     [['aN',3,0],['aL',3,3],['aR',4,6],['aE',2,10]].forEach(function(a){var l=gl.getAttribLocation(pr,a[0]);gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,a[1],gl.FLOAT,false,48,a[2]*4);});
-    var U={};['uPiv','uC','uX','uG','uU','uD','uF','uCy','uSy','uCp','uSp','uV','uTr','uDis','uT','uPx','uFilm','uBr','uRes'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k);});
+    var U={};['uPiv','uM1','uM2','uO0','uO1','uO2','uC','uX','uG','uU','uD','uF','uCy','uSy','uCp','uSp','uV','uTr','uDis','uT','uPx','uFilm','uBr','uRes'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k);});
     gl.disable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);gl.clearColor(0,0,0,0);
     var W=0,H=0,dpr=1,cx=0,cy=0,uu=1,port=false,cmp=false;
     function resize(){var r=cv.getBoundingClientRect();W=Math.max(1,r.width);H=Math.max(1,r.height);dpr=Math.min(window.devicePixelRatio||1,2);
@@ -589,8 +593,8 @@
       if(live){yaw+=Math.sin(t*.35)*lr(.1,.04,rv)*(1-fl);pit+=Math.cos(t*.3)*.03*(1-fl);}
       var v=Math.max(.03+.97*ez(p/.35),live?.07*ez(t/2.5):.07);
       br.x+=(br.tx-br.x)*.25;br.y+=(br.ty-br.y)*.25;br.s+=(br.ts-br.s)*.12;
-      var ccx=cx;if(!port&&!cmp&&!live)ccx=W*.72;if(!port&&!cmp&&live){ccx=lr(lr(cx,W*.28,ez((p-.34)/.06)),W*.74,ez((p-.53)/.05));}gl.uniform2f(U.uC,ccx,cy);gl.uniform1f(U.uPiv,ez((p-.53)/.19)*6.2832);gl.uniform1f(U.uD,D);gl.uniform1f(U.uF,Fo);gl.uniform1f(U.uCy,Math.cos(yaw));gl.uniform1f(U.uSy,Math.sin(yaw));gl.uniform1f(U.uCp,Math.cos(pit));gl.uniform1f(U.uSp,Math.sin(pit));
-      gl.uniform1f(U.uV,v);gl.uniform1f(U.uTr,cl((p-.18)/.27)*2.4);gl.uniform1f(U.uDis,cl((p-.60)/.2));gl.uniform1f(U.uT,live?t:0);gl.uniform1f(U.uFilm,film||0);
+      var lat=!port&&!cmp,sc=uu*Fo/(D+24)*Math.cos(yaw),o0=lat&&!live?(W*.72-cx)/sc:0;gl.uniform2f(U.uC,cx,cy);gl.uniform1f(U.uO0,o0);gl.uniform1f(U.uO1,lat?(W*.28-cx)/sc:0);gl.uniform1f(U.uO2,lat?(W*.74-cx)/sc:0);gl.uniform1f(U.uM1,lat&&live?cl((p-.29)/.13):0);gl.uniform1f(U.uM2,lat&&live?cl((p-.465)/.10):0);gl.uniform1f(U.uPiv,ez((p-.58)/.16)*6.2832);gl.uniform1f(U.uD,D);gl.uniform1f(U.uF,Fo);gl.uniform1f(U.uCy,Math.cos(yaw));gl.uniform1f(U.uSy,Math.sin(yaw));gl.uniform1f(U.uCp,Math.cos(pit));gl.uniform1f(U.uSp,Math.sin(pit));
+      gl.uniform1f(U.uV,v);gl.uniform1f(U.uTr,cl((p-.18)/.27)*2.4);gl.uniform1f(U.uDis,cl((p-.62)/.2));gl.uniform1f(U.uT,live?t:0);gl.uniform1f(U.uFilm,film||0);
       gl.uniform4f(U.uBr,br.x,br.y,br.s>.01?br.s:0,br.r);
       gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.POINTS,0,N);}
     function brush(x,y,on){if(x!=null){br.tx=x;br.ty=y;if(br.s<.02){br.x=x;br.y=y;}}br.ts=on?1:0;}
