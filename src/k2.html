@@ -51,20 +51,8 @@
 <div class="view on" data-view="accueil" data-fr="Accueil" data-en="Home">
   <section class="hero dark" id="hero">
     <div class="hero-sticky">
-      <picture><source media="(orientation: portrait) and (max-width: 599px)" srcset="media/hero-poster-m.webp"><source media="(orientation: portrait) and (max-width: 1180px)" srcset="media/hero-poster-t.webp"><img class="hero-video" id="heroPoster" src="media/hero-poster.webp" alt="" fetchpriority="high" aria-hidden="true"></picture>
-      <video class="hero-video hv" id="heroVideo" muted playsinline preload="none" aria-hidden="true"></video>
-      <video class="hero-video hv" id="heroVideoHd" muted playsinline preload="none" aria-hidden="true"></video>
-      <script>/* hero : version légère d'abord, HD ensuite, chargées en mémoire pour un scrub sans attente réseau */
-      (function(){var mq=function(q){return window.matchMedia&&matchMedia(q).matches;};
-        if(mq('(prefers-reduced-motion: reduce)'))return;
-        var v=mq('(orientation: portrait) and (max-width: 599px)')?'-m':mq('(orientation: portrait) and (max-width: 1180px)')?'-t':'',c=navigator.connection||{},slow=c.saveData||/2g/.test(c.effectiveType||'');
-        var F={'':['media/hero-lo-v4.mp4','media/hero-hd-v4.mp4'],'-t':['media/hero-lo-t-v4.mp4','media/hero-hd-t-v4.mp4'],'-m':['media/hero-lo-m-v4.mp4','media/hero-hd-m-v4.mp4']}, lo=F[v][0], hd=F[v][1];
-        function get(u,pr){if(!window.fetch||location.protocol==='file:')return Promise.resolve(u);
-          return fetch(u,{priority:pr}).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return URL.createObjectURL(b);}).catch(function(){return u;});}
-        var H=window.__hero={};
-        H.lo=get(lo,'high');
-        if(!slow)H.hd=H.lo.then(function(){return get(hd,'auto');});
-      })();</script>
+      <video class="hero-video hero-film" id="heroFilm" muted playsinline loop preload="none" aria-hidden="true" data-src="media/films/polestar-s2.mp4" data-src-m="media/films/polestar-v3-md.mp4"></video>
+      <canvas class="hero-gl" id="heroGL" aria-hidden="true"></canvas>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="vf" aria-hidden="true">
         <i class="vc tl"></i><i class="vc tr"></i><i class="vc bl"></i><i class="vc br"></i>
@@ -81,7 +69,7 @@
         <div class="hero-title"><h1 class="giant"><span lang="fr">UN FILM QUI <span class="it">marque.</span></span><span lang="en" hidden>A FILM THAT <span class="it">leaves a mark.</span></span></h1></div>
       </div>
       <div class="beat bx b2" id="beat2"><p class="giant line"><span lang="fr"><span class="cap">D’ABORD L’IMPACT.</span> <span class="it">Ensuite, la marque.</span></span><span lang="en" hidden><span class="cap">IMPACT FIRST.</span> <span class="it">Then the brand.</span></span></p></div>
-      <div class="beat bx b3" id="beat3"><p class="giant line"><span lang="fr"><span class="cap">CE QUI TOMBE</span> <span class="it">finit par marquer.</span></span><span lang="en" hidden><span class="cap">WHAT FALLS</span> <span class="it">ends up leaving a mark.</span></span></p></div>
+      <div class="beat bx b3" id="beat3"><p class="giant line"><span lang="fr"><span class="cap">POINT PAR POINT,</span> <span class="it">plan par plan.</span></span><span lang="en" hidden><span class="cap">POINT BY POINT,</span> <span class="it">shot by shot.</span></span></p></div>
       <div class="beat bx b4" id="beat4"><p class="giant line"><span lang="fr"><span class="cap">ON NE REFAIT PAS</span> <span class="it">une première impression.</span></span><span lang="en" hidden><span class="cap">YOU DON’T GET</span> <span class="it">a second first impression.</span></span></p></div>
       <div class="beat bx b5" id="beat5">
         <p class="giant line"><span lang="fr"><span class="cap">VOTRE MARQUE</span> <span class="it">mérite son film.</span></span><span lang="en" hidden><span class="cap">YOUR BRAND</span> <span class="it">deserves its film.</span></span></p>
