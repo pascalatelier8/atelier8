@@ -199,6 +199,8 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .hv{opacity:0;transition:opacity .45s ease}.hv.ready{opacity:1}
 .hero-gl{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .hero-film{opacity:0;filter:saturate(.95) brightness(.78)}
+.hero-scrim{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(10,9,8,.62) 0%,rgba(10,9,8,.3) 45%,rgba(10,9,8,0) 72%),linear-gradient(0deg,rgba(10,9,8,.55) 0%,rgba(10,9,8,0) 45%)}
+@media (max-width:1180px) and (orientation:portrait){.hero-film{object-position:50% 50%;filter:saturate(.95) brightness(.72)}.hero-scrim{background:linear-gradient(180deg,rgba(10,9,8,.86) 0%,rgba(10,9,8,.74) 50%,rgba(10,9,8,.12) 76%,rgba(10,9,8,.4) 100%)}}
 .beat .reel-note{font-family:var(--mono);font-size:var(--fs-mini);letter-spacing:.08em;color:var(--cream-3);margin-top:14px;max-width:36em;line-height:1.5}
 .hero-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,18,16,.6) 0%,rgba(18,18,16,0) 26%,rgba(18,18,16,0) 48%,rgba(18,18,16,.9) 100%),linear-gradient(90deg,rgba(18,18,16,.72) 0%,rgba(18,18,16,.3) 36%,rgba(18,18,16,0) 62%)}
 .hero-shade::after{content:"";position:absolute;left:0;right:0;bottom:0;height:56%;background:linear-gradient(180deg,rgba(18,18,16,0),rgba(18,18,16,.55) 60%,rgba(18,18,16,.92));opacity:.9}
@@ -1317,8 +1319,9 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 <div class="view" data-view="accueil" data-fr="Accueil" data-en="Home">
   <section class="hero dark" id="hero">
     <div class="hero-sticky">
-      <video class="hero-video hero-film" id="heroFilm" muted playsinline loop preload="none" aria-hidden="true" data-src="/media/hero-reel-v1.mp4" data-src-m="/media/hero-reel-m-v1.mp4" data-poster="/media/hero-reel-v1.jpg" data-poster-m="/media/hero-reel-m-v1.jpg"></video>
+      <video class="hero-video hero-film" id="heroFilm" muted playsinline loop preload="none" aria-hidden="true" data-src="/media/hero-reel-v2.mp4" data-src-m="/media/hero-reel-m-v2.mp4" data-poster="/media/hero-reel-v2.jpg" data-poster-m="/media/hero-reel-m-v2.jpg"></video>
       <canvas class="hero-gl" id="heroGL" aria-hidden="true"></canvas>
+      <div class="hero-scrim" id="heroScrim" aria-hidden="true"></div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="vf" aria-hidden="true">
         <i class="vc tl"></i><i class="vc tr"></i><i class="vc bl"></i><i class="vc br"></i>
@@ -2423,7 +2426,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     var hero=d.getElementById('hero'), v=d.getElementById('heroVideo'), b1=d.getElementById('beat1'), tc=d.getElementById('heroTc'), BX=[['beat2',.20,.36],['beat3',.38,.54],['beat4',.56,.72],['beat5',.75,2]].map(function(a){return [d.getElementById(a[0]),a[1],a[2]];});
     if(!hero)return;
     var dur=0, seeking=false, sp=0, shown=-1, vHd=d.getElementById('heroVideoHd'), H=window.__hero||{};
-    var G=null, gcv=d.getElementById('heroGL'), film=d.getElementById('heroFilm'), fOn=false, fLd=false;
+    var G=null, gcv=d.getElementById('heroGL'), film=d.getElementById('heroFilm'), scr=d.getElementById('heroScrim'), fOn=false, fLd=false;
     try{G=initHeroGL(gcv,MARK,{lite:root.classList.contains('lite3d')});}catch(e){G=null;}
     if(!G&&gcv)gcv.style.display='none';
     function sm(k){k=k<0?0:k>1?1:k;return k*k*(3-2*k);}
@@ -2465,7 +2468,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     (function tick(){
       var hb=hero.getBoundingClientRect(), vis=hb.bottom>0&&hb.top<innerHeight, fa=reduced?0:sm((sp-.70)/.14);
       if(film&&!reduced){if(sp>.42&&!fLd){fLd=true;film.preload='auto';var pm=innerWidth<innerHeight&&film.dataset.srcM;film.poster=pm?film.dataset.posterM:film.dataset.poster;film.src=pm?film.dataset.srcM:film.dataset.src;}
-        film.style.opacity=fa.toFixed(3); var want=vis&&fLd&&sp>.62;
+        film.style.opacity=fa.toFixed(3); if(scr)scr.style.opacity=fa.toFixed(3); var want=vis&&fLd&&sp>.62;
         if(want&&!fOn){fOn=true;var q=film.play();if(q&&q.catch)q.catch(function(){});}else if(!want&&fOn){fOn=false;film.pause();}}
       if(G&&vis&&!reduced)G.draw(sp,true,fa); else if(G&&reduced)rdraw(false);
       beats(sp);

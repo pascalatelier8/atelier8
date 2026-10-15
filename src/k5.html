@@ -602,7 +602,7 @@
     var hero=d.getElementById('hero'), v=d.getElementById('heroVideo'), b1=d.getElementById('beat1'), tc=d.getElementById('heroTc'), BX=[['beat2',.20,.36],['beat3',.38,.54],['beat4',.56,.72],['beat5',.75,2]].map(function(a){return [d.getElementById(a[0]),a[1],a[2]];});
     if(!hero)return;
     var dur=0, seeking=false, sp=0, shown=-1, vHd=d.getElementById('heroVideoHd'), H=window.__hero||{};
-    var G=null, gcv=d.getElementById('heroGL'), film=d.getElementById('heroFilm'), fOn=false, fLd=false;
+    var G=null, gcv=d.getElementById('heroGL'), film=d.getElementById('heroFilm'), scr=d.getElementById('heroScrim'), fOn=false, fLd=false;
     try{G=initHeroGL(gcv,MARK,{lite:root.classList.contains('lite3d')});}catch(e){G=null;}
     if(!G&&gcv)gcv.style.display='none';
     function sm(k){k=k<0?0:k>1?1:k;return k*k*(3-2*k);}
@@ -644,7 +644,7 @@
     (function tick(){
       var hb=hero.getBoundingClientRect(), vis=hb.bottom>0&&hb.top<innerHeight, fa=reduced?0:sm((sp-.70)/.14);
       if(film&&!reduced){if(sp>.42&&!fLd){fLd=true;film.preload='auto';var pm=innerWidth<innerHeight&&film.dataset.srcM;film.poster=pm?film.dataset.posterM:film.dataset.poster;film.src=pm?film.dataset.srcM:film.dataset.src;}
-        film.style.opacity=fa.toFixed(3); var want=vis&&fLd&&sp>.62;
+        film.style.opacity=fa.toFixed(3); if(scr)scr.style.opacity=fa.toFixed(3); var want=vis&&fLd&&sp>.62;
         if(want&&!fOn){fOn=true;var q=film.play();if(q&&q.catch)q.catch(function(){});}else if(!want&&fOn){fOn=false;film.pause();}}
       if(G&&vis&&!reduced)G.draw(sp,true,fa); else if(G&&reduced)rdraw(false);
       beats(sp);
