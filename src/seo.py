@@ -149,21 +149,21 @@ def faqs(src):
 
 
 
-DTF_DATE = '2026-10-09T15:00:00+00:00'
+DTF_DATE = '2026-10-15T20:00:00+00:00'
 def dtf_video(lang):
     fr = lang == 'fr'
-    return {'@type': 'VideoObject', '@id': SITE + '/#deux-traits-' + lang,
-            'name': 'Atelier 8 — Deux traits' if fr else 'Atelier 8 — Two Strokes',
-            'description': ('Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : l’impact, la méthode en quatre étapes, les cinq agents IA et les films, en 61 secondes.' if fr
-                            else 'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the impact, the four-step method, the five AI agents and the films, in 61 seconds.'),
-            'thumbnailUrl': SITE + '/media/films/atelier8-deux-traits-' + lang + '.jpg',
-            'contentUrl': SITE + '/media/films/atelier8-deux-traits-' + lang + '.mp4',
-            'uploadDate': DTF_DATE, 'duration': 'PT61S', 'width': 1600, 'height': 900, 'inLanguage': lang,
+    return {'@type': 'VideoObject', '@id': SITE + '/#film-atelier-' + lang,
+            'name': 'Atelier 8 — Un film qui marque' if fr else 'Atelier 8 — A Film That Leaves a Mark',
+            'description': ('Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.' if fr
+                            else 'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.'),
+            'thumbnailUrl': SITE + '/media/films/atelier8-film-' + lang + '.jpg',
+            'contentUrl': SITE + '/media/films/atelier8-film-' + lang + '.mp4',
+            'uploadDate': DTF_DATE, 'duration': 'PT48S', 'width': 1600, 'height': 900, 'inLanguage': lang,
             'creator': {'@id': SITE + '/#org'}, 'publisher': {'@id': SITE + '/#org'}, 'isFamilyFriendly': True,
             'hasPart': [{'@type': 'Clip', 'name': n, 'startOffset': a, 'endOffset': b, 'url': url(lang, 'accueil') + '#dtf'}
-                        for n, a, b in zip(['L’impact', 'Deux traits', 'La méthode', 'Les agents', 'Les films', 'La signature'] if fr
-                                           else ['Impact', 'Two strokes', 'The method', 'The agents', 'The films', 'The signature'],
-                                           [0, 9, 13, 29, 35, 55], [9, 13, 29, 35, 55, 61])]}
+                        for n, a, b in zip(['Le brief', 'Les agents', 'Les films', 'La méthode', 'Les formats', 'La signature'] if fr
+                                           else ['The brief', 'The agents', 'The films', 'The method', 'The formats', 'The signature'],
+                                           [0, 10, 13, 17, 32, 41], [10, 13, 17, 32, 41, 48])]}
 
 def graph(lang, v, F, Q):
     org = {
