@@ -149,15 +149,15 @@ def faqs(src):
 
 
 
-DTF_DATE = '2026-10-15T20:00:00+00:00'
+DTF_DATE = '2026-10-16T09:30:00+00:00'
 def dtf_video(lang):
     fr = lang == 'fr'
     return {'@type': 'VideoObject', '@id': SITE + '/#film-atelier-' + lang,
             'name': 'Atelier 8 — Un film qui marque' if fr else 'Atelier 8 — A Film That Leaves a Mark',
             'description': ('Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.' if fr
                             else 'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.'),
-            'thumbnailUrl': SITE + '/media/films/atelier8-film-' + lang + '.jpg',
-            'contentUrl': SITE + '/media/films/atelier8-film-' + lang + '.mp4',
+            'thumbnailUrl': SITE + '/media/films/atelier8-film-v2-' + lang + '.jpg',
+            'contentUrl': SITE + '/media/films/atelier8-film-v2-' + lang + '.mp4',
             'uploadDate': DTF_DATE, 'duration': 'PT48S', 'width': 1600, 'height': 900, 'inLanguage': lang,
             'creator': {'@id': SITE + '/#org'}, 'publisher': {'@id': SITE + '/#org'}, 'isFamilyFriendly': True,
             'hasPart': [{'@type': 'Clip', 'name': n, 'startOffset': a, 'endOffset': b, 'url': url(lang, 'accueil') + '#dtf'}

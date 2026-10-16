@@ -5,7 +5,7 @@
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/"/>
-<video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-fr.jpg</video:thumbnail_loc><video:title>Atelier 8 — Un film qui marque</video:title><video:description>Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-fr.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-15T20:00:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-v2-fr.jpg</video:thumbnail_loc><video:title>Atelier 8 — Un film qui marque</video:title><video:description>Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-v2-fr.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-16T09:30:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 </url>
 <url>
 <loc>https://atelier8.io/films/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
@@ -75,7 +75,7 @@
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/"/>
-<video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-en.jpg</video:thumbnail_loc><video:title>Atelier 8 — A Film That Leaves a Mark</video:title><video:description>Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-en.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-15T20:00:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-v2-en.jpg</video:thumbnail_loc><video:title>Atelier 8 — A Film That Leaves a Mark</video:title><video:description>Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-v2-en.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-16T09:30:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 </url>
 <url>
 <loc>https://atelier8.io/en/films/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
