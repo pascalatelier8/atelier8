@@ -2077,16 +2077,21 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
       if(hasGsap)gsap.set([stg,v,seal,s.querySelector('.dtf-head'),s.querySelector('.dtf-ch')],{clearProps:'transform,borderRadius,opacity,visibility'});
       if(!hasGsap||reduced)return;
       var br=parseFloat(getComputedStyle(v).borderTopLeftRadius)||12;
+      /* écrans tactiles et petits écrans : PAS d'épinglage (il bloquait le défilement natif et sautait quand la barre d'adresse bouge).
+         Le film grandit simplement en suivant le doigt, de 88 % jusqu'au bord à bord, puis la page continue normalement. */
+      if(!fine||innerWidth<900){
+        var edge=function(){return Math.max(1,(document.documentElement.clientWidth||innerWidth)/(v.offsetWidth||1));};
+        dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'top bottom',end:'center 55%',scrub:true,invalidateOnRefresh:true}})
+          .fromTo(v,{scale:.88,borderRadius:br*2},{scale:edge,borderRadius:0,ease:'none'},0));
+        return;
+      }
       dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6,invalidateOnRefresh:true}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:br*2.2},{borderRadius:br,ease:'none'},0));
       /* zoom avant : le film se fige au centre et grandit jusqu'au plein écran ; en portrait (téléphone), bord à bord en largeur pour rester net */
-      var cover=function(){var w=v.offsetWidth||1,h=v.offsetHeight||1;return innerWidth<innerHeight?innerWidth/w:Math.max(innerWidth/w,innerHeight/h)*1.01;};
+      var cover=function(){var w=v.offsetWidth||1,h=v.offsetHeight||1;return Math.max(innerWidth/w,innerHeight/h)*1.01;};
       dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'center center',end:'+=100%',pin:s,pinSpacing:true,scrub:.6,anticipatePin:1,invalidateOnRefresh:true}})
         .fromTo(v,{scale:1,borderRadius:br},{scale:cover,borderRadius:0,ease:'power2.inOut',duration:1,immediateRender:false},0)
         .to(seal,{autoAlpha:0,scale:.8,ease:'none',duration:.3},0)
         .to({},{duration:.2}));
-      /* téléphone / tablette en portrait : le film reste net (bord à bord), le reste de la section s'efface pendant le zoom puis revient */
-      if(innerWidth<innerHeight){var tl=dtfTl[dtfTl.length-1],rest=[s.querySelector('.dtf-head'),s.querySelector('.dtf-ch')];
-        tl.to(rest,{opacity:.06,ease:'power1.out',duration:.55},0).to(rest,{opacity:1,ease:'power1.in',duration:.2},1);}
     };
     dtfAnim();
     dtfSync();
