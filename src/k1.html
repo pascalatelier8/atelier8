@@ -1222,6 +1222,9 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 .lite3d .hero-video{filter:none}
 .dtf-stage{z-index:3}
 .dtf-vid{transform-origin:50% 50%}
+/* écrans tactiles : le film est posé bord à bord et s'ouvre par découpe (clip-path), sans transformation : évite les images fantômes de Safari iOS pendant le défilement */
+.dtf-stage.tz{will-change:auto;transform:none!important}
+.dtf-vid.bleed{width:100vw;max-width:none;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none;transform:none!important;-webkit-clip-path:inset(7% 8% round 18px);clip-path:inset(7% 8% round 18px)}
 
 /* ===== vue Usages ===== */
 .uc-stats{padding-block:clamp(72px,12vh,150px) clamp(48px,8vh,96px);border-top:1px solid var(--line)}

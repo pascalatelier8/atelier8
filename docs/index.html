@@ -1235,6 +1235,9 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 .lite3d .hero-video{filter:none}
 .dtf-stage{z-index:3}
 .dtf-vid{transform-origin:50% 50%}
+/* écrans tactiles : le film est posé bord à bord et s'ouvre par découpe (clip-path), sans transformation : évite les images fantômes de Safari iOS pendant le défilement */
+.dtf-stage.tz{will-change:auto;transform:none!important}
+.dtf-vid.bleed{width:100vw;max-width:none;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none;transform:none!important;-webkit-clip-path:inset(7% 8% round 18px);clip-path:inset(7% 8% round 18px)}
 
 /* ===== vue Usages ===== */
 .uc-stats{padding-block:clamp(72px,12vh,150px) clamp(48px,8vh,96px);border-top:1px solid var(--line)}
@@ -2075,14 +2078,19 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
       dtfTl.forEach(function(t){try{if(t.scrollTrigger)t.scrollTrigger.kill();t.kill();}catch(_){}});dtfTl=[];
       var stg=s.querySelector('.dtf-stage'),seal=s.querySelector('.dtf-seal');
       if(hasGsap)gsap.set([stg,v,seal,s.querySelector('.dtf-head'),s.querySelector('.dtf-ch')],{clearProps:'transform,borderRadius,opacity,visibility'});
+      v.classList.remove('bleed');stg.classList.remove('tz');v.style.clipPath='';v.style.webkitClipPath='';
       if(!hasGsap||reduced)return;
       var br=parseFloat(getComputedStyle(v).borderTopLeftRadius)||12;
       /* écrans tactiles et petits écrans : PAS d'épinglage (il bloquait le défilement natif et sautait quand la barre d'adresse bouge).
          Le film grandit simplement en suivant le doigt, de 88 % jusqu'au bord à bord, puis la page continue normalement. */
       if(!fine||innerWidth<900){
-        var edge=function(){return Math.max(1,(document.documentElement.clientWidth||innerWidth)/(v.offsetWidth||1));};
+        /* le film est posé bord à bord ; il s'ouvre par une découpe qui s'agrandit (aucune transformation sur la vidéo : Safari iOS
+           laissait des images fantômes du bloc pendant le défilement quand la vidéo était mise à l'échelle) */
+        v.classList.add('bleed');stg.classList.add('tz');
+        var o={i:7,j:8,r:18},clip=function(){var c='inset('+o.i.toFixed(2)+'% '+o.j.toFixed(2)+'% round '+o.r.toFixed(1)+'px)';v.style.clipPath=c;v.style.webkitClipPath=c;};
+        clip();
         dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'top bottom',end:'center 55%',scrub:true,invalidateOnRefresh:true}})
-          .fromTo(v,{scale:.88,borderRadius:br*2},{scale:edge,borderRadius:0,ease:'none'},0));
+          .fromTo(o,{i:7,j:8,r:18},{i:0,j:0,r:0,ease:'none',onUpdate:clip},0));
         return;
       }
       dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6,invalidateOnRefresh:true}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:br*2.2},{borderRadius:br,ease:'none'},0));
