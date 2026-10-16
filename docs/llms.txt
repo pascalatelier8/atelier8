@@ -105,6 +105,9 @@ Oui, et je le dis. Cinq agents IA exécutent : recherche, premiers jets, découp
 ### Que font vos agents IA ?
 Chacun tient un poste avec un cahier des charges écrit : ce qu’il reçoit, ce qu’il rend, ce qu’il ne fait pas. Les fiches sont sur la page L’atelier. Voix et visages à l’écran sont humains ou de synthèse, précisés au devis.
 
+### Vos agents IA sont-ils des outils du marché ?
+Non. Ce sont des compétences que j’ai mises au point moi-même, pendant des mois d’expérimentation : écrire un script, découper un storyboard, monter l’image, mixer le son. Chacune a été testée et refaite sur des centaines de plans avant d’être confiée à un agent. Les modèles d’IA utilisés sont ceux du marché ; la façon de les faire travailler est propre à l’atelier.
+
 ### Utilisez-vous des modèles ?
 Chaque film est écrit, mis en scène et monté pour son client. Atelier 8 a ses propres outils de travail ; aucun film n’est un modèle rempli avec un nouveau logo.
 
@@ -113,6 +116,12 @@ Un film court où le texte, les formes, les interfaces et les images sont animé
 
 ### Studio, agence ou freelance : quelle différence ?
 Une agence mobilise souvent plusieurs interlocuteurs, et ses prix le reflètent. Un freelance tient en général un seul poste, souvent l’animation, et vous laisse le script et le son. Atelier 8 est entre les deux : une seule personne répond du film entier, du script au son, avec des prix affichés et une livraison en une à six semaines.
+
+### Pourquoi est-ce plus rapide qu’une agence ?
+Parce que le travail long a été fait avant votre projet : les compétences de chaque poste sont déjà au point. Il n’y a ni réunion de lancement, ni ateliers, ni chaîne d’interlocuteurs à coordonner : vous parlez à la personne qui écrit et monte votre film. Comptez 10 à 20 jours ouvrés pour un Portrait de 45 à 90 secondes, quand une agence annonce en général 6 à 10 semaines pour un film animé de cette durée.
+
+### Moins cher qu’une agence, est-ce moins bien ?
+Le prix d’une agence paie aussi la coordination : chef de projet, réunions, allers-retours entre équipes. Ici, vous payez le film. Chaque plan est relu par moi avant de vous être montré, et le prix, le délai et les révisions sont écrits avant de commencer.
 
 ### Quelle durée choisir pour une vidéo d’entreprise ?
 Moins de 30 secondes pour une annonce, une publicité ou un post : on retient une seule idée. De 45 à 90 secondes pour présenter votre société ou votre produit, sur votre site, en rendez-vous ou sur un salon. Au-delà, l’attention baisse vite : mieux vaut plusieurs films courts qu’un seul long.

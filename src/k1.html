@@ -290,6 +290,36 @@ body.menu-open .burger::after{top:20px;transform:rotate(-45deg)}
 .gen .gen-films{margin-top:clamp(56px,9vh,100px)}
 .cmark{align-self:center;justify-self:center;width:min(62%,260px);padding-bottom:clamp(64px,10vh,120px)}
 .cmark svg{display:block;width:100%;height:auto;fill:var(--gold);opacity:.88;filter:drop-shadow(0 0 40px rgba(201,155,69,.25))}
+.mise{padding-block:clamp(96px,14vh,170px)}
+.mz-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,96px);align-items:start}
+.mz-grid>*{min-width:0}
+.mz-head .paren{display:block;margin-bottom:22px}
+.mise .big em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em;color:var(--gold)}
+.mz-body{padding-top:clamp(4px,4.6vh,52px)}
+.mz-body .body{font-size:clamp(16px,1.3vw,20px);line-height:1.6;color:var(--fg-2);max-width:36em}
+.mz-body .body+.body{margin-top:1em;color:var(--fg)}
+.mz-spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(48px,8vh,88px);border-top:1px solid var(--line)}
+.mz-spec>div{padding:18px 18px 0 0}
+.mz-spec>div+div{padding-left:22px;border-left:1px solid var(--line)}
+.mz-spec dt{font-family:var(--mono);font-size:var(--fs-mini);letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3)}
+.mz-spec dd{margin-top:10px;font-weight:300;font-size:clamp(20px,1.9vw,30px);line-height:1.2;letter-spacing:-.01em;color:var(--fg)}
+.hm-note{margin-top:clamp(36px,6vh,64px);padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 22px;align-items:baseline;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--fg-2)}
+.hm-note a{display:inline-flex;gap:8px;align-items:center;padding-bottom:6px;border-bottom:1px solid var(--gold);font-family:var(--mono);font-weight:500;font-size:var(--fs-mini);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2);white-space:nowrap;transition:color .4s var(--ease)}
+.hm-note a i{font-style:normal;display:inline-block;transition:transform .5s var(--ease)}
+.hm-note a:hover{color:var(--cream)}.hm-note a:hover i{transform:translateX(4px)}
+.cmp{margin-top:clamp(48px,8vh,88px)}
+.cmp h3{font-family:var(--mono);font-weight:500;font-size:var(--fs-mini);letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);margin-bottom:16px}
+.cmpt{width:100%;border-collapse:collapse;border-top:1px solid var(--line)}
+.cmpt th,.cmpt td{text-align:left;vertical-align:top;padding:16px 20px 16px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45}
+.cmpt thead th,.cmpt tbody th{font-family:var(--mono);font-weight:500;font-size:var(--fs-mini);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3)}
+.cmpt tbody th{width:20%;padding-top:19px}
+.cmpt td{color:var(--fg-2);width:40%}
+.cmpt .a8{padding-left:20px;background:rgba(201,155,69,.09);color:var(--fg)}
+.cmpt td.a8{font-weight:500}
+.cmpt thead th.a8{color:var(--gold-3)}
+.cmpt sup{font-size:.68em;margin-left:2px;color:var(--fg-3)}
+.cmpt .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cmp .note{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--fg-3);max-width:60em}
 .gen-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:clamp(14px,2vh,22px)}
 .gen-k{color:var(--fg-3)}
 .gen-head>*{white-space:nowrap}
@@ -838,6 +868,17 @@ footer::before{content:"";position:absolute;left:var(--gutter);right:var(--gutte
   .b2.off,.b3.off,.b4.off{transform:translateY(-22px)}
   .hero-meta .scrollhint{display:none}
   .tl-grid{grid-template-columns:1fr;border-top:0}
+  .mz-grid{grid-template-columns:1fr;gap:18px}
+  .mz-body{padding-top:0}
+  .mz-spec{grid-template-columns:1fr}
+  .mz-spec>div,.mz-spec>div+div{padding:16px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .mz-spec dd{font-size:22px}
+  .cmpt,.cmpt thead,.cmpt tbody{display:block}
+  .cmpt tr{display:grid;grid-template-columns:1fr 1fr}
+  .cmpt thead th:first-child{display:none}
+  .cmpt tbody th{grid-column:1/-1;width:auto;border-bottom:0;padding:16px 0 6px}
+  .cmpt td{width:auto;padding:10px 12px 14px 0;font-size:14px}
+  .cmpt .a8{padding-left:12px}
   .gen-intro{grid-template-columns:1fr;gap:14px}
   .gen-lk{padding-top:0}
   .tl-photo{height:min(66svh,560px);border-top:1px solid var(--line)}

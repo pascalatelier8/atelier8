@@ -241,7 +241,7 @@
   }
   var lastMove=0; function mv(){lastMove=Date.now();}
   addEventListener('wheel',mv,{passive:true}); addEventListener('touchmove',mv,{passive:true}); addEventListener('scroll',mv,{passive:true});
-  d.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();if(Date.now()-lastMove<350&&!a.closest('.nav,.menu,.navmark'))return;go(a.dataset.go);});
+  d.addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;e.preventDefault();if(Date.now()-lastMove<350&&!a.closest('.nav,.menu,.navmark'))return;var same=a.dataset.go===cur;go(a.dataset.go);if(a.dataset.to){setTimeout(function(){var el=d.getElementById(a.dataset.to);if(!el)return;if(lenis)lenis.scrollTo(el,{offset:-70});else el.scrollIntoView({behavior:reduced?'auto':'smooth'});},(same||reduced)?80:1750);}});
   addEventListener('popstate',function(){var v=PATHMODE&&!location.hash?pathView():location.hash.slice(1);if(viewEls[v]&&v!==cur){go(v,{silent:true});setMeta(v);}});
 
   /* menu mobile */
