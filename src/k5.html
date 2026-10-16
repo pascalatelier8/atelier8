@@ -147,7 +147,7 @@
   function srSet(v){if(!srVid)return;if(srVid.dataset.v===v)return;srVid.dataset.v=v;var src=v==='en'?srVid.dataset.srcEn:srVid.dataset.src,vid=srVid.querySelector('video'),img=srVid.querySelector('img');if(img)img.src=src.replace('.mp4','.jpg');if(vid){var pl=!vid.paused;srVid.classList.remove('playing');vid.src=src;if(pl)vid.play().then(function(){srVid.classList.add('playing');}).catch(function(){});}var g=srVid.closest('.film').querySelector('.ver');if(g)g.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.v===v));});}
   function syncVer(){if(!srMan)srSet(lang);if(dtfSync)dtfSync();}
   /* ---------- le film de l’atelier : Deux traits ---------- */
-  var dtfSync=null;
+  var dtfSync=null, dtfAnim=null;
   (function(){
     var s=d.getElementById('dtf'); if(!s)return;
     var v=d.getElementById('dtfVid'), pv=v.querySelector('video'), img=v.querySelector('img'), man=false;
@@ -160,14 +160,26 @@
       openLb(SRC[l],v.dataset.title,'',{fr:SRC.fr,en:SRC.en,v:l,t:{fr:v.dataset.title,en:v.dataset.titleEn||v.dataset.title}});
       if(t>0){var go=function(){try{if(Math.abs(lbv.currentTime-t)>.6)lbv.currentTime=t;else stop();}catch(_){}},stop=function(){lbv.removeEventListener('loadedmetadata',go);lbv.removeEventListener('canplay',go);};lbv.addEventListener('loadedmetadata',go);lbv.addEventListener('canplay',go);setTimeout(stop,4000);if(lbv.readyState>=1)go();}
       if(window.a8track)a8track('video_chapter',{video_title:'Atelier 8 — Un film qui marque',chapter_time:t});});
-    if(hasGsap&&!reduced&&fine){var stg=s.querySelector('.dtf-stage');gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:'26px'},{borderRadius:'12px',ease:'none'},0);
-      /* zoom avant : le film se fige au centre et grandit jusqu'au plein écran avant la section suivante */
-      var cover=function(){var r=v.getBoundingClientRect(),sc=+gsap.getProperty(v,'scale')||1,w=r.width/sc,h=r.height/sc;return Math.max(innerWidth/w,innerHeight/h)*1.01;};
-      var seal=s.querySelector('.dtf-seal');
-      gsap.timeline({scrollTrigger:{trigger:stg,start:'center center',end:'+=100%',pin:s,pinSpacing:true,scrub:.6,anticipatePin:1,invalidateOnRefresh:true}})
-        .fromTo(v,{scale:1,borderRadius:'12px'},{scale:cover,borderRadius:'0px',ease:'power2.inOut',duration:1,immediateRender:false},0)
+    /* zoom au défilement : (re)créé à chaque affichage de l'accueil (killScroll() tue tous les ScrollTrigger quand on change de page), sur tous les appareils */
+    var dtfTl=[];
+    dtfAnim=function(){
+      dtfTl.forEach(function(t){try{if(t.scrollTrigger)t.scrollTrigger.kill();t.kill();}catch(_){}});dtfTl=[];
+      var stg=s.querySelector('.dtf-stage'),seal=s.querySelector('.dtf-seal');
+      if(hasGsap)gsap.set([stg,v,seal,s.querySelector('.dtf-head'),s.querySelector('.dtf-ch')],{clearProps:'transform,borderRadius,opacity,visibility'});
+      if(!hasGsap||reduced)return;
+      var br=parseFloat(getComputedStyle(v).borderTopLeftRadius)||12;
+      dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'top 95%',end:'top 22%',scrub:.6,invalidateOnRefresh:true}}).fromTo(stg,{scale:.86},{scale:1,ease:'none'},0).fromTo(v,{borderRadius:br*2.2},{borderRadius:br,ease:'none'},0));
+      /* zoom avant : le film se fige au centre et grandit jusqu'au plein écran ; en portrait (téléphone), bord à bord en largeur pour rester net */
+      var cover=function(){var w=v.offsetWidth||1,h=v.offsetHeight||1;return innerWidth<innerHeight?innerWidth/w:Math.max(innerWidth/w,innerHeight/h)*1.01;};
+      dtfTl.push(gsap.timeline({scrollTrigger:{trigger:stg,start:'center center',end:'+=100%',pin:s,pinSpacing:true,scrub:.6,anticipatePin:1,invalidateOnRefresh:true}})
+        .fromTo(v,{scale:1,borderRadius:br},{scale:cover,borderRadius:0,ease:'power2.inOut',duration:1,immediateRender:false},0)
         .to(seal,{autoAlpha:0,scale:.8,ease:'none',duration:.3},0)
-        .to({},{duration:.2});}
+        .to({},{duration:.2}));
+      /* téléphone / tablette en portrait : le film reste net (bord à bord), le reste de la section s'efface pendant le zoom puis revient */
+      if(innerWidth<innerHeight){var tl=dtfTl[dtfTl.length-1],rest=[s.querySelector('.dtf-head'),s.querySelector('.dtf-ch')];
+        tl.to(rest,{opacity:.06,ease:'power1.out',duration:.55},0).to(rest,{opacity:1,ease:'power1.in',duration:.2},1);}
+    };
+    dtfAnim();
     dtfSync();
   })();
   if(srVid){var srG=srVid.closest('.film').querySelector('.ver');if(srG)srG.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;srMan=true;srSet(b.dataset.v);});syncVer();}
@@ -328,6 +340,7 @@
     setStep(0);
   }
   function initHome(){
+    if(dtfAnim)dtfAnim();
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
     /* tactile, petits écrans : grille directe. Desktop : ruban circulaire, qui se pose en grande grille (3 colonnes) qu'on continue de faire défiler */
