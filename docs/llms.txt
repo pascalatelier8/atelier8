@@ -45,15 +45,15 @@ Les films de marques tierces sont des concepts ou des démos : aucun n’a été
 - HubSpot — The Sprocket (30 s, concept, démo non officielle) : https://atelier8.io/media/films/hubspot-s2.mp4
 - ClickUp — The Thread (30 s, concept, démo non officielle) : https://atelier8.io/media/films/clickup-s2.mp4
 - monday.com — Colonne Statut (30 s, concept, démo non officielle) : https://atelier8.io/media/films/monday-s2.mp4
-- Mailchimp — La courbe qui s’aplatit (15 s, démo réalisée pour une agence, non validée par la marque) : https://atelier8.io/media/films/mailchimp.mp4
-- WhatsApp — Entre vous deux (18 s, démo réalisée pour une agence, non validée par la marque) : https://atelier8.io/media/films/whatsapp.mp4
-- Assos — La Soufflerie (30 s, concept, démo non officielle) : https://atelier8.io/media/films/assos.mp4
-- Acne Studios — La Planche contact (30 s, concept, démo non officielle) : https://atelier8.io/media/films/acne.mp4
-- Deel — Du premier au dernier jour (30 s, concept, démo non officielle) : https://atelier8.io/media/films/deel.mp4
-- Fieldwire — Le Plan vivant (30 s, concept, démo non officielle) : https://atelier8.io/media/films/fieldwire.mp4
-- Klook — Tout un monde d’amusement (30 s, concept, démo non officielle) : https://atelier8.io/media/films/klook.mp4
-- Open Fashion — The Edit (20 s, concept, démo non officielle) : https://atelier8.io/media/films/openfashion-edit.mp4
-- Linear — Thread to Done (30 s, concept, démo non officielle) : https://atelier8.io/media/films/linear.mp4
+- Mailchimp — La courbe qui s’aplatit (15 s, démo réalisée pour une agence, non validée par la marque) : https://atelier8.io/media/films/mailchimp-s2.mp4
+- WhatsApp — Entre vous deux (18 s, démo réalisée pour une agence, non validée par la marque) : https://atelier8.io/media/films/whatsapp-s2.mp4
+- Assos — La Soufflerie (30 s, concept, démo non officielle) : https://atelier8.io/media/films/assos-s2.mp4
+- Acne Studios — La Planche contact (30 s, concept, démo non officielle) : https://atelier8.io/media/films/acne-s2.mp4
+- Deel — Du premier au dernier jour (30 s, concept, démo non officielle) : https://atelier8.io/media/films/deel-s2.mp4
+- Fieldwire — Le Plan vivant (30 s, concept, démo non officielle) : https://atelier8.io/media/films/fieldwire-s2.mp4
+- Klook — Tout un monde d’amusement (30 s, concept, démo non officielle) : https://atelier8.io/media/films/klook-s2.mp4
+- Open Fashion — The Edit (20 s, concept, démo non officielle) : https://atelier8.io/media/films/openfashion-edit-s2.mp4
+- Linear — Thread to Done (30 s, concept, démo non officielle) : https://atelier8.io/media/films/linear-s2.mp4
 
 ## Cas d’usage
 
