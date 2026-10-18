@@ -500,8 +500,9 @@
     upd();new MutationObserver(upd).observe(root,{attributes:true,attributeFilter:['lang']});
     setTimeout(function(){f.classList.add('is-in');},2400);
     var lbx=d.getElementById('lb');
-    function hide(){var o=body.classList.contains('menu-open')||(lbx&&lbx.classList.contains('open'));f.style.opacity=o?'0':'';f.style.pointerEvents=o?'none':'';}
+    function hide(){var o=body.classList.contains('menu-open')||(lbx&&lbx.classList.contains('open'))||(cur==='accueil'&&scrollY<innerHeight*.6);f.style.opacity=o?'0':'';f.style.pointerEvents=o?'none':'';}
     new MutationObserver(hide).observe(body,{attributes:true,attributeFilter:['class']});if(lbx)new MutationObserver(hide).observe(lbx,{attributes:true,attributeFilter:['class']});
+    addEventListener('scroll',hide,{passive:true});setInterval(hide,700);hide();
     f.addEventListener('click',function(){if(window.a8track)a8track('whatsapp_click',{});});
   })();
   /* ---------- consentement et mesure d'audience : Google Analytics ne se charge qu'après « Accepter » ---------- */
