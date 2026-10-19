@@ -1441,7 +1441,7 @@ html[lang="en"] .dtf-seal .t-fr,html:not([lang="en"]) .dtf-seal .t-en{display:no
 <div class="view" data-view="accueil" data-fr="Accueil" data-en="Home">
   <section class="hero dark" id="hero">
     <div class="hero-sticky">
-      <video class="hero-video hero-film" id="heroFilm" muted playsinline loop preload="none" aria-hidden="true" data-src="/media/hero-reel-v2.mp4" data-src-m="/media/hero-reel-m-v2.mp4" data-poster="/media/hero-reel-v2.jpg" data-poster-m="/media/hero-reel-m-v2.jpg"></video>
+      <video class="hero-video hero-film" id="heroFilm" muted playsinline loop preload="none" aria-hidden="true" data-base="/media/hero/hero-v3-" data-reels="5" data-n="28" data-n-m="27"></video>
       <canvas class="hero-gl" id="heroGL" aria-hidden="true"></canvas>
       <div class="hero-scrim" id="heroScrim" aria-hidden="true"></div>
       <div class="hero-shade" aria-hidden="true"></div>
@@ -2717,7 +2717,7 @@ var k="1.1.18";function w(r,t,e){return Math.max(r,Math.min(t,e))}function W(r,t
     var shownT=-1;
     (function tick(){
       var hb=hero.getBoundingClientRect(), vis=hero.offsetHeight>0&&hb.bottom>0&&hb.top<innerHeight; if(hero.offsetHeight){var hs0=hero.offsetHeight-vhS||1; sp=clamp(-hb.top/hs0);} var fa=reduced?0:sm((sp-.70)/.14);
-      if(film&&!reduced){if(sp>.42&&!fLd){fLd=true;film.preload='auto';var pm=innerWidth<innerHeight&&film.dataset.srcM;film.poster=pm?film.dataset.posterM:film.dataset.poster;film.src=pm?film.dataset.srcM:film.dataset.src;}
+      if(film&&!reduced){if(sp>.42&&!fLd){fLd=true;film.preload='auto';var fb=film.dataset, pm=innerWidth<innerHeight, nR=+fb.reels||1, rr=1+Math.floor(Math.random()*nR), base=fb.base+rr+(pm?'-m':''), nS=+(pm?fb.nM:fb.n)||1, st=Math.floor(Math.random()*nS)*19/30+.002;film.addEventListener('loadedmetadata',function(){try{film.currentTime=st;}catch(e){}},{once:true});film.poster=base+'.jpg';film.src=base+'.mp4';film.dataset.pick=rr+'@'+st.toFixed(3);}
         film.style.opacity=fa.toFixed(3); if(scr)scr.style.opacity=fa.toFixed(3); var want=vis&&fLd&&sp>.62;
         if(want&&!fOn){fOn=true;var q=film.play();if(q&&q.catch)q.catch(function(){});}else if(!want&&fOn){fOn=false;film.pause();}}
       if(G&&vis&&!reduced)G.draw(sp,true,fa); else if(G&&reduced)rdraw(false);
