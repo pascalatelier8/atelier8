@@ -452,6 +452,50 @@ h1{font-weight:300;font-size:clamp(40px,9vw,96px);margin:0;letter-spacing:.02em}
 """
 
 
+def share_slug(src):
+    b = os.path.basename(src)[:-4]
+    b = re.sub(r'-(s\d+|v\d+)(-(fr|en))?$', '', b)
+    return re.sub(r'-(fr|en)$', '', b) or 'film'
+
+
+def share_pages(F):
+    """Une petite page par film (FR et EN) : aperçu LinkedIn avec l'image du film, puis renvoi vers l'ancre du film sur /films/."""
+    seen, out = set(), []
+    for f in F:
+        b = share_slug(f['src']); k, i = b, 2
+        while k in seen:
+            k = f'{b}-{i}'; i += 1
+        seen.add(k)
+        for lang in ('fr', 'en'):
+            e = lambda x: H.escape(x, quote=True)
+            t = f['title'][lang] + (' · film en motion design, Atelier 8' if lang == 'fr' else ' · motion design film by Atelier 8')
+            nat = (f['nature'] or {}).get(lang, '') if f.get('nature') else ''
+            dsc = (f"Film de {f['secs']} s écrit, animé et mis en son par Atelier 8, studio de motion design à Paris et Hong Kong. " if lang == 'fr'
+                   else f"A {f['secs']}-second film written, animated and scored by Atelier 8, motion design studio in Paris and Hong Kong. ") + nat
+            dsc = dsc[:290]
+            base = SITE + ('/en' if lang == 'en' else '')
+            me = f'{base}/films/{k}/'; dest = f"{'/en' if lang == 'en' else ''}/films/#{k}"
+            img = SITE + '/' + f['poster']
+            html = f"""<!doctype html>
+<html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(t)}</title>
+<meta name="description" content="{e(dsc)}">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{base}/films/">
+<meta property="og:type" content="video.other"><meta property="og:site_name" content="Atelier 8">
+<meta property="og:url" content="{me}"><meta property="og:title" content="{e(t)}"><meta property="og:description" content="{e(dsc)}">
+<meta property="og:image" content="{img}"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="720"><meta property="og:image:alt" content="{e(f['title'][lang])}">
+<meta property="og:locale" content="{'en_GB' if lang == 'en' else 'fr_FR'}">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(t)}"><meta name="twitter:description" content="{e(dsc)}"><meta name="twitter:image" content="{img}">
+<link rel="icon" href="/media/favicon-32.png">
+<script>location.replace({json.dumps(dest)});</script>
+<style>html,body{{margin:0;height:100%;background:#090908;color:#EFEDE6;font:16px/1.5 system-ui,sans-serif}}a{{color:#C99B45}}main{{display:grid;place-items:center;height:100%;text-align:center;padding:24px}}</style>
+</head><body><main><p>{e(f['title'][lang])}<br><a href="{dest}">{'Voir le film sur atelier8.io' if lang == 'fr' else 'Watch the film on atelier8.io'}</a></p></main></body></html>
+"""
+            out.append((('en/' if lang == 'en' else '') + f'films/{k}/index.html', html))
+    return out
+
+
 def build(full, out):
     """full : page unique complète (chemins relatifs). Écrit tout l'arbre dans out/."""
     full = absolutize(full.replace('@@SEO@@', seo_titles()))
@@ -466,4 +510,5 @@ def build(full, out):
     w = lambda n, c: (os.makedirs(os.path.dirname(os.path.join(out, n)), exist_ok=True), open(os.path.join(out, n), 'w', encoding='utf-8').write(c))
     w('robots.txt', robots()); w('sitemap.xml', sitemap(F)); w('llms.txt', llms(F, Q))
     w('confidentialite/index.html', PRIVACY); w('404.html', NOTFOUND)
+    for n, c in share_pages(F): w(n, c)
     return F, Q

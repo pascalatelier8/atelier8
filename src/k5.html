@@ -494,6 +494,30 @@
       .then(function(ok){clearTimeout(to);done(ok);});
   });
   showStep(0);
+  /* Films : partager un film (LinkedIn, lien direct) et arriver pile sur la vidéo */
+  (function(){var arts=d.querySelectorAll('[data-view="films"] article.film');if(!arts.length)return;var seen={};
+    function slugOf(a){var v=a.querySelector('.vid');var s=((v&&v.getAttribute('data-src'))||'').split('/').pop().replace(/\.mp4$/,'');s=s.replace(/-(s\d+|v\d+)(-(fr|en))?$/,'').replace(/-(fr|en)$/,'');var b=s||'film',k=b,i=2;while(seen[k])k=b+'-'+(i++);seen[k]=1;return k;}
+    var LI='<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4V9Z"/></svg>';
+    var LK='<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg>';
+    function shareUrl(k){return location.origin+(lang==='en'?'/en':'')+'/films/'+k+'/';}
+    arts.forEach(function(a){var k=slugOf(a);a.id='film-'+k;var inf=a.querySelector('.info');if(!inf)return;
+      var bar=d.createElement('div');bar.className='fshare';
+      bar.innerHTML='<span class="fs-k"><span lang="fr">Partager</span><span lang="en">Share</span></span>'+
+        '<a class="fs-b fs-li" target="_blank" rel="noopener">'+LI+'<span>LinkedIn</span></a>'+
+        '<button type="button" class="fs-b fs-cp">'+LK+'<span class="fs-t"><span lang="fr">Copier le lien</span><span lang="en">Copy link</span></span></button>'+
+        (navigator.share&&matchMedia('(pointer:coarse)').matches?'<button type="button" class="fs-b fs-nt"><span lang="fr">Envoyer…</span><span lang="en">Send…</span></button>':'');
+      inf.appendChild(bar);applyLang(bar);
+      var li=bar.querySelector('.fs-li');function upd(){li.href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(shareUrl(k));}upd();
+      li.addEventListener('mouseenter',upd);li.addEventListener('click',function(){upd();if(window.a8track)a8track('share',{method:'linkedin',film:k});});
+      var cp=bar.querySelector('.fs-cp');cp.addEventListener('click',function(){var u=shareUrl(k),t=cp.querySelector('.fs-t');
+        function ok(){t.innerHTML='<span lang="fr">Lien copié ✓</span><span lang="en">Link copied ✓</span>';applyLang(t);cp.classList.add('ok');setTimeout(function(){t.innerHTML='<span lang="fr">Copier le lien</span><span lang="en">Copy link</span>';applyLang(t);cp.classList.remove('ok');},2200);}
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){prompt('',u);});}else{prompt('',u);}
+        if(window.a8track)a8track('share',{method:'copy',film:k});});
+      var nt=bar.querySelector('.fs-nt');if(nt)nt.addEventListener('click',function(){var h=a.querySelector('h3');navigator.share({title:(h?h.textContent:'Atelier 8')+' · Atelier 8',url:shareUrl(k)}).catch(function(){});if(window.a8track)a8track('share',{method:'native',film:k});});
+    });
+    var hk=(HASH0||'').slice(1);
+    if(hk&&d.getElementById('film-'+hk)){var go=function(){if(cur!=='films')return;var el=d.getElementById('film-'+hk);if(!el)return;var y=el.getBoundingClientRect().top+scrollY-Math.max(80,(innerHeight-el.offsetHeight)/2);if(lenis)lenis.scrollTo(y,{duration:1.4,force:true});else scrollTo({top:y,behavior:'smooth'});el.classList.add('hit');setTimeout(function(){el.classList.remove('hit');},3200);};var tries=0;(function wait(){if(root.classList.contains('loaded')&&!d.getElementById('loader')){setTimeout(go,350);return;}if(++tries<60)setTimeout(wait,200);})();}
+  })();
   /* WhatsApp : apparition différée, jamais pendant le menu ni la visionneuse (comme uxdesignparis.fr) */
   (function(){var f=d.getElementById('waFab');if(!f)return;var B='https://wa.me/33635315035?text=';
     function upd(){var en=root.lang==='en';f.href=B+encodeURIComponent(en?'Hello Pascal, I am contacting you from atelier8.io':'Bonjour Pascal, je vous contacte depuis atelier8.io');f.setAttribute('aria-label',en?'Message on WhatsApp: +33 6 35 31 50 35':'Écrire sur WhatsApp au 06 35 31 50 35');}
