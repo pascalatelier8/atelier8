@@ -193,6 +193,7 @@ def graph(lang, v, F, Q):
                         'Founder of Atelier 8, he writes, directs and signs off every motion design film.'),
         'knowsAbout': ['Motion design', 'Product design', 'UX design', 'Art direction'],
         'homeLocation': [{'@type': 'Place', 'name': 'Paris'}, {'@type': 'Place', 'name': 'Hong Kong'}],
+        'sameAs': ['https://www.malt.fr/profile/pascaleakloui'],
     }
     site = {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': 'Atelier 8', 'inLanguage': ['fr', 'en'],
             'publisher': {'@id': SITE + '/#org'}}
@@ -377,7 +378,7 @@ def llms(F, Q):
          '- Équipe : un regard humain (Pascal) et cinq agents IA, un par métier (stratégie, produit, scénario, storyboard, motion design). '
          'La direction artistique, le montage final et chaque validation restent humains.',
          f'- Contact : {MAIL}. Réponse et devis sous deux jours ouvrés. Brief en ligne : https://atelier8.io/brief/',
-         '- Réseaux : Instagram https://www.instagram.com/atelier8.io/ · LinkedIn https://www.linkedin.com/company/atelier8-io/', '',
+         '- Réseaux : Instagram https://www.instagram.com/atelier8.io/ · LinkedIn https://www.linkedin.com/company/atelier8-io/ · Malt (Pascal EK Loui) https://www.malt.fr/profile/pascaleakloui', '',
          '## Formats et prix (hors taxes)', '']
     for slug, name, price, (dmin, dmax), rev, desc in OFFERS:
         L.append(f'- {name} : à partir de {price:,} € HT'.replace(',', ' ') + f', {dmin} à {dmax} jours ouvrés, {rev} révisions. {desc["fr"]}')
