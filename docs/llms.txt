@@ -27,6 +27,7 @@ Atelier 8 is an independent motion design studio between Paris and Hong Kong, fo
 
 Les films de marques tierces sont des concepts ou des démos : aucun n’a été commandé ni validé par les marques citées.
 
+- Porsche × Smeg — 917 Salzburg (30 s, concept, démo non officielle) : https://atelier8.io/media/films/porsche-smeg-v1.mp4
 - Peloton — Cross Training Bike (30 s, concept, démo non officielle) : https://atelier8.io/media/films/peloton-v1.mp4
 - Specs — Une nouvelle lens (30 s, concept, démo non officielle) : https://atelier8.io/media/films/specs-v1.mp4
 - NOMOS Glashütte — Treize secondes (30 s, concept, démo non officielle) : https://atelier8.io/media/films/nomos-s2.mp4
@@ -131,7 +132,7 @@ Moins de 30 secondes pour une annonce, une publicité ou un post : on retient un
 ## Pages
 
 - [Accueil](https://atelier8.io/) · [English](https://atelier8.io/en/)
-- [Films](https://atelier8.io/films/) : 29 films, nature de chaque film précisée
+- [Films](https://atelier8.io/films/) : 30 films, nature de chaque film précisée
 - [Cas d’usage](https://atelier8.io/usages/) : six usages d’un film de marque, un film exemple pour chacun
 - [Formats et prix](https://atelier8.io/formats/)
 - [L’atelier](https://atelier8.io/atelier/) : Pascal EK Loui et les cinq agents IA
