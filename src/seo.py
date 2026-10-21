@@ -22,8 +22,8 @@ T = {
  'fr': {
   'accueil': ('Atelier 8 · Studio de motion design à Paris et Hong Kong',
               'Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.'),
-  'films':   ('Films en motion design : 30 réalisations · Atelier 8',
-              'Trente films en motion design : concepts pour des marques SaaS, tech et luxe, démos pour agences et showreel. 15 à 75 secondes, script, image et son.'),
+  'films':   ('Films en motion design : 31 réalisations · Atelier 8',
+              'Trente et un films en motion design : concepts pour des marques SaaS, tech et luxe, démos pour agences et showreel. 15 à 75 secondes, script, image et son.'),
   'usages':  ('Cas d’usage d’un film de marque : SaaS, réseaux, lancement · Atelier 8',
               'Six usages d’un film de marque, chacun avec un film exemple : offre SaaS, LinkedIn, présentation, lancement, démo produit, publicité. Formats et prix.'),
   'formats': ('Prix d’un film en motion design, dès 2 500 € · Atelier 8',
@@ -38,8 +38,8 @@ T = {
  'en': {
   'accueil': ('Atelier 8 · Motion design studio in Paris and Hong Kong',
               'Independent motion design studio between Paris and Hong Kong. Brand films of 15 to 90 s: script, voice, music and edit. From €2,500, delivered in 5 to 30 days.'),
-  'films':   ('Motion design films: 30 projects · Atelier 8',
-              'Thirty motion design films: concepts for SaaS, tech and luxury brands, agency demos and a showreel. 15 to 75 seconds, script, picture and sound.'),
+  'films':   ('Motion design films: 31 projects · Atelier 8',
+              'Thirty-one motion design films: concepts for SaaS, tech and luxury brands, agency demos and a showreel. 15 to 75 seconds, script, picture and sound.'),
   'usages':  ('Brand film use cases: SaaS, social, launch · Atelier 8',
               'Six uses for a brand film, each with an example: explaining a SaaS offer, LinkedIn, company intro, launch, product demo, ads. Formats and prices.'),
   'formats': ('Motion design film pricing from €2,500 · Atelier 8',
@@ -400,7 +400,7 @@ def llms(F, Q):
         L.append(q['fr'][1]); L.append('')
     L += ['## Pages', '',
           f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")})',
-          f'- [Films]({url("fr", "films")}) : 30 films, nature de chaque film précisée',
+          f'- [Films]({url("fr", "films")}) : 31 films, nature de chaque film précisée',
           f'- [Cas d’usage]({url("fr", "usages")}) : six usages d’un film de marque, un film exemple pour chacun',
           f'- [Formats et prix]({url("fr", "formats")})',
           f'- [L’atelier]({url("fr", "atelier")}) : Pascal EK Loui et les cinq agents IA',
