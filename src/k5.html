@@ -342,8 +342,9 @@
     if((compact()||!fine)&&window.CSS&&CSS.supports&&CSS.supports('overflow','clip')){
       /* mobile / tablette : scène collante en CSS (position:sticky), gérée par le compositeur : aucun saut, aucun chevauchement pendant l'inertie */
       method.classList.add('msticky-mode');
-      var track=d.createElement('div'); track.className='mtrack'; mg.parentNode.insertBefore(track,mg); track.appendChild(mg);
-      track.style.marginTop=getComputedStyle(mg).marginTop; mg.style.marginTop='0';
+      var track=(mg.parentNode&&mg.parentNode.classList.contains('mtrack'))?mg.parentNode:null;
+      if(!track){track=d.createElement('div'); track.className='mtrack'; mg.parentNode.insertBefore(track,mg); track.appendChild(mg);
+      track.style.marginTop=getComputedStyle(mg).marginTop; mg.style.marginTop='0';}
       var dist=Math.round(innerHeight*.75*4);
       track.style.height=(mg.offsetHeight+dist)+'px';
       ScrollTrigger.create({trigger:track,start:'top top+='+navH,end:'+='+dist,onUpdate:function(s){setStep(Math.min(4,Math.floor(s.progress*5)));}});
@@ -352,12 +353,15 @@
     }
     setStep(0);
   }
+  /* galerie : construite UNE seule fois ; à chaque retour sur l'accueil on ne recrée que son ScrollTrigger (killScroll les supprime tous) */
+  var homeST=null;
   function initHome(){
     if(dtfAnim)dtfAnim();
     var scope=viewEls.accueil;
     var voir=d.getElementById('voir');
     /* tactile, petits écrans : grille directe. Desktop : ruban circulaire, qui se pose en grande grille (3 colonnes) qu'on continue de faire défiler */
     if(!hasGsap||reduced||compact()||!fine||/[?&]a8flat=1/.test(QS)){voir.classList.remove('ring3d','ribbon','big');voir.classList.add('flat');if(!compact()&&fine)voir.classList.add('flatd');flatWall=true;bigWall=false;sizeWall();initMethod();return;}
+    if(homeST){bigWall=true;homeST();initMethod();return;}
     voir.classList.remove('flat','ring3d'); voir.classList.add('ribbon','big'); bigWall=true; flatWall=false; sizeWall();
     // films : ruban ondulé de cartes courbes (d'après trionn.com) ; chaque carte quitte le ruban et se pose dans la grille
     var pin=voir.querySelector('.voir-pin'), stage=d.getElementById('vstage'), grid=d.getElementById('vgrid'), vprog=d.getElementById('vprog'), idx=d.getElementById('voirIdx'), vcount=d.getElementById('voirCount'),
@@ -424,7 +428,8 @@
     }
     var vis=false; if('IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;},{rootMargin:'10% 0px'}).observe(voir);}else vis=true;
     (function loop(){if(cur==='accueil'&&vis&&voir.classList.contains('ribbon')&&(!inGrid||Math.abs(tgt-cur3)>.00005))frame();requestAnimationFrame(loop);})();
-    ScrollTrigger.create({trigger:voir,start:'top top',end:function(){return '+='+Math.round(innerHeight*5.6);},pin:pin,pinSpacing:true,invalidateOnRefresh:true,onRefreshInit:measureRib,onRefresh:measureRib,onUpdate:function(s){tgt=s.progress;vprog.style.setProperty('--p',(s.progress*100).toFixed(1)+'%');}});
+    homeST=function(){ScrollTrigger.create({trigger:voir,start:'top top',end:function(){return '+='+Math.round(innerHeight*5.6);},pin:pin,pinSpacing:true,invalidateOnRefresh:true,onRefreshInit:measureRib,onRefresh:function(s){measureRib();tgt=s.progress;},onUpdate:function(s){tgt=s.progress;vprog.style.setProperty('--p',(s.progress*100).toFixed(1)+'%');}});};
+    homeST();
     initMethod();
   }
   function initView(v){
