@@ -4,6 +4,7 @@
 <loc>https://atelier8.io/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/"/>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-v2-fr.jpg</video:thumbnail_loc><video:title>Atelier 8 — Un film qui marque</video:title><video:description>Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-v2-fr.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-16T09:30:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 </url>
@@ -11,6 +12,7 @@
 <loc>https://atelier8.io/films/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/films/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/films/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/films/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/films/"/>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/beo-grace.jpg</video:thumbnail_loc><video:title>Bang &amp; Olufsen — Beo Grace</video:title><video:description>Concept imaginé par l’atelier : démo non officielle, sans commande ni validation de la marque citée.</video:description><video:content_loc>https://atelier8.io/media/films/beo-grace-v1.mp4</video:content_loc><video:duration>34</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/porsche-smeg.jpg</video:thumbnail_loc><video:title>Porsche × Smeg — 917 Salzburg</video:title><video:description>Concept imaginé par l’atelier : démo non officielle, sans commande ni validation des marques citées.</video:description><video:content_loc>https://atelier8.io/media/films/porsche-smeg-v1.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
@@ -48,36 +50,42 @@
 <loc>https://atelier8.io/usages/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/usages/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/usages/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/usages/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/usages/"/>
 </url>
 <url>
 <loc>https://atelier8.io/formats/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/formats/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/formats/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/formats/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/formats/"/>
 </url>
 <url>
 <loc>https://atelier8.io/atelier/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/atelier/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/atelier/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/atelier/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/atelier/"/>
 </url>
 <url>
 <loc>https://atelier8.io/faq/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/faq/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/faq/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/faq/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/faq/"/>
 </url>
 <url>
 <loc>https://atelier8.io/brief/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/brief/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/brief/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/brief/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/brief/"/>
 </url>
 <url>
 <loc>https://atelier8.io/en/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/"/>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-v2-en.jpg</video:thumbnail_loc><video:title>Atelier 8 — A Film That Leaves a Mark</video:title><video:description>Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-v2-en.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-16T09:30:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 </url>
@@ -85,6 +93,7 @@
 <loc>https://atelier8.io/en/films/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/films/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/films/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/films/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/films/"/>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/beo-grace.jpg</video:thumbnail_loc><video:title>Bang &amp; Olufsen — Beo Grace</video:title><video:description>A concept imagined by the studio: an unofficial demo, not commissioned or approved by the brand shown.</video:description><video:content_loc>https://atelier8.io/media/films/beo-grace-v1.mp4</video:content_loc><video:duration>34</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
 <video:video><video:thumbnail_loc>https://atelier8.io/media/films/porsche-smeg.jpg</video:thumbnail_loc><video:title>Porsche × Smeg — 917 Salzburg</video:title><video:description>A concept imagined by the studio: an unofficial demo, not commissioned or approved by the brands shown.</video:description><video:content_loc>https://atelier8.io/media/films/porsche-smeg-v1.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
@@ -122,30 +131,116 @@
 <loc>https://atelier8.io/en/usages/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/usages/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/usages/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/usages/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/usages/"/>
 </url>
 <url>
 <loc>https://atelier8.io/en/formats/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/formats/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/formats/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/formats/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/formats/"/>
 </url>
 <url>
 <loc>https://atelier8.io/en/atelier/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/atelier/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/atelier/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/atelier/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/atelier/"/>
 </url>
 <url>
 <loc>https://atelier8.io/en/faq/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/faq/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/faq/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/faq/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/faq/"/>
 </url>
 <url>
 <loc>https://atelier8.io/en/brief/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
 <xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/brief/"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/brief/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/brief/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/brief/"/>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/"/>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/atelier8-film-v2-en.jpg</video:thumbnail_loc><video:title>Atelier 8 — 一部令人記住的影片</video:title><video:description>Atelier 8 的品牌影片：Brief、五個 AI 代理、作品、流程、方案和落款，48 秒看清這間以巴黎和香港為基地的動態設計工作室。</video:description><video:content_loc>https://atelier8.io/media/films/atelier8-film-v2-en.mp4</video:content_loc><video:duration>61</video:duration><video:publication_date>2026-10-16T09:30:00+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/films/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/films/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/films/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/films/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/films/"/>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/beo-grace.jpg</video:thumbnail_loc><video:title>Bang &amp; Olufsen — Beo Grace</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/beo-grace-v1.mp4</video:content_loc><video:duration>34</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/porsche-smeg.jpg</video:thumbnail_loc><video:title>Porsche × Smeg — 917 Salzburg</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/porsche-smeg-v1.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/peloton.jpg</video:thumbnail_loc><video:title>Peloton — Cross Training Bike</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/peloton-v1.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/specs.jpg</video:thumbnail_loc><video:title>Specs — 全新鏡頭</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/specs-v1.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/nomos.jpg</video:thumbnail_loc><video:title>NOMOS Glashütte — 十三秒</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/nomos-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/aesop.jpg</video:thumbnail_loc><video:title>Aesop — 十三份心意</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/aesop-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/on.jpg</video:thumbnail_loc><video:title>On — 第一步</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/on-s3.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/sonos.jpg</video:thumbnail_loc><video:title>Sonos — 一首歌</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/sonos-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/boom.jpg</video:thumbnail_loc><video:title>Boom Supersonic — XB-1 突破一馬赫</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/boom-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/hem.jpg</video:thumbnail_loc><video:title>Hem — 三根木柱</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/hem-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/teenage-engineering.jpg</video:thumbnail_loc><video:title>Teenage Engineering — 由靈感到成曲</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/teenage-engineering-s2.mp4</video:content_loc><video:duration>75</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/polestar-v3.jpg</video:thumbnail_loc><video:title>Polestar — Polestar 4，線條</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/polestar-s2.mp4</video:content_loc><video:duration>31</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/fin.jpg</video:thumbnail_loc><video:title>Fin.com — No Middlemen</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/fin-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/polene.jpg</video:thumbnail_loc><video:title>Polène — 線條的回響</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/polene-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/climeworks.jpg</video:thumbnail_loc><video:title>Climeworks — For Good</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/climeworks-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/experimental.jpg</video:thumbnail_loc><video:title>Experimental Group — 一扇扇門之後</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/experimental-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/uxdp-showreel-fr.jpg</video:thumbnail_loc><video:title>UX Design Paris — Showreel 2026</video:title><video:description>2026 年 Showreel，法語及英語版本。</video:description><video:content_loc>https://atelier8.io/media/films/uxdp-showreel-en.mp4</video:content_loc><video:duration>67</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/slack.jpg</video:thumbnail_loc><video:title>Slack — 井號</video:title><video:description>代理商委託製作的示範片，未經 Slack 確認。用以展示 Atelier 8 及其 AI 代理的製作實力；與 Slack 並無任何官方關係。</video:description><video:content_loc>https://atelier8.io/media/films/slack-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/asana.jpg</video:thumbnail_loc><video:title>Asana — 樂譜</video:title><video:description>代理商委託製作的示範片，未經 Asana 確認。用以展示 Atelier 8 及其 AI 代理的製作實力；與 Asana 並無任何官方關係。</video:description><video:content_loc>https://atelier8.io/media/films/asana-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/hubspot.jpg</video:thumbnail_loc><video:title>HubSpot — The Sprocket</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/hubspot-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/clickup.jpg</video:thumbnail_loc><video:title>ClickUp — The Thread</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/clickup-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/monday.jpg</video:thumbnail_loc><video:title>monday.com — 狀態欄</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/monday-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/mailchimp.jpg</video:thumbnail_loc><video:title>Mailchimp — 被拉平的曲線</video:title><video:description>代理商委託製作的示範片，未經 Mailchimp 確認。用以展示 Atelier 8 及其 AI 代理的製作實力；與 Mailchimp 並無任何官方關係。</video:description><video:content_loc>https://atelier8.io/media/films/mailchimp-s2.mp4</video:content_loc><video:duration>15</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/whatsapp.jpg</video:thumbnail_loc><video:title>WhatsApp — 只屬你們兩個</video:title><video:description>代理商委託製作的示範片，未經 WhatsApp 確認。用以展示 Atelier 8 及其 AI 代理的製作實力；與 WhatsApp 並無任何官方關係。</video:description><video:content_loc>https://atelier8.io/media/films/whatsapp-s2.mp4</video:content_loc><video:duration>18</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/assos.jpg</video:thumbnail_loc><video:title>Assos — La Soufflerie</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/assos-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/acne.jpg</video:thumbnail_loc><video:title>Acne Studios — 印相小樣</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/acne-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/deel.jpg</video:thumbnail_loc><video:title>Deel — 由第一天到最後一天</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/deel-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/fieldwire.jpg</video:thumbnail_loc><video:title>Fieldwire — 會動的圖則</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/fieldwire-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/klook.jpg</video:thumbnail_loc><video:title>Klook — 玩樂世界，一站搞掂</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/klook-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/openfashion-edit.jpg</video:thumbnail_loc><video:title>Open Fashion — The Edit</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/openfashion-edit-s2.mp4</video:content_loc><video:duration>20</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+<video:video><video:thumbnail_loc>https://atelier8.io/media/films/linear.jpg</video:thumbnail_loc><video:title>Linear — Thread to Done</video:title><video:description>工作室自發構思的概念片：非官方示範，並無受所提及的品牌委託或認可。</video:description><video:content_loc>https://atelier8.io/media/films/linear-s2.mp4</video:content_loc><video:duration>30</video:duration><video:publication_date>2026-10-08T10:48:51+00:00</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/usages/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/usages/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/usages/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/usages/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/usages/"/>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/formats/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/formats/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/formats/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/formats/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/formats/"/>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/atelier/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/atelier/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/atelier/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/atelier/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/atelier/"/>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/faq/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/faq/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/faq/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/faq/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/faq/"/>
+</url>
+<url>
+<loc>https://atelier8.io/zh-hk/brief/</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority>
+<xhtml:link rel="alternate" hreflang="fr" href="https://atelier8.io/brief/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://atelier8.io/en/brief/"/>
+<xhtml:link rel="alternate" hreflang="zh-HK" href="https://atelier8.io/zh-hk/brief/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://atelier8.io/brief/"/>
 </url>
 <url><loc>https://atelier8.io/confidentialite/</loc><lastmod>2026-10-08</lastmod><priority>0.2</priority></url>

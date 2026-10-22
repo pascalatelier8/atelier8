@@ -132,7 +132,7 @@ Moins de 30 secondes pour une annonce, une publicité ou un post : on retient un
 
 ## Pages
 
-- [Accueil](https://atelier8.io/) · [English](https://atelier8.io/en/)
+- [Accueil](https://atelier8.io/) · [English](https://atelier8.io/en/) · [繁體中文（香港）](https://atelier8.io/zh-hk/)
 - [Films](https://atelier8.io/films/) : 31 films, nature de chaque film précisée
 - [Cas d’usage](https://atelier8.io/usages/) : six usages d’un film de marque, un film exemple pour chacun
 - [Formats et prix](https://atelier8.io/formats/)

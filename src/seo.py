@@ -6,6 +6,15 @@ OUT/confidentialite/index.html, OUT/404.html.
 """
 import html as H, json, os, re
 
+LANGS = ('fr', 'en', 'zh-HK')
+PREFIX = {'fr': '', 'en': '/en', 'zh-HK': '/zh-hk'}
+LOC = {'fr': 'fr_FR', 'en': 'en_GB', 'zh-HK': 'zh_HK'}
+HREFLANG = (('fr', 'fr'), ('en', 'en'), ('zh-HK', 'zh-HK'), ('x-default', 'fr'))
+
+
+def L3(lang, fr, en, zh):
+    return fr if lang == 'fr' else (zh if lang == 'zh-HK' else en)
+
 SITE = 'https://atelier8.io'
 TODAY = '2026-10-08'
 VIEWS = ['accueil', 'films', 'usages', 'formats', 'atelier', 'faq', 'brief']
@@ -51,21 +60,41 @@ T = {
   'brief':   ('Request a motion design film quote · Atelier 8',
               'Send your brief in two minutes: your website and a few lines. First read and a quote within two working days, from Pascal himself.'),
  },
+ 'zh-HK': {
+  'accueil': ('Atelier 8 · 巴黎及香港動態設計工作室',
+              '以巴黎和香港為基地的獨立動態設計（Motion Graphics）工作室。15 至 90 秒品牌影片，包辦腳本、旁白、音樂及剪接。€2,500 起（未連稅），5 至 30 個工作天交付。'),
+  'films':   ('動態設計作品：31 部影片 · Atelier 8',
+              '31 部動態設計影片：為 SaaS、科技及奢華品牌構思的概念片、代理商示範片及 Showreel。15 至 75 秒，腳本、畫面及聲音一手包辦。'),
+  'usages':  ('品牌影片應用場景：SaaS、社交媒體、產品發布 · Atelier 8',
+              '品牌影片的六種用途，每種附一部示範作品：介紹 SaaS 服務、LinkedIn、公司介紹、產品發布、產品示範、廣告。方案及價格一覽。'),
+  'formats': ('動態設計影片價格，€2,500 起 · Atelier 8',
+              '三個方案，價格清楚列明：Signal 15–30 秒 €2,500 起、Portrait 45–90 秒 €4,500 起、Campaign €7,500 起（未連稅）。製作期、修改次數及版權全部包括。'),
+  'atelier': ('工作室：Pascal EK Loui 與五個 AI 代理 · Atelier 8',
+              'Atelier 8 由 Pascal EK Loui 主理：十五年巴黎及香港產品設計經驗，每個鏡頭都經人眼把關，再配合五個各司其職的 AI 代理。'),
+  'faq':     ('動態設計影片常見問題：價格、製作期、版權 · Atelier 8',
+              '二十條簡短解答：動態設計影片價格、製作期、修改、付款、版權、聲音及音樂、AI 的角色，以及企業影片的理想長度。'),
+  'brief':   ('索取動態設計影片報價 · Atelier 8',
+              '兩分鐘發送 Brief：只需你的網址和幾行簡介。Pascal 親自閱讀，兩個工作天內回覆並提供報價。'),
+ },
 }
 NAV = {'fr': {'accueil': 'Accueil', 'films': 'Films', 'usages': 'Cas d’usage', 'formats': 'Formats', 'atelier': 'L’atelier', 'faq': 'FAQ', 'brief': 'Brief'},
-       'en': {'accueil': 'Home', 'films': 'Films', 'usages': 'Use cases', 'formats': 'Formats', 'atelier': 'The studio', 'faq': 'FAQ', 'brief': 'Brief'}}
+       'en': {'accueil': 'Home', 'films': 'Films', 'usages': 'Use cases', 'formats': 'Formats', 'atelier': 'The studio', 'faq': 'FAQ', 'brief': 'Brief'},
+       'zh-HK': {'accueil': '主頁', 'films': '作品', 'usages': '應用場景', 'formats': '方案', 'atelier': '工作室', 'faq': '常見問題', 'brief': 'Brief'}}
 PAGETYPE = {'accueil': 'WebPage', 'films': 'CollectionPage', 'usages': 'WebPage', 'formats': 'WebPage', 'atelier': 'AboutPage', 'faq': 'FAQPage', 'brief': 'ContactPage'}
 
 OFFERS = [
  ('signal', 'Signal', 2500, (5, 10), 2,
   {'fr': 'Film court de 15 à 30 secondes : une seule idée, écrite et storyboardée pour votre marque, musique et sous-titres intégrés, livré en 16:9, 9:16, 1:1 et 4:5.',
-   'en': 'A 15 to 30 second film: one idea, written and storyboarded for your brand, music and subtitles included, delivered in 16:9, 9:16, 1:1 and 4:5.'}),
+   'en': 'A 15 to 30 second film: one idea, written and storyboarded for your brand, music and subtitles included, delivered in 16:9, 9:16, 1:1 and 4:5.',
+   'zh-HK': '15 至 30 秒短片：一個重點，專為你的品牌撰寫腳本及繪畫分鏡，包括音樂及字幕，提供 16:9、9:16、1:1 及 4:5。'}),
  ('portrait', 'Portrait', 4500, (10, 20), 2,
   {'fr': 'Film de marque de 45 à 90 secondes qui explique votre société : voix off en français ou en anglais, musique, sound design, sous-titres, tous les formats réseaux.',
-   'en': 'A 45 to 90 second brand film that explains your company: French or English voice-over, music, sound design, subtitles, every social format.'}),
+   'en': 'A 45 to 90 second brand film that explains your company: French or English voice-over, music, sound design, subtitles, every social format.',
+   'zh-HK': '45 至 90 秒品牌影片，講清楚你的公司：法語或英語旁白、音樂、音效設計、字幕，以及所有社交平台格式。'}),
  ('campagne', 'Campagne', 7500, (25, 30), 3,
   {'fr': 'Cinq films : un Portrait, un Signal et trois déclinaisons courtes pour les réseaux, en français et en anglais.',
-   'en': 'Five films: one Portrait, one Signal and three short cut-downs for social, in French and English.'}),
+   'en': 'Five films: one Portrait, one Signal and three short cut-downs for social, in French and English.',
+   'zh-HK': '五部影片：一部 Portrait、一部 Signal 及三個社交平台短版本，法語及英語版本。'}),
 ]
 
 
@@ -73,7 +102,7 @@ UCD = ([], [])
 
 
 def url(lang, v):
-    return SITE + ('/en' if lang == 'en' else '') + ('/' if v == 'accueil' else f'/{v}/')
+    return SITE + PREFIX[lang] + ('/' if v == 'accueil' else f'/{v}/')
 
 
 def txt(s):
@@ -109,9 +138,9 @@ def films(src):
         slug = os.path.basename(d['src'])[:-4]
         kind = 'demo' if 'tag demo' in a else ('concept' if 'tag concept' in a else 'showreel')
         out.append(dict(slug=slug, src=d['src'], src_en=d.get('src-en'), poster=poster, brand=brand,
-                        title={l: title(l) for l in ('fr', 'en')}, kind=kind,
-                        nature={l: span(dl['Nature'], l) for l in ('fr', 'en')} if 'Nature' in dl else None,
-                        sector={l: span(dl['Secteur'], l) for l in ('fr', 'en')} if 'Secteur' in dl else None,
+                        title={l: title(l) for l in LANGS}, kind=kind,
+                        nature={l: span(dl['Nature'], l) for l in LANGS} if 'Nature' in dl else None,
+                        sector={l: span(dl['Secteur'], l) for l in LANGS} if 'Secteur' in dl else None,
                         secs=int(sec.group(1)) if sec else 30))
     return out
 
@@ -124,12 +153,12 @@ def usages(src):
         b = re.search(r'<p class="body[^"]*">(.*?)</p>', a, re.S).group(1)
         dds = re.findall(r'<dd>(.*?)</dd>', a, re.S)
         it = {'id': uid}
-        for l in ('fr', 'en'):
+        for l in LANGS:
             it[l] = (span(h, l).rstrip('.'), span(b, l), span(dds[2], l) if len(dds) > 2 else '')
         out.append(it)
     q = []
     for qq, aa in re.findall(r'<summary><span class="n">\d+</span><span>(.*?)</span><span class="x"></span></summary><div class="a">(.*?)</div></details>', sec, re.S):
-        q.append({l: (span(qq, l), span(aa, l)) for l in ('fr', 'en')})
+        q.append({l: (span(qq, l), span(aa, l)) for l in LANGS})
     return out, q
 
 
@@ -138,7 +167,7 @@ def faqs(src):
     out = []
     for q, a in re.findall(r'<summary><span class="n">\d+</span><span>(.*?)</span><span class="x"></span></summary><div class="a">(.*?)</div></details>', sec, re.S):
         item = {}
-        for l in ('fr', 'en'):
+        for l in LANGS:
             ans = span(a, l)
             sm = re.search(r'<small>(.*?)</small>', a, re.S)
             if sm:
@@ -152,31 +181,34 @@ def faqs(src):
 DTF_DATE = '2026-10-16T09:30:00+00:00'
 def dtf_video(lang):
     fr = lang == 'fr'
+    vl = 'fr' if fr else 'en'
     return {'@type': 'VideoObject', '@id': SITE + '/#film-atelier-' + lang,
-            'name': 'Atelier 8 — Un film qui marque' if fr else 'Atelier 8 — A Film That Leaves a Mark',
-            'description': ('Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.' if fr
-                            else 'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.'),
-            'thumbnailUrl': SITE + '/media/films/atelier8-film-v2-' + lang + '.jpg',
-            'contentUrl': SITE + '/media/films/atelier8-film-v2-' + lang + '.mp4',
-            'uploadDate': DTF_DATE, 'duration': 'PT48S', 'width': 1600, 'height': 900, 'inLanguage': lang,
+            'name': L3(lang, 'Atelier 8 — Un film qui marque', 'Atelier 8 — A Film That Leaves a Mark', 'Atelier 8 — 一部令人記住的影片'),
+            'description': L3(lang, 'Le film de marque d’Atelier 8, studio de motion design à Paris et Hong Kong : le brief, les cinq agents IA, les films, la méthode, les formats et la signature, en 48 secondes.',
+                              'Atelier 8’s own brand film, a motion design studio in Paris and Hong Kong: the brief, the five AI agents, the films, the method, the formats and the signature, in 48 seconds.',
+                              'Atelier 8 的品牌影片：Brief、五個 AI 代理、作品、流程、方案和落款，48 秒看清這間以巴黎和香港為基地的動態設計工作室。'),
+            'thumbnailUrl': SITE + '/media/films/atelier8-film-v2-' + vl + '.jpg',
+            'contentUrl': SITE + '/media/films/atelier8-film-v2-' + vl + '.mp4',
+            'uploadDate': DTF_DATE, 'duration': 'PT48S', 'width': 1600, 'height': 900, 'inLanguage': vl,
             'creator': {'@id': SITE + '/#org'}, 'publisher': {'@id': SITE + '/#org'}, 'isFamilyFriendly': True,
             'hasPart': [{'@type': 'Clip', 'name': n, 'startOffset': a, 'endOffset': b, 'url': url(lang, 'accueil') + '#dtf'}
-                        for n, a, b in zip(['Le brief', 'Les agents', 'Les films', 'La méthode', 'Les formats', 'La signature'] if fr
-                                           else ['The brief', 'The agents', 'The films', 'The method', 'The formats', 'The signature'],
+                        for n, a, b in zip(L3(lang, ['Le brief', 'Les agents', 'Les films', 'La méthode', 'Les formats', 'La signature'],
+                                              ['The brief', 'The agents', 'The films', 'The method', 'The formats', 'The signature'],
+                                              ['Brief', 'AI 代理', '作品', '流程', '方案', '落款']),
                                            [0, 10, 13, 17, 32, 41], [10, 13, 17, 32, 41, 48])]}
 
 def graph(lang, v, F, Q):
     org = {
         '@type': ['Organization', 'ProfessionalService'], '@id': SITE + '/#org', 'name': 'Atelier 8', 'url': SITE + '/',
         'logo': {'@type': 'ImageObject', 'url': LOGO, 'width': 180, 'height': 180}, 'image': OG, 'email': MAIL,
-        'description': T[lang]['accueil'][1], 'slogan': 'Un film qui marque.' if lang == 'fr' else 'A film that leaves a mark.',
+        'description': T[lang]['accueil'][1], 'slogan': L3(lang, 'Un film qui marque.', 'A film that leaves a mark.', '一部影片，令人記住。'),
         'founder': {'@id': SITE + '/#pascal'}, 'foundingDate': '2026',
         'sameAs': ['https://www.instagram.com/atelier8.io/', 'https://www.linkedin.com/company/atelier8-io/'],
         'address': [{'@type': 'PostalAddress', 'addressLocality': 'Paris', 'addressCountry': 'FR'},
                     {'@type': 'PostalAddress', 'addressLocality': 'Hong Kong', 'addressCountry': 'HK'}],
         'areaServed': [{'@type': 'Country', 'name': 'France'}, {'@type': 'Place', 'name': 'Hong Kong'},
                        {'@type': 'Place', 'name': 'Europe'}, {'@type': 'Place', 'name': 'Asia'}],
-        'knowsLanguage': ['fr', 'en'], 'priceRange': '2 500 € – 7 500 € HT' if lang == 'fr' else '€2,500 – €7,500 excl. VAT',
+        'knowsLanguage': ['fr', 'en'], 'priceRange': L3(lang, '2 500 € – 7 500 € HT', '€2,500 – €7,500 excl. VAT', '€2,500 – €7,500（未連稅）'),
         'knowsAbout': ['Motion design', 'Brand film', 'Explainer video', 'Product video', 'SaaS video', 'Animation', 'Sound design',
                        'Storyboard', 'Video scriptwriting', 'AI-assisted video production'],
         'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': MAIL, 'availableLanguage': ['French', 'English'],
@@ -185,30 +217,31 @@ def graph(lang, v, F, Q):
     }
     person = {
         '@type': 'Person', '@id': SITE + '/#pascal', 'name': 'Pascal EK Loui', 'url': url(lang, 'atelier'), 'image': SITE + '/media/pascal-talent.webp',
-        'jobTitle': 'Fondateur et directeur de création, Atelier 8' if lang == 'fr' else 'Founder and creative director, Atelier 8',
+        'jobTitle': L3(lang, 'Fondateur et directeur de création, Atelier 8', 'Founder and creative director, Atelier 8', 'Atelier 8 創辦人及創意總監'),
         'worksFor': {'@id': SITE + '/#org'}, 'knowsLanguage': ['fr', 'en'],
-        'description': ('Designer produit depuis quinze ans pour de grandes marques et des start-ups, entre Paris et Hong Kong. '
-                        'Fondateur d’Atelier 8, il écrit, dirige et valide chaque film en motion design.') if lang == 'fr' else
-                       ('Product designer for fifteen years for large brands and start-ups, between Paris and Hong Kong. '
-                        'Founder of Atelier 8, he writes, directs and signs off every motion design film.'),
+        'description': L3(lang, 'Designer produit depuis quinze ans pour de grandes marques et des start-ups, entre Paris et Hong Kong. '
+                                'Fondateur d’Atelier 8, il écrit, dirige et valide chaque film en motion design.',
+                          'Product designer for fifteen years for large brands and start-ups, between Paris and Hong Kong. '
+                          'Founder of Atelier 8, he writes, directs and signs off every motion design film.',
+                          '十五年來在巴黎和香港為大品牌及初創企業設計產品。Atelier 8 創辦人，親自撰寫、導演及審定每一部動態設計影片。'),
         'knowsAbout': ['Motion design', 'Product design', 'UX design', 'Art direction'],
         'homeLocation': [{'@type': 'Place', 'name': 'Paris'}, {'@type': 'Place', 'name': 'Hong Kong'}],
         'sameAs': ['https://www.malt.fr/profile/pascaleakloui'],
     }
-    site = {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': 'Atelier 8', 'inLanguage': ['fr', 'en'],
+    site = {'@type': 'WebSite', '@id': SITE + '/#website', 'url': SITE + '/', 'name': 'Atelier 8', 'inLanguage': list(LANGS),
             'publisher': {'@id': SITE + '/#org'}}
     cat = {'@type': 'OfferCatalog', '@id': SITE + '/#catalogue',
-           'name': 'Formats de films en motion design' if lang == 'fr' else 'Motion design film formats', 'itemListElement': []}
+           'name': L3(lang, 'Formats de films en motion design', 'Motion design film formats', '動態設計影片方案'), 'itemListElement': []}
     for slug, name, price, (dmin, dmax), rev, desc in OFFERS:
         nm = name if lang == 'fr' or name != 'Campagne' else 'Campaign'
         cat['itemListElement'].append({
             '@type': 'Offer', 'name': nm, 'url': url(lang, 'formats'), 'description': desc[lang],
             'price': price, 'priceCurrency': 'EUR',
             'priceSpecification': {'@type': 'UnitPriceSpecification', 'price': price, 'priceCurrency': 'EUR',
-                                   'valueAddedTaxIncluded': False, 'description': 'À partir de, hors taxes' if lang == 'fr' else 'From, excluding VAT'},
+                                   'valueAddedTaxIncluded': False, 'description': L3(lang, 'À partir de, hors taxes', 'From, excluding VAT', '起價，未連稅')},
             'deliveryLeadTime': {'@type': 'QuantitativeValue', 'minValue': dmin, 'maxValue': dmax, 'unitCode': 'DAY',
-                                 'description': 'jours ouvrés' if lang == 'fr' else 'working days'},
-            'itemOffered': {'@type': 'Service', 'name': ('Film motion design ' if lang == 'fr' else 'Motion design film ') + nm,
+                                 'description': L3(lang, 'jours ouvrés', 'working days', '工作天')},
+            'itemOffered': {'@type': 'Service', 'name': L3(lang, 'Film motion design ', 'Motion design film ', '動態設計影片 ') + nm,
                             'serviceType': 'Motion design', 'provider': {'@id': SITE + '/#org'},
                             'areaServed': ['FR', 'HK', 'EU']},
             'seller': {'@id': SITE + '/#org'}})
@@ -237,20 +270,22 @@ def graph(lang, v, F, Q):
     if v in ('films', 'accueil'):
         items = []
         for i, f in enumerate(F if v == 'films' else [f for f in F if f['kind'] == 'showreel']):
-            src = f['src_en'] if (lang == 'en' and f['src_en']) else f['src']
+            src = f['src_en'] if (lang != 'fr' and f['src_en']) else f['src']
             if f['nature']:
                 d = f['nature'][lang]
             else:
-                d = ('Showreel 2026 d’Atelier 8 pour UX Design Paris, en français et en anglais.' if lang == 'fr'
-                     else 'Atelier 8’s 2026 showreel for UX Design Paris, in French and English.')
+                d = L3(lang, 'Showreel 2026 d’Atelier 8 pour UX Design Paris, en français et en anglais.',
+                       'Atelier 8’s 2026 showreel for UX Design Paris, in French and English.',
+                       'Atelier 8 為 UX Design Paris 製作的 2026 年 Showreel，設法語及英語版本。')
             if f['sector']:
-                d += (' Secteur : ' if lang == 'fr' else ' Sector: ') + f['sector'][lang] + '.'
-            d += (f' Film en motion design de {f["secs"]} secondes, script, image et son par Atelier 8.' if lang == 'fr'
-                  else f' A {f["secs"]}-second motion design film, script, picture and sound by Atelier 8.')
+                d += L3(lang, ' Secteur : ', ' Sector: ', '行業：') + f['sector'][lang] + L3(lang, '.', '.', '。')
+            d += L3(lang, f' Film en motion design de {f["secs"]} secondes, script, image et son par Atelier 8.',
+                    f' A {f["secs"]}-second motion design film, script, picture and sound by Atelier 8.',
+                    f'{f["secs"]} 秒動態設計影片，腳本、畫面及聲音由 Atelier 8 製作。')
             vo = {'@type': 'VideoObject', '@id': SITE + '/films/#' + f['slug'], 'name': f['title'][lang], 'description': d,
                   'thumbnailUrl': SITE + '/' + f['poster'], 'contentUrl': SITE + '/' + src,
                   'uploadDate': UPLOAD.get(f['slug'], UPLOAD_DEFAULT), 'duration': f'PT{f["secs"]}S',
-                  'width': 1280, 'height': 720, 'inLanguage': lang if f['kind'] != 'showreel' else ['fr', 'en'],
+                  'width': 1280, 'height': 720, 'inLanguage': (lang if lang != 'zh-HK' else 'en') if f['kind'] != 'showreel' else ['fr', 'en'],
                   'creator': {'@id': SITE + '/#org'}, 'publisher': {'@id': SITE + '/#org'}, 'isFamilyFriendly': True}
             items.append({'@type': 'ListItem', 'position': i + 1, 'item': vo})
         if v == 'films':
@@ -267,11 +302,11 @@ def page(full, lang, v, F, Q):
     title, desc = T[lang][v]
     u = url(lang, v)
     e = lambda x: H.escape(x, quote=True)
-    if lang == 'en':
-        s = s.replace('<html lang="fr">', '<html lang="en">', 1)
+    if lang != 'fr':
+        s = s.replace('<html lang="fr">', f'<html lang="{lang}">', 1)
     s = re.sub(r'<title>.*?</title>', f'<title>{e(title)}</title>', s, count=1)
     s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{e(desc)}">', s, count=1)
-    alt = ''.join(f'<link rel="alternate" hreflang="{hl}" href="{url(L, v)}">\n' for hl, L in (('fr', 'fr'), ('en', 'en'), ('x-default', 'fr')))
+    alt = ''.join(f'<link rel="alternate" hreflang="{hl}" href="{url(L, v)}">\n' for hl, L in HREFLANG)
     s = re.sub(r'<link rel="canonical" href="[^"]*">\n', f'<link rel="canonical" href="{u}">\n{alt}'
                '<meta name="robots" content="index, follow, max-image-preview:large, max-video-preview:-1, max-snippet:-1">\n'
                '<meta name="author" content="Pascal EK Loui">\n', s, count=1)
@@ -280,11 +315,12 @@ def page(full, lang, v, F, Q):
     s = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{e(desc)}">', s, count=1)
     s = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{e(title)}">', s, count=1)
     s = re.sub(r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{e(desc)}">', s, count=1)
-    loc, alt_loc = ('en_GB', 'fr_FR') if lang == 'en' else ('fr_FR', 'en_GB')
-    s = s.replace('<meta property="og:locale" content="fr_FR">',
-                  f'<meta property="og:locale" content="{loc}">\n<meta property="og:locale:alternate" content="{alt_loc}">', 1)
+    alts = ''.join(f'\n<meta property="og:locale:alternate" content="{LOC[o]}">' for o in LANGS if o != lang)
+    s = s.replace('<meta property="og:locale" content="fr_FR">', f'<meta property="og:locale" content="{LOC[lang]}">' + alts, 1)
     if lang == 'en':
         s = re.sub(r'<meta property="og:image:alt" content="[^"]*">', '<meta property="og:image:alt" content="A rock in the smoke, engraved with a glowing 八 sign, next to the title “A film that leaves a mark.” by Atelier 8">', s, count=1)
+    if lang == 'zh-HK':
+        s = re.sub(r'<meta property="og:image:alt" content="[^"]*">', '<meta property="og:image:alt" content="煙霧中一塊刻著發光「八」字的岩石，旁邊是標題「一部影片，令人記住。」— Atelier 8">', s, count=1)
     if v != 'accueil':  # la vidéo du hero ne bloque pas le chargement des autres pages
         s = re.sub(r'<link rel="preload" as="fetch" href="/media/hero-lo[^"]*\.mp4"[^>]*>\n', '', s)
     ld = json.dumps(graph(lang, v, F, Q), ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
@@ -292,18 +328,22 @@ def page(full, lang, v, F, Q):
     # vue active
     s = s.replace('<div class="view on" data-view="accueil"', '<div class="view" data-view="accueil"', 1)
     s = s.replace(f'<div class="view" data-view="{v}"', f'<div class="view on" data-view="{v}"', 1)
-    if lang == 'en':
+    if lang != 'fr':
         head, body = s.split('<body>', 1)
 
         def flip(m):
             tag = re.sub(r'\shidden(?![\w=-])', '', m.group(0))
-            return tag[:-1] + ' hidden>' if f'lang="fr"' in tag else tag
+            return tag if f'lang="{lang}"' in tag else tag[:-1] + ' hidden>'
         parts = re.split(r'(<script\b.*?</script>)', body, flags=re.S)
-        body = ''.join(x if x.startswith('<script') else re.sub(r'<[a-zA-Z][a-zA-Z0-9]*\b[^<>]*\slang="(?:fr|en)"[^<>]*>', flip, x) for x in parts)
-        body = body.replace('aria-label="Lire le film ', 'aria-label="Play the film ').replace(' · film en motion design, Atelier 8"', ' · motion design film by Atelier 8"')
+        body = ''.join(x if x.startswith('<script') else re.sub(r'<[a-zA-Z][a-zA-Z0-9]*\b[^<>]*\slang="(?:fr|en|zh-HK)"[^<>]*>', flip, x) for x in parts)
+        if lang == 'en':
+            body = body.replace('aria-label="Lire le film ', 'aria-label="Play the film ').replace(' · film en motion design, Atelier 8"', ' · motion design film by Atelier 8"')
+        else:
+            body = body.replace('aria-label="Lire le film ', 'aria-label="播放影片：').replace(' · film en motion design, Atelier 8"', ' · Atelier 8 動態設計影片"')
+        P = PREFIX[lang]
         for vv in VIEWS[1:]:
-            body = body.replace(f'href="/{vv}/"', f'href="/en/{vv}/"')
-        body = body.replace('href="/" data-go', 'href="/en/" data-go')
+            body = body.replace(f'href="/{vv}/"', f'href="{P}/{vv}/"')
+        body = body.replace('href="/" data-go', f'href="{P}/" data-go')
         s = head + '<body>' + body
     return s
 
@@ -328,11 +368,11 @@ def sitemap(F):
     x = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">']
     pr = {'accueil': '1.0', 'films': '0.9', 'usages': '0.8', 'formats': '0.9', 'atelier': '0.7', 'faq': '0.8', 'brief': '0.6'}
-    for lang in ('fr', 'en'):
+    for lang in LANGS:
         for v in VIEWS:
             x.append('<url>')
             x.append(f'<loc>{url(lang, v)}</loc><lastmod>{TODAY}</lastmod><changefreq>monthly</changefreq><priority>{pr[v]}</priority>')
-            for hl, L in (('fr', 'fr'), ('en', 'en'), ('x-default', 'fr')):
+            for hl, L in HREFLANG:
                 x.append(f'<xhtml:link rel="alternate" hreflang="{hl}" href="{url(L, v)}"/>')
             if v == 'accueil':
                 dv = dtf_video(lang)
@@ -346,8 +386,8 @@ def sitemap(F):
                          '<video:family_friendly>yes</video:family_friendly></video:video>')
             if v == 'films':
                 for f in F:
-                    src = f['src_en'] if (lang == 'en' and f['src_en']) else f['src']
-                    d = (f['nature'][lang] if f['nature'] else ('Showreel 2026, français et anglais.' if lang == 'fr' else '2026 showreel, French and English.'))
+                    src = f['src_en'] if (lang != 'fr' and f['src_en']) else f['src']
+                    d = (f['nature'][lang] if f['nature'] else L3(lang, 'Showreel 2026, français et anglais.', '2026 showreel, French and English.', '2026 年 Showreel，法語及英語版本。'))
                     x.append('<video:video>'
                              f'<video:thumbnail_loc>{SITE}/{f["poster"]}</video:thumbnail_loc>'
                              f'<video:title>{H.escape(f["title"][lang])}</video:title>'
@@ -399,7 +439,7 @@ def llms(F, Q):
         L.append(f'### {q["fr"][0]}')
         L.append(q['fr'][1]); L.append('')
     L += ['## Pages', '',
-          f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")})',
+          f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")}) · [繁體中文（香港）]({url("zh-HK", "accueil")})',
           f'- [Films]({url("fr", "films")}) : 31 films, nature de chaque film précisée',
           f'- [Cas d’usage]({url("fr", "usages")}) : six usages d’un film de marque, un film exemple pour chacun',
           f'- [Formats et prix]({url("fr", "formats")})',
@@ -467,15 +507,16 @@ def share_pages(F):
         while k in seen:
             k = f'{b}-{i}'; i += 1
         seen.add(k)
-        for lang in ('fr', 'en'):
+        for lang in LANGS:
             e = lambda x: H.escape(x, quote=True)
-            t = f['title'][lang] + (' · film en motion design, Atelier 8' if lang == 'fr' else ' · motion design film by Atelier 8')
+            t = f['title'][lang] + L3(lang, ' · film en motion design, Atelier 8', ' · motion design film by Atelier 8', ' · Atelier 8 動態設計影片')
             nat = (f['nature'] or {}).get(lang, '') if f.get('nature') else ''
-            dsc = (f"Film de {f['secs']} s écrit, animé et mis en son par Atelier 8, studio de motion design à Paris et Hong Kong. " if lang == 'fr'
-                   else f"A {f['secs']}-second film written, animated and scored by Atelier 8, motion design studio in Paris and Hong Kong. ") + nat
+            dsc = L3(lang, f"Film de {f['secs']} s écrit, animé et mis en son par Atelier 8, studio de motion design à Paris et Hong Kong. ",
+                     f"A {f['secs']}-second film written, animated and scored by Atelier 8, motion design studio in Paris and Hong Kong. ",
+                     f"由 Atelier 8 撰寫、製作動畫及配樂的 {f['secs']} 秒影片。Atelier 8 是以巴黎和香港為基地的動態設計工作室。") + nat
             dsc = dsc[:290]
-            base = SITE + ('/en' if lang == 'en' else '')
-            me = f'{base}/films/{k}/'; dest = f"{'/en' if lang == 'en' else ''}/films/#{k}"
+            base = SITE + PREFIX[lang]
+            me = f'{base}/films/{k}/'; dest = f"{PREFIX[lang]}/films/#{k}"
             img = SITE + '/' + f['poster']
             html = f"""<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -486,14 +527,14 @@ def share_pages(F):
 <meta property="og:type" content="video.other"><meta property="og:site_name" content="Atelier 8">
 <meta property="og:url" content="{me}"><meta property="og:title" content="{e(t)}"><meta property="og:description" content="{e(dsc)}">
 <meta property="og:image" content="{img}"><meta property="og:image:width" content="1280"><meta property="og:image:height" content="720"><meta property="og:image:alt" content="{e(f['title'][lang])}">
-<meta property="og:locale" content="{'en_GB' if lang == 'en' else 'fr_FR'}">
+<meta property="og:locale" content="{LOC[lang]}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(t)}"><meta name="twitter:description" content="{e(dsc)}"><meta name="twitter:image" content="{img}">
 <link rel="icon" href="/media/favicon-32.png">
 <script>location.replace({json.dumps(dest)});</script>
 <style>html,body{{margin:0;height:100%;background:#090908;color:#EFEDE6;font:16px/1.5 system-ui,sans-serif}}a{{color:#C99B45}}main{{display:grid;place-items:center;height:100%;text-align:center;padding:24px}}</style>
-</head><body><main><p>{e(f['title'][lang])}<br><a href="{dest}">{'Voir le film sur atelier8.io' if lang == 'fr' else 'Watch the film on atelier8.io'}</a></p></main></body></html>
+</head><body><main><p>{e(f['title'][lang])}<br><a href="{dest}">{L3(lang, 'Voir le film sur atelier8.io', 'Watch the film on atelier8.io', '在 atelier8.io 觀看影片')}</a></p></main></body></html>
 """
-            out.append((('en/' if lang == 'en' else '') + f'films/{k}/index.html', html))
+            out.append((PREFIX[lang].lstrip('/') + ('/' if PREFIX[lang] else '') + f'films/{k}/index.html', html))
     return out
 
 
@@ -503,9 +544,9 @@ def build(full, out):
     global UCD
     F, Q = films(full), faqs(full)
     UCD = usages(full)
-    for lang in ('fr', 'en'):
+    for lang in LANGS:
         for v in VIEWS:
-            d = os.path.join(out, *(['en'] if lang == 'en' else []), *([] if v == 'accueil' else [v]))
+            d = os.path.join(out, *([PREFIX[lang].lstrip('/')] if PREFIX[lang] else []), *([] if v == 'accueil' else [v]))
             os.makedirs(d, exist_ok=True)
             open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(page(full, lang, v, F, Q))
     w = lambda n, c: (os.makedirs(os.path.dirname(os.path.join(out, n)), exist_ok=True), open(os.path.join(out, n), 'w', encoding='utf-8').write(c))
