@@ -426,9 +426,9 @@ def llms(F, Q):
           '- Paiement : 50 % à la commande, solde à la livraison. Droits d’exploitation cédés sans limite de durée ni de territoire une fois le film payé.',
           '- Formats livrés : 16:9, 9:16, 1:1 et 4:5.', '',
           '## Films (portfolio)', '',
-          'Les films clients (Pelico) ont été commandés par la marque et sont diffusés avec son accord. Les autres films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : ils n’ont été ni commandés ni validés par les marques citées.', '']
+          'Les projets clients (Pelico) ont été réalisés pour la marque et validés par elle. Les autres films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : ils n’ont été ni commandés ni validés par les marques citées.', '']
     for f in F:
-        k = {'concept': 'concept, démo non officielle', 'demo': 'démo réalisée pour une agence, non validée par la marque', 'showreel': 'showreel FR/EN', 'client': 'film client, commandé par la marque'}[f['kind']]
+        k = {'concept': 'concept, démo non officielle', 'demo': 'démo réalisée pour une agence, non validée par la marque', 'showreel': 'showreel FR/EN', 'client': 'projet client, validé par la marque'}[f['kind']]
         L.append(f'- {f["title"]["fr"]} ({f["secs"]} s, {k}) : {SITE}/{f["src"]}')
     if UCD[0]:
         L += ['', '## Cas d’usage', '']
