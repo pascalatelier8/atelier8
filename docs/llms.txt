@@ -25,8 +25,9 @@ Atelier 8 is an independent motion design studio between Paris and Hong Kong, fo
 
 ## Films (portfolio)
 
-Les films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : aucun n’a été commandé ni validé par les marques citées.
+Les films clients (Pelico) ont été commandés par la marque et sont diffusés avec son accord. Les autres films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : ils n’ont été ni commandés ni validés par les marques citées.
 
+- Pelico — Vos agents IA (78 s, film client, commandé par la marque) : https://atelier8.io/media/films/pelico.mp4
 - Bang & Olufsen — Beo Grace (34 s, concept, démo non officielle) : https://atelier8.io/media/films/beo-grace-v1.mp4
 - Porsche × Smeg — 917 Salzburg (30 s, concept, démo non officielle) : https://atelier8.io/media/films/porsche-smeg-v1.mp4
 - Peloton — Cross Training Bike (30 s, concept, démo non officielle) : https://atelier8.io/media/films/peloton-v1.mp4
@@ -133,7 +134,7 @@ Moins de 30 secondes pour une annonce, une publicité ou un post : on retient un
 ## Pages
 
 - [Accueil](https://atelier8.io/) · [English](https://atelier8.io/en/) · [繁體中文（香港）](https://atelier8.io/zh-hk/)
-- [Films](https://atelier8.io/films/) : 31 films, nature de chaque film précisée
+- [Films](https://atelier8.io/films/) : 32 films, nature de chaque film précisée
 - [Cas d’usage](https://atelier8.io/usages/) : six usages d’un film de marque, un film exemple pour chacun
 - [Formats et prix](https://atelier8.io/formats/)
 - [L’atelier](https://atelier8.io/atelier/) : Pascal EK Loui et les cinq agents IA

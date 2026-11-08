@@ -31,8 +31,8 @@ T = {
  'fr': {
   'accueil': ('Atelier 8 · Studio de motion design à Paris et Hong Kong',
               'Studio de motion design indépendant entre Paris et Hong Kong. Films de marque de 15 à 90 s, script, voix, musique et montage. Dès 2 500 € HT, livrés en 5 à 30 jours.'),
-  'films':   ('Films en motion design : 31 réalisations · Atelier 8',
-              'Trente et un films en motion design, la plupart réalisés pour des agences en Angleterre, à Hong Kong et en France : marques SaaS, tech et luxe, et showreel. 15 à 100 secondes, script, image et son.'),
+  'films':   ('Films en motion design : 32 réalisations · Atelier 8',
+              'Trente-deux films en motion design, la plupart réalisés pour des agences en Angleterre, à Hong Kong et en France : marques SaaS, tech et luxe, et showreel. 15 à 100 secondes, script, image et son.'),
   'usages':  ('Cas d’usage d’un film de marque : SaaS, réseaux, lancement · Atelier 8',
               'Six usages d’un film de marque, chacun avec un film exemple : offre SaaS, LinkedIn, présentation, lancement, démo produit, publicité. Formats et prix.'),
   'formats': ('Prix d’un film en motion design, dès 2 500 € · Atelier 8',
@@ -47,8 +47,8 @@ T = {
  'en': {
   'accueil': ('Atelier 8 · Motion design studio in Paris and Hong Kong',
               'Independent motion design studio between Paris and Hong Kong. Brand films of 15 to 90 s: script, voice, music and edit. From €2,500, delivered in 5 to 30 days.'),
-  'films':   ('Motion design films: 31 projects · Atelier 8',
-              'Thirty-one motion design films, most made for agencies in the UK, Hong Kong and France: SaaS, tech and luxury brands, plus a showreel. 15 to 100 seconds, script, picture and sound.'),
+  'films':   ('Motion design films: 32 projects · Atelier 8',
+              'Thirty-two motion design films, most made for agencies in the UK, Hong Kong and France: SaaS, tech and luxury brands, plus a showreel. 15 to 100 seconds, script, picture and sound.'),
   'usages':  ('Brand film use cases: SaaS, social, launch · Atelier 8',
               'Six uses for a brand film, each with an example: explaining a SaaS offer, LinkedIn, company intro, launch, product demo, ads. Formats and prices.'),
   'formats': ('Motion design film pricing from €2,500 · Atelier 8',
@@ -63,8 +63,8 @@ T = {
  'zh-HK': {
   'accueil': ('Atelier 8 · 巴黎及香港動態設計工作室',
               '以巴黎和香港為基地的獨立動態設計（Motion Graphics）工作室。15 至 90 秒品牌影片，包辦腳本、旁白、音樂及剪接。€2,500 起（未連稅），5 至 30 個工作天交付。'),
-  'films':   ('動態設計作品：31 部影片 · Atelier 8',
-              '31 部動態設計影片，大部分受英國、香港及法國代理商委託製作：涵蓋 SaaS、科技及奢華品牌，另有 Showreel。15 至 100 秒，腳本、畫面及聲音一手包辦。'),
+  'films':   ('動態設計作品：32 部影片 · Atelier 8',
+              '32 部動態設計影片，大部分受英國、香港及法國代理商委託製作：涵蓋 SaaS、科技及奢華品牌，另有 Showreel。15 至 100 秒，腳本、畫面及聲音一手包辦。'),
   'usages':  ('品牌影片應用場景：SaaS、社交媒體、產品發布 · Atelier 8',
               '品牌影片的六種用途，每種附一部示範作品：介紹 SaaS 服務、LinkedIn、公司介紹、產品發布、產品示範、廣告。方案及價格一覽。'),
   'formats': ('動態設計影片價格，€2,500 起 · Atelier 8',
@@ -136,7 +136,7 @@ def films(src):
         d = {k: x.lstrip('/') for k, x in d.items()}
         poster = poster.lstrip('/')
         slug = os.path.basename(d['src'])[:-4]
-        kind = 'demo' if 'tag demo' in a else ('concept' if 'tag concept' in a else 'showreel')
+        kind = 'demo' if 'tag demo' in a else ('concept' if 'tag concept' in a else ('client' if 'tag client' in a else 'showreel'))
         out.append(dict(slug=slug, src=d['src'], src_en=d.get('src-en'), poster=poster, brand=brand,
                         title={l: title(l) for l in LANGS}, kind=kind,
                         nature={l: span(dl['Nature'], l) for l in LANGS} if 'Nature' in dl else None,
@@ -426,9 +426,9 @@ def llms(F, Q):
           '- Paiement : 50 % à la commande, solde à la livraison. Droits d’exploitation cédés sans limite de durée ni de territoire une fois le film payé.',
           '- Formats livrés : 16:9, 9:16, 1:1 et 4:5.', '',
           '## Films (portfolio)', '',
-          'Les films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : aucun n’a été commandé ni validé par les marques citées.', '']
+          'Les films clients (Pelico) ont été commandés par la marque et sont diffusés avec son accord. Les autres films de marques tierces ont pour la plupart été réalisés pour le compte d’agences (Angleterre, Hong Kong, France) : ils n’ont été ni commandés ni validés par les marques citées.', '']
     for f in F:
-        k = {'concept': 'concept, démo non officielle', 'demo': 'démo réalisée pour une agence, non validée par la marque', 'showreel': 'showreel FR/EN'}[f['kind']]
+        k = {'concept': 'concept, démo non officielle', 'demo': 'démo réalisée pour une agence, non validée par la marque', 'showreel': 'showreel FR/EN', 'client': 'film client, commandé par la marque'}[f['kind']]
         L.append(f'- {f["title"]["fr"]} ({f["secs"]} s, {k}) : {SITE}/{f["src"]}')
     if UCD[0]:
         L += ['', '## Cas d’usage', '']
@@ -440,7 +440,7 @@ def llms(F, Q):
         L.append(q['fr'][1]); L.append('')
     L += ['## Pages', '',
           f'- [Accueil]({url("fr", "accueil")}) · [English]({url("en", "accueil")}) · [繁體中文（香港）]({url("zh-HK", "accueil")})',
-          f'- [Films]({url("fr", "films")}) : 31 films, nature de chaque film précisée',
+          f'- [Films]({url("fr", "films")}) : 32 films, nature de chaque film précisée',
           f'- [Cas d’usage]({url("fr", "usages")}) : six usages d’un film de marque, un film exemple pour chacun',
           f'- [Formats et prix]({url("fr", "formats")})',
           f'- [L’atelier]({url("fr", "atelier")}) : Pascal EK Loui et les cinq agents IA',
